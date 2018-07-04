@@ -1,0 +1,44 @@
+{
+  "name": "context-form",
+  "version": "1.0.4",
+  "description": "ReactJS Form Management based on React Context",
+  "main": "dist/index.js",
+  "scripts": {
+    "prepublish": "eslint src && yarn build",
+    "build": "babel src --out-dir dist"
+  },
+  "engines": {
+    "node": ">=7.8.0"
+  },
+  "keywords": [
+    "form",
+    "react",
+    "context"
+  ],
+  "author": "Alexandr Viniychuk <a@viniychuk.com>",
+  "license": "MIT",
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "inflected": "^2.0.4",
+    "prop-types": "^15.6.2",
+    "react": "^16.4.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.51",
+    "@babel/core": "^7.0.0-beta.51",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.51",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.51",
+    "@babel/plugin-proposal-optional-chaining": "^7.0.0-beta.51",
+    "babel-eslint": "^8.2.5",
+    "babel-preset-env": "^7.0.0-beta.3",
+    "babel-preset-react": "^7.0.0-beta.3",
+    "eslint": "^5.0.1",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-config-react-app": "^2.1.0",
+    "eslint-loader": "^2.0.0",
+    "eslint-plugin-flowtype": "^2.49.3",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^6.1.0",
+    "eslint-plugin-react": "^7.10.0"
+  }
+}

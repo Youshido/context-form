@@ -1,0 +1,21 @@
+{
+  "presets" : [
+    [
+      "env",
+      {
+        "targets" : {
+          "browsers" : [
+            "last 2 versions"
+          ]
+        },
+        "modules" : false
+      }
+    ],
+    "react"
+  ],
+  "plugins" : [
+    "@babel/plugin-proposal-object-rest-spread",
+    "@babel/proposal-class-properties",
+    "@babel/plugin-proposal-optional-chaining"
+  ]
+}
