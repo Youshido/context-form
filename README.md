@@ -1,10 +1,6 @@
----
-description: >-
-  Context Form is a Form Management System for ReactJS based on the React
-  Context API.
----
-
 # Context Form
+
+Context Form is a Form Management System for ReactJS based on the React Context API.
 
 ## Features Support
 
