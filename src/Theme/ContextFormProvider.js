@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ContextFormThemeContext from './ContextFormThemeContext';
-import SimpleTheme from './SimpleTheme';
+import SimpleTheme from './SimpleTheme/SimpleTheme';
 
 const defaultThemesMap = {
   'Simple': SimpleTheme

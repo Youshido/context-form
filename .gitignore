@@ -1,6 +1,6 @@
 .idea/
 node_modules/
-/dist/
+dist/
 .npmrc
 .happypack
 npm-debug.log

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import FormContext from '../Context/FormContext';
-// import './Form.css';
 import { withContextFormThemeConsumer } from '../Theme/ContextFormThemeContext';
+import SimpleTheme from '../Theme/SimpleTheme/SimpleTheme';
 import { humanizeName } from '../utils';
 import ContextFormValidator from '../Validator/ContextFormValidator';
 
@@ -162,6 +162,7 @@ Form.propTypes = {
 Form.defaultProps = {
   name             : 'form_' + Date.now(),
   validator        : ContextFormValidator,
+  contextFormTheme : SimpleTheme,
   validateOnSubmit : true,
   layout           : 'horizontal',
   onChange         : () => null,

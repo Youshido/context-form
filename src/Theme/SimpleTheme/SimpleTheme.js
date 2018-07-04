@@ -1,10 +1,16 @@
 import React from 'react';
 import cn from 'classnames';
+import './SimpleTheme.css';
+
+const Input = (props) => {
+  const { required, ...extra } = props;
+  return <input {...extra} value={extra.value || ''}/>;
+};
 
 const FieldContainer = (props) =>
   <div className={cn('form-field', {
     'has-error' : props.form.errors[props.name],
-    'required'  : props.required
+    'required'  : props.required,
   })}>
     {props.children}
   </div>;
@@ -22,7 +28,7 @@ const FieldDescription = (props) => props.children
 const FieldErrors = (props) => props.errors
   ? <span className={'form-field__errors-holder'}>
       {props.errors.map(({ message }, i) =>
-        <p key={i} className={'form-field__errors-message'}>{message || 'Error occurred.'}</p>
+        <div key={i} className={'form-field__errors-message'}>{message || 'Error occurred.'}</div>,
       )}
     </span>
   : null;
@@ -36,10 +42,15 @@ const SimpleTheme = {
     Label          : FieldLabel,
     InputContainer : FieldInputContainer,
     Description    : FieldDescription,
-    Errors         : FieldErrors
+    Errors         : FieldErrors,
   },
   Footer       : FormFooter,
-  defaultInput : (props) => <input {...props} />
+  defaultInput : (props) => <input {...props} />,
+  types        : {
+    text : {
+      component : Input,
+    },
+  },
 };
 
 export default SimpleTheme;

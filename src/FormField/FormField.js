@@ -29,7 +29,6 @@ class FormField extends Component {
     const { name, label, component, form, contextFormTheme : theme, fieldArray, ...extraProps } = this.props;
     const { Field }                                                                             = theme;
     const { Container, Label, InputContainer, Description, Errors }                             = Field;
-
     const Component = component || theme.types[this.props.type].component;
 
     for (let p of ['placeholder']) {
