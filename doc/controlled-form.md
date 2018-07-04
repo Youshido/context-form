@@ -1,6 +1,6 @@
 # Controlled Form
 
-If you want to have a Controlled Form you simply need to pass `values props and the onChange props`
+If you want to have a Controlled Form you simply need to pass `values` prop and the `onChange` prop
 
 ```jsx
 // declare state
