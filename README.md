@@ -34,8 +34,6 @@ Once you installed Context Form as a dependency you can start creating forms wit
 
 Here's the most simple and minimalistic example of the form:
 
-{% code-tabs %}
-{% code-tabs-item title="UncontrolledFormExample.js" %}
 ```jsx
 import React, { Component } from 'react';
 import { Form, FormField, FormFooter } from 'context-form';
@@ -56,10 +54,7 @@ class ProductPage extends Component {
             </Form>
         )
     }
-} 
+}
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
-
 
 
