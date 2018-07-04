@@ -15,6 +15,7 @@
     "react",
     "context"
   ],
+  "repository": "https://github.com/viniychuk/context-form",
   "author": "Alexandr Viniychuk <a@viniychuk.com>",
   "license": "MIT",
   "dependencies": {
