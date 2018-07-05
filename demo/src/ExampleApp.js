@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import FullFeaturedFormExample from './FullFeaturedFormExample';
+import logo from './../cf-logo.jpg';
 
 class ExampleApp extends Component {
   render() {
     return (
-      <div>
-        <h2>Context Form Example App</h2>
+      <div className={'wrapper'}>
+        <div className='header'>
+          <img src={logo} className='logo'/>
+          <h1>Context Form Demo</h1>
+        </div>
         <FullFeaturedFormExample />
       </div>
     );

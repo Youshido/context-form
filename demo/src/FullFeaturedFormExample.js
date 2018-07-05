@@ -33,17 +33,26 @@ class FullFeaturedFormExample extends Component {
     return (
       <Fragment>
         <h2>Full Featured Form</h2>
+        <p className='app-description'>This example demonstrates most of the possibilities of the Context Form</p>
         <Form onSubmit={this.onSubmit}
               loading={loading}
               initialValues={initialValues}>
-          <FormField name={'firstName'}/>
-          <FormField name={'lastName'} required={true}/>
-          <FormFieldArray name={'education'}>
-            <FormField name={'university'}/>
-            <FormField name={'year'}/>
-            <RemoveGroupButton>Remove</RemoveGroupButton>
-          </FormFieldArray>
-          <AddGroupButton name={'education'}>Add Another</AddGroupButton>
+          <FormField name={'firstName'} placeholder={'e.g. Alex'}/>
+          <FormField name={'lastName'}
+                     placeholder={'e.g. Malcovich'}
+                     description={'Please, enter your real name'}
+                     required={true}
+          />
+          <div className='content-column'>
+            <FormFieldArray name={'education'}>
+              <div className={'education-group'}>
+                <FormField name={'university'} placeholder={'University'} label={false}/>
+                <FormField name={'year'} placeholder={'Year'} label={false}/>
+                <RemoveGroupButton>X</RemoveGroupButton>
+              </div>
+            </FormFieldArray>
+            <AddGroupButton name={'education'}>Add Another</AddGroupButton>
+          </div>
           <FormFooter>
             <button>Submit</button>
           </FormFooter>

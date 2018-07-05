@@ -1,0 +1,47 @@
+html, body {
+  padding: 0;
+  margin: 0;
+  font-family: Helvetica, Arial, sans-serif;
+}
+.wrapper {
+  flex: 1;
+  padding: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.header {
+  text-align: center;
+}
+.logo {
+  width: 80px;
+}
+h2 {
+  font-weight: 400;
+  margin: 10px 0;
+}
+.app-description {
+  font-weight: 400;
+  font-size: 16px;
+  color: darkgray;
+  margin: 10px 0 20px;
+}
+.content-column {
+  margin-left: 30%;
+}
+.education-group {
+  display: flex;
+  height: 30px;
+  align-items: center;
+  margin-left: 5px;
+  margin-top: 10px;
+}
+.education-group button {
+  font-size: 14px;
+  padding: 5px 10px;
+  background: orangered;
+  border: none;
+  color: white;
+}
+.education-group .form-field {
+  margin-top: 0 !important;
+}

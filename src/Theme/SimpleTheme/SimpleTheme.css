@@ -11,8 +11,9 @@
 
 .context-form-theme-simple .form-field .form-field__label {
   padding-right: 6px;
-  padding-top: 4px;
+  padding-top: 7px;
   text-align: right;
+  font-size: 15px
 }
 .context-form-theme-simple .form-field.required .form-field__label:before {
   display: inline-block;
@@ -22,6 +23,7 @@
 }
 .context-form-theme-simple .form-field input {
   padding: 5px 8px;
+  font-size: 14px;
 }
 .context-form-theme-simple .form-field.has-error input {
   border-color: #f5222d;
