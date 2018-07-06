@@ -16,7 +16,7 @@ const FieldContainer = (props) =>
   </div>;
 
 const FieldLabel = (props) =>
-  <label htmlFor={props.fieldName} className={'form-field__label'}>{props.children}:</label>;
+  <div className={'form-field__label-holder'}><label htmlFor={props.fieldName} className={'form-field__label'}>{props.children}:</label></div>;
 
 const FieldInputContainer = (props) =>
   <div className={'form-field__input-container'}>{props.children}</div>;

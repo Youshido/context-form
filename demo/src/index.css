@@ -30,18 +30,20 @@ h2 {
 }
 .education-group {
   display: flex;
-  height: 30px;
   align-items: center;
-  margin-left: 5px;
   margin-top: 10px;
 }
 .education-group button {
-  font-size: 14px;
-  padding: 5px 10px;
-  background: orangered;
+  padding: 0;
+  margin-left: 5px;
   border: none;
-  color: white;
 }
 .education-group .form-field {
   margin-top: 0 !important;
+}
+.form {
+  max-width: 650px;
+  padding: 50px 30px;
+  border-radius: 8px;
+  border: 1px solid #dadada;
 }

@@ -4,21 +4,27 @@ import { withContextFormConsumer } from '../Context/FormContext';
 import { withFormFieldArrayConsumer } from '../Context/FormFieldArrayContext';
 import { withContextFormThemeConsumer } from '../Theme/ContextFormThemeContext';
 import { humanizeName } from '../utils';
+import FormControl from './FormControl';
 
 class FormField extends Component {
 
   componentDidMount() {
-    if (this.props.required && this.props.form) {
-      this.props.form.addValidationRule(this.props.name, { required : true });
+    if (this.props.form) {
+      if (this.props.required) {
+        this.props.form.addValidationRule(this.props.name, { required : true });
+      }
+      if (this.props.rules) {
+        this.props.rules.forEach(rule => this.props.form.addValidationRule(this.props.name, rule));
+      }
     }
   }
 
   onChange = e => {
-    const value      = e?.target?.value !== undefined ? e?.target.value : e;
+    const value                      = e?.target?.value !== undefined ? e?.target.value : e;
     const { name, fieldArray, form } = this.props;
 
     if (fieldArray) {
-      fieldArray.setValue(name, value, fieldArray.index)
+      fieldArray.setValue(name, value, fieldArray.index);
     } else if (form) {
       form.setValue(name, value);
       this.props.onChange && this.props.onChange(value);
@@ -26,16 +32,10 @@ class FormField extends Component {
   };
 
   render() {
-    const { name, label, component, form, contextFormTheme : theme, fieldArray, ...extraProps } = this.props;
-    const { Field }                                                                             = theme;
-    const { Container, Label, InputContainer, Description, Errors }                             = Field;
-    const Component = component || theme.types[this.props.type].component;
+    const { name, label, form, contextFormTheme : theme, fieldArray } = this.props;
+    const { Field }                                                   = theme;
+    const { Container, Label, InputContainer, Description, Errors }   = Field;
 
-    for (let p of ['placeholder']) {
-      if (this.props[p] !== undefined) {
-        extraProps[p] = this.props[p];
-      }
-    }
     let errors    = null;
     let value     = this.props.value;
     let fieldName = form?.getName() + '-' + name;
@@ -49,18 +49,24 @@ class FormField extends Component {
         value = form.getValue(name);
       }
     }
+    const stateProps = { fieldName, errors };
     return (
-      <Container {...this.props}>
+      <Container {...this.props} {...stateProps}>
         {label !== false &&
         <Label fieldName={fieldName}
                required={this.props.required}>{label || humanizeName(name)}</Label>
         }
         <InputContainer>
-          <Component id={fieldName} {...extraProps} onChange={this.onChange} value={value}>
-            {this.props.children}
-          </Component>
-          <Description>{this.props.description}</Description>
-          <Errors errors={errors}/>
+          <FormControl
+            id={fieldName}
+            name={name}
+            errors={errors}
+            value={value}
+            children={this.props.children}
+            type={this.props.type}
+          />
+          <Description {...stateProps}>{this.props.description}</Description>
+          <Errors {...stateProps}/>
         </InputContainer>
       </Container>
     );

@@ -1,9 +1,9 @@
 .idea/
 node_modules/
-dist/
+/dist/
 .npmrc
 .happypack
 npm-debug.log
-.yarn-error.log
+yarn-error.log
 .DS_Store
 

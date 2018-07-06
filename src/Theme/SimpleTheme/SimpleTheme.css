@@ -46,7 +46,7 @@
 }
 
 /** HORIZONTAL LAYOUT */
-.context-form-theme-simple.context-form.horizontal .form-field .form-field__label {
+.context-form-theme-simple.context-form.horizontal .form-field .form-field__label-holder {
   width: 30%
 }
 .context-form-theme-simple.context-form.horizontal .form-field .form-field_container {

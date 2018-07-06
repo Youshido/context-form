@@ -1,5 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack           = require('webpack');
+const fs                = require('fs');
+const path = require('path');
 
 module.exports = {
   module    : {
@@ -10,8 +12,7 @@ module.exports = {
         use     : {
           loader  : 'babel-loader',
           options : {
-            presets : ['@babel/preset-env', '@babel/preset-react'],
-            plugins : ['@babel/plugin-proposal-class-properties', '@babel/plugin-proposal-optional-chaining'],
+            ...JSON.parse(fs.readFileSync(path.resolve(__dirname, '../.babelrc'))),
           },
         },
       },

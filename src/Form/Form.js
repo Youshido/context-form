@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import FormContext from '../Context/FormContext';
 import { withContextFormThemeConsumer } from '../Theme/ContextFormThemeContext';
 import SimpleTheme from '../Theme/SimpleTheme/SimpleTheme';
-import { humanizeName } from '../utils';
 import ContextFormValidator from '../Validator/ContextFormValidator';
 
-const innulable = values => values === null ? {} : values;
+const defaultValidator = new ContextFormValidator();
+const innulable        = values => values === null ? {} : values;
 
 class Form extends Component {
   validationRules = {};
@@ -23,17 +23,19 @@ class Form extends Component {
 
   isControlled = () => this.props.values !== undefined;
 
+  getValidator = () => this.props.contextFormTheme?.validator || defaultValidator;
+
   setValue = (name, value) => {
     const updateValue = { [name] : value };
     if (this.isControlled()) {
-      this.props.onChange(updateValue)
+      this.props.onChange(updateValue);
     } else {
       this.setState({
         pristine : false,
         values   : {
           ...this.state.values,
-          ...updateValue
-        }
+          ...updateValue,
+        },
       });
     }
     this.clearErrors(name);
@@ -47,41 +49,21 @@ class Form extends Component {
         ...this.state.errors,
         [name] : [
           ...errors,
-          error
-        ]
-      }
+          error,
+        ],
+      },
+    });
+  };
+
+  validateFields = () => {
+    const values = this.getValues();
+    return this.getValidator().validateValues(values).then(({ values, errors }) => {
+      this.setState({ errors });
+      return { values, errors };
     });
   };
 
   clearErrors = name => this.setState({ errors : { ...this.state.errors, [name] : undefined } });
-
-  validateFields = () => {
-    const errors = {};
-    return new Promise((resolve) => {
-      const values = this.getValues();
-      for (let fieldName in this.validationRules) {
-
-        // noinspection JSUnfilteredForInLoop
-        this.validationRules[fieldName].forEach(rule => {
-          if (rule.required && !values[fieldName]) {
-            if (!errors[fieldName]) errors[fieldName] = [];
-
-            errors[fieldName].push({ required : true, message : `${humanizeName(fieldName)} is required.` });
-          } else {
-            this.clearErrors(fieldName);
-          }
-        });
-      }
-      resolve({ values, errors });
-    });
-  };
-
-  addValidationRule = (fieldName, rule) => {
-    if (!this.validationRules[fieldName]) {
-      this.validationRules[fieldName] = [];
-    }
-    this.validationRules[fieldName].push(rule);
-  };
 
   registerFieldArray = (name, reference) => {
     this.fieldArrays[name] = reference;
@@ -100,8 +82,8 @@ class Form extends Component {
     // todo: REVISE comparision
     if (JSON.stringify(this.props.initialValues) !== JSON.stringify(prevProps.initialValues)) {
       this.setState({
-        values : innulable(this.props.initialValues)
-      })
+        values : innulable(this.props.initialValues),
+      });
     }
   }
 
@@ -113,26 +95,37 @@ class Form extends Component {
           this.props.onSubmit({ values });
         } else {
           this.setState({
-            errors
-          })
+            errors,
+          });
         }
       });
     } else {
-      this.props.onSubmit({ values : this.getValues() })
+      this.props.onSubmit({ values : this.getValues() });
     }
   };
 
+  onReset = e => {
+    e && e.preventDefault();
+    this.setState({
+      values : this.props.initialValues,
+    });
+  };
+
   render() {
+    const defaultForm = (props) => <form {...props}/>;
+    const Form        = this.props.contextFormTheme?.Form || defaultForm;
+    const validator   = this.getValidator();
     return (
-      <form onSubmit={this.onSubmit}
-            className={`context-form context-form-theme-${this.props.contextFormTheme?.name?.toLowerCase()} ${this.props.layout} with-labels`}
+      <Form onSubmit={this.onSubmit} onReset={this.onReset}
+            horizontal={this.props.horizontal}
+            className={`context-form context-form-theme-${this.props.contextFormTheme?.name?.toLowerCase()} ${this.props.layout} ${this.props.className || ''} with-labels`}
             style={this.props.style}>
         <FormContext.Provider value={{
           ...this.state,
           getValue           : this.getValue,
           setValue           : this.setValue,
-          validateFields     : this.validateFields,
-          addValidationRule  : this.addValidationRule,
+          validateFields     : validator.validateFields,
+          addValidationRule  : validator.addValidationRule,
           getName            : () => this.props.name,
           getTheme           : () => this.props.contextFormTheme,
           registerFieldArray : this.registerFieldArray,
@@ -142,7 +135,7 @@ class Form extends Component {
         }}>
           {this.props.children}
         </FormContext.Provider>
-      </form>
+      </Form>
     );
   }
 }
@@ -157,6 +150,8 @@ Form.propTypes = {
   contextFormTheme : PropTypes.any,
   values           : PropTypes.object,
   initialValues    : PropTypes.object,
+  className        : PropTypes.string,
+  horizontal       : PropTypes.bool,
 };
 
 Form.defaultProps = {
