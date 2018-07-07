@@ -28,7 +28,7 @@ class FormControl extends Component {
     }
 
     let value     = this.props.value;
-    let fieldName = form?.getName() + '-' + name;
+    const id = this.props.id || form?.getName() + '-' + name;
     if (form) {
       if (fieldArray) {
         value = fieldArray.getValue(name, fieldArray.index);
@@ -37,7 +37,7 @@ class FormControl extends Component {
       }
     }
     return (
-      <Component id={fieldName} {...extraProps} onChange={this.onChange} value={value}>
+      <Component id={id} {...extraProps} onChange={this.onChange} value={value}>
         {this.props.children}
       </Component>
     );

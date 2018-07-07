@@ -14,7 +14,6 @@ class FormFooter extends Component {
 }
 
 FormFooter.propTypes = {};
-
 FormFooter = withContextFormInstanceConsumer(FormFooter);
 
 export default FormFooter;

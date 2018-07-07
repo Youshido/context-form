@@ -1,17 +1,19 @@
-import React, { Component } from 'react';
+import React, { Component, createContext } from 'react';
 import PropTypes from 'prop-types';
 import { withContextForm } from '../Context/ContextFormContext';
 import ContextFormInstanceContext from '../Context/ContextFormInstanceContext';
 import SimpleTheme from '../Theme/SimpleTheme/SimpleTheme';
 import ContextFormValidator from '../Validator/ContextFormValidator';
 
-const innulable = values => values === null ? {} : values;
+const innulable   = values => values === null ? {} : values;
+const defaultForm = (props) => <form {...props}/>;
 
 class Form extends Component {
   validationRules = {};
   fieldArrays     = {};
   validator       = undefined;
   theme           = undefined;
+  FormComponent   = defaultForm;
 
   state = {
     values   : this.props.values || innulable(this.props.initialValues) || {},
@@ -21,9 +23,12 @@ class Form extends Component {
 
   constructor(props) {
     super(props);
-    const validator = this.props.contextForm?.validator || ContextFormValidator;
-    this.validator  = new validator();
+    const Validator = this.props.contextForm?.validator || ContextFormValidator;
+    this.validator  = new Validator();
     this.theme      = this.props.contextForm?.theme || SimpleTheme;
+    if (this.theme.Form) {
+      this.FormComponent = this.theme.Form;
+    }
   }
 
   getValues = () => this.isControlled() ? this.props.values : this.state.values;
@@ -86,6 +91,7 @@ class Form extends Component {
     // console.log("this.props.initialValues", this.props.initialValues, prevProps.initialValues);
     // todo: REVISE comparision
     if (JSON.stringify(this.props.initialValues) !== JSON.stringify(prevProps.initialValues)) {
+      console.log('ComponentDidUpdate - setState');
       this.setState({
         values : innulable(this.props.initialValues),
       });
@@ -117,8 +123,8 @@ class Form extends Component {
   };
 
   render() {
-    const defaultForm = (props) => <form {...props}/>;
-    const Form        = this.theme.Form || defaultForm;
+    console.log('[react-form] Render');
+    const Form = this.FormComponent;
     return (
       <Form onSubmit={this.onSubmit} onReset={this.onReset}
             horizontal={this.props.horizontal}
@@ -159,7 +165,7 @@ Form.propTypes = {
 };
 
 Form.defaultProps = {
-  name             : 'form_' + Date.now(),
+  name             : 'form_' + Date.now() + '_' + Math.random(),
   validator        : ContextFormValidator,
   validateOnSubmit : true,
   layout           : 'horizontal',

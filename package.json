@@ -1,10 +1,10 @@
 {
   "name": "context-form",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "ReactJS Form Management based on React Context",
   "main": "dist/index.js",
   "scripts": {
-    "prepublish": "eslint src && yarn build",
+    "prepublishOnly": "eslint src && yarn build",
     "build": "babel src --out-dir dist"
   },
   "engines": {

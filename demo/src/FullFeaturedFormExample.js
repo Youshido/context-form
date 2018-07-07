@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import RemoveGroupButton from '../../src/FormField/RemoveGroupButton';
 import {
   Form,
-  FormField, FormControl,
-  FormFooter, FormFieldArray, AddGroupButton,
+  FormField,
+  FormControl,
+  FormFooter,
+  FormFieldArray,
+  AddGroupButton,
+  RemoveGroupButton,
 } from '../../src/index';
 import { Button, Row, Col, Glyphicon, ControlLabel } from 'react-bootstrap';
-import PropTypes from 'prop-types';
 
 class FullFeaturedFormExample extends Component {
 
@@ -37,26 +39,17 @@ class FullFeaturedFormExample extends Component {
 
   render() {
     const { loading, initialValues } = this.state;
-    const code = `
-import React from 'react';
-
-class ProductForm extends Component { 
-  render() { 
-    return <div>Hello World</div>; 
-  } 
-}
-`;
     return (
       <div>
         <h2>Full Featured Form</h2>
         <p className='app-description'>This example demonstrates most of the possibilities of the Context Form</p>
-        <pre className="line-numbers"><code className="lang-javascript">{code}</code></pre>
         <Form onSubmit={this.onSubmit}
               horizontal
               loading={loading}
               initialValues={initialValues}
-              className='form form-fullfeatured'
+              className='form-fullfeatured'
         >
+          <FormField name={'title'} required/>
           <FormField name={'firstName'} placeholder={'e.g. Alex'}/>
           <FormField name={'lastName'}
                      placeholder={'e.g. Malcovich'}
@@ -83,7 +76,7 @@ class ProductForm extends Component {
               <FormFieldArray name={'education'}>
                 <div className={'education-group'}>
                   <FormControl name={'university'} placeholder={'University'}/>
-                  <FormControl name={'year'} placeholder={'Year'} style={{ width : 100, marginLeft: 10 }}/>
+                  <FormControl name={'year'} placeholder={'Year'} style={{ width : 100, marginLeft : 10 }}/>
                   <RemoveGroupButton>
                     <Glyphicon glyph="trash" style={{ marginLeft : 10 }}/>
                   </RemoveGroupButton>
@@ -98,6 +91,26 @@ class ProductForm extends Component {
             <Button bsStyle="primary" type={'submit'} style={{ marginLeft : 10 }}>Submit</Button>
           </FormFooter>
         </Form>
+        <Form
+          values={this.state.form2 || {}}
+          onChange={change => this.setState({ form2: { ...this.state.form2, ...change }})}
+          onSubmit={({ values }) => console.log('Second Submit', values)}
+        >
+          <FormField name={'title'}/>
+          <FormField name={'age'} required/>
+          <FormFooter>
+            <Button type={'submit'}>Submit</Button>
+          </FormFooter>
+        </Form>
+        <pre className="line-numbers"><code className="lang-javascript">{`
+import React from 'react';
+
+class ProductForm extends Component {
+  render() {
+    return <div>Hello World</div>;
+  }
+}
+        `}</code></pre>
       </div>
     );
   }
