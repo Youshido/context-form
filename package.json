@@ -1,6 +1,6 @@
 {
   "name": "context-form",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "ReactJS Form Management based on React Context",
   "main": "dist/index.js",
   "scripts": {
