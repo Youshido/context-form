@@ -5,7 +5,7 @@ import {
   FormField, FormControl,
   FormFooter, FormFieldArray, AddGroupButton,
 } from '../../src/index';
-import { Button, Row, Col, Well, Glyphicon, ControlLabel, FormGroup } from 'react-bootstrap';
+import { Button, Row, Col, Glyphicon, ControlLabel } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 
 class FullFeaturedFormExample extends Component {
@@ -37,11 +37,20 @@ class FullFeaturedFormExample extends Component {
 
   render() {
     const { loading, initialValues } = this.state;
+    const code = `
+import React from 'react';
 
+class ProductForm extends Component { 
+  render() { 
+    return <div>Hello World</div>; 
+  } 
+}
+`;
     return (
       <div>
         <h2>Full Featured Form</h2>
         <p className='app-description'>This example demonstrates most of the possibilities of the Context Form</p>
+        <pre className="line-numbers"><code className="lang-javascript">{code}</code></pre>
         <Form onSubmit={this.onSubmit}
               horizontal
               loading={loading}
@@ -74,9 +83,9 @@ class FullFeaturedFormExample extends Component {
               <FormFieldArray name={'education'}>
                 <div className={'education-group'}>
                   <FormControl name={'university'} placeholder={'University'}/>
-                  <FormControl name={'year'} placeholder={'Year'}/>
+                  <FormControl name={'year'} placeholder={'Year'} style={{ width : 100, marginLeft: 10 }}/>
                   <RemoveGroupButton>
-                    <Glyphicon glyph="trash" style={{ marginLeft : 7 }}/>
+                    <Glyphicon glyph="trash" style={{ marginLeft : 10 }}/>
                   </RemoveGroupButton>
                 </div>
               </FormFieldArray>
@@ -86,7 +95,7 @@ class FullFeaturedFormExample extends Component {
           <hr/>
           <FormFooter>
             <Button bsStyle="default" type={'reset'}>Reset</Button>
-            <Button bsStyle="primary" type={'submit'} style={{ marginLeft: 10}}>Submit</Button>
+            <Button bsStyle="primary" type={'submit'} style={{ marginLeft : 10 }}>Submit</Button>
           </FormFooter>
         </Form>
       </div>

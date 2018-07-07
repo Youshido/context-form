@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import FormContext from '../Context/FormContext';
+import ContextFormInstanceContext from '../Context/ContextFormInstanceContext';
 
 // import PropTypes from 'prop-types';
 
@@ -8,13 +8,13 @@ class AddGroupButton extends Component {
   render() {
     const { component: Button, ...restProps } = this.props;
     return (
-      <FormContext.Consumer>
+      <ContextFormInstanceContext.Consumer>
         {form => <Button type={'button'}
                          onClick={() => form.addFieldArray(this.props.name)}
                          {...restProps}>
           {this.props.children}
         </Button>}
-      </FormContext.Consumer>
+      </ContextFormInstanceContext.Consumer>
     );
   }
 }

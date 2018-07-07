@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import FormContext from '../Context/FormContext';
-import { withContextFormThemeConsumer } from '../Theme/ContextFormThemeContext';
+import { withContextForm } from '../Context/ContextFormContext';
+import ContextFormInstanceContext from '../Context/ContextFormInstanceContext';
 import SimpleTheme from '../Theme/SimpleTheme/SimpleTheme';
 import ContextFormValidator from '../Validator/ContextFormValidator';
 
-const defaultValidator = new ContextFormValidator();
-const innulable        = values => values === null ? {} : values;
+const innulable = values => values === null ? {} : values;
 
 class Form extends Component {
   validationRules = {};
   fieldArrays     = {};
+  validator       = undefined;
+  theme           = undefined;
 
   state = {
     values   : this.props.values || innulable(this.props.initialValues) || {},
@@ -18,12 +19,17 @@ class Form extends Component {
     pristine : true,
   };
 
+  constructor(props) {
+    super(props);
+    const validator = this.props.contextForm?.validator || ContextFormValidator;
+    this.validator  = new validator();
+    this.theme      = this.props.contextForm?.theme || SimpleTheme;
+  }
+
   getValues = () => this.isControlled() ? this.props.values : this.state.values;
   getValue  = name => this.getValues()[name];
 
   isControlled = () => this.props.values !== undefined;
-
-  getValidator = () => this.props.contextFormTheme?.validator || defaultValidator;
 
   setValue = (name, value) => {
     const updateValue = { [name] : value };
@@ -42,7 +48,6 @@ class Form extends Component {
   };
 
   addError = (name, error) => {
-    console.log('[ADD ERROR]', name, error);
     const errors = this.state.errors[name] || [];
     this.setState({
       errors : {
@@ -57,7 +62,7 @@ class Form extends Component {
 
   validateFields = () => {
     const values = this.getValues();
-    return this.getValidator().validateValues(values).then(({ values, errors }) => {
+    return this.validator.validateValues(values).then(({ values, errors }) => {
       this.setState({ errors });
       return { values, errors };
     });
@@ -113,28 +118,27 @@ class Form extends Component {
 
   render() {
     const defaultForm = (props) => <form {...props}/>;
-    const Form        = this.props.contextFormTheme?.Form || defaultForm;
-    const validator   = this.getValidator();
+    const Form        = this.theme.Form || defaultForm;
     return (
       <Form onSubmit={this.onSubmit} onReset={this.onReset}
             horizontal={this.props.horizontal}
-            className={`context-form context-form-theme-${this.props.contextFormTheme?.name?.toLowerCase()} ${this.props.layout} ${this.props.className || ''} with-labels`}
+            className={`context-form context-form-theme-${this.theme.name?.toLowerCase()} ${this.props.layout} ${this.props.className || ''} with-labels`}
             style={this.props.style}>
-        <FormContext.Provider value={{
+        <ContextFormInstanceContext.Provider value={{
           ...this.state,
           getValue           : this.getValue,
           setValue           : this.setValue,
-          validateFields     : validator.validateFields,
-          addValidationRule  : validator.addValidationRule,
+          validateFields     : this.validator.validateFields,
+          addValidationRule  : this.validator.addValidationRule,
           getName            : () => this.props.name,
-          getTheme           : () => this.props.contextFormTheme,
+          getTheme           : () => this.theme,
           registerFieldArray : this.registerFieldArray,
           addFieldArray      : this.addFieldArray,
           removeFieldArray   : this.removeFieldArray,
           submit             : this.onSubmit,
         }}>
           {this.props.children}
-        </FormContext.Provider>
+        </ContextFormInstanceContext.Provider>
       </Form>
     );
   }
@@ -147,7 +151,7 @@ Form.propTypes = {
   layout           : PropTypes.oneOf(['horizontal', 'vertical', 'inline']),
   onSubmit         : PropTypes.func,
   onChange         : PropTypes.func,
-  contextFormTheme : PropTypes.any,
+  contextForm      : PropTypes.any,
   values           : PropTypes.object,
   initialValues    : PropTypes.object,
   className        : PropTypes.string,
@@ -157,7 +161,6 @@ Form.propTypes = {
 Form.defaultProps = {
   name             : 'form_' + Date.now(),
   validator        : ContextFormValidator,
-  contextFormTheme : SimpleTheme,
   validateOnSubmit : true,
   layout           : 'horizontal',
   onChange         : () => null,
@@ -165,4 +168,4 @@ Form.defaultProps = {
 };
 
 
-export default withContextFormThemeConsumer(Form);
+export default withContextForm(Form);

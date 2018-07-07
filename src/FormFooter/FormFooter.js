@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withContextFormConsumer } from '../Context/FormContext';
+import { withContextFormInstanceConsumer } from '../Context/ContextFormInstanceContext';
 
 class FormFooter extends Component {
   render() {
@@ -15,6 +15,6 @@ class FormFooter extends Component {
 
 FormFooter.propTypes = {};
 
-FormFooter = withContextFormConsumer(FormFooter);
+FormFooter = withContextFormInstanceConsumer(FormFooter);
 
 export default FormFooter;

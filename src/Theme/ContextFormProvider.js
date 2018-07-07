@@ -1,38 +1,40 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ContextFormThemeContext from './ContextFormThemeContext';
+import ContextFormValidator from '../Validator/ContextFormValidator';
 import SimpleTheme from './SimpleTheme/SimpleTheme';
-
-const defaultThemesMap = {
-  'Simple': SimpleTheme
-};
+import ContextFormContext from '../Context/ContextFormContext';
 
 class ContextFormProvider extends Component {
-  render() {
-    let { theme } = this.props;
-    if (typeof theme === 'string') {
-      if (defaultThemesMap[theme]) {
-        theme = defaultThemesMap[theme]
-      } else {
-        theme = {
-          name: theme
-        };
-      }
-    }
 
+  forms = {};
+
+  registerForm = (name, instance) => {
+    this.forms[name] = instance;
+  };
+
+  getForm = name => this.forms[name];
+
+  render() {
     return (
-      <ContextFormThemeContext.Provider value={theme}>
+      <ContextFormContext.Provider value={{
+        theme: this.props.theme,
+        validator: this.props.validator,
+        registerForm: this.registerForm,
+        getForm: this.getForm,
+      }}>
         {this.props.children}
-      </ContextFormThemeContext.Provider>
+      </ContextFormContext.Provider>
     );
   }
 }
 
-ContextFormProvider.propTypes    = {
-  theme : PropTypes.any
+ContextFormProvider.propTypes = {
+  theme: PropTypes.object.isRequired,
+  validator: PropTypes.any,
 };
 ContextFormProvider.defaultProps = {
-  theme : 'simple'
+  theme: SimpleTheme,
+  validator: ContextFormValidator,
 };
 
 export default ContextFormProvider;

@@ -1,9 +1,10 @@
 {
   "name": "context-form",
-  "version": "1.0.8",
+  "version": "1.0.12",
   "description": "ReactJS Form Management based on React Context",
   "main": "dist/index.js",
   "scripts": {
+    "prepublish": "eslint src && yarn build",
     "build": "babel src --out-dir dist"
   },
   "engines": {
@@ -42,6 +43,7 @@
     "eslint-plugin-flowtype": "^2.49.3",
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-jsx-a11y": "^6.1.0",
-    "eslint-plugin-react": "^7.10.0"
+    "eslint-plugin-react": "^7.10.0",
+    "prettier": "^1.13.7"
   }
 }

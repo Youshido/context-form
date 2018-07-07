@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withContextFormConsumer } from '../Context/FormContext';
+import { withContextFormInstanceConsumer } from '../Context/ContextFormInstanceContext';
 import { withFormFieldArrayConsumer } from '../Context/FormFieldArrayContext';
-import { withContextFormThemeConsumer } from '../Theme/ContextFormThemeContext';
+import { withContextForm } from '../Context/ContextFormContext';
 
 class FormControl extends Component {
 
@@ -19,14 +19,14 @@ class FormControl extends Component {
   };
 
   render() {
-    const { name, component, form, contextFormTheme : theme, fieldArray, ...extraProps } = this.props;
-    const Component                                                                      = component || theme.types[this.props.type].component;
+    const { name, component, form, contextForm, fieldArray, ...extraProps } = this.props;
 
-    for (let p of ['placeholder']) {
-      if (this.props[p] !== undefined) {
-        extraProps[p] = this.props[p];
-      }
+    const Component = component || contextForm?.theme?.types[this.props.type]?.component;
+    if (!Component) {
+      console.error('[context-form]: Invalid type', this.props.type);
+      return null;
     }
+
     let value     = this.props.value;
     let fieldName = form?.getName() + '-' + name;
     if (form) {
@@ -59,8 +59,8 @@ FormControl.defaultProps = {
   required : false,
 };
 
-FormControl = withContextFormConsumer(FormControl);
+FormControl = withContextFormInstanceConsumer(FormControl);
 FormControl = withFormFieldArrayConsumer(FormControl);
-FormControl = withContextFormThemeConsumer(FormControl);
+FormControl = withContextForm(FormControl);
 
 export default FormControl;

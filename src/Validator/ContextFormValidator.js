@@ -29,7 +29,7 @@ class ContextFormValidator {
           } else if (typeof rule === 'function') {
             const message = rule(value);
             if (message !== undefined) {
-              error = { rule : rule.name, message }
+              error = { rule : rule.name, message };
             }
           } else {
             // clear error

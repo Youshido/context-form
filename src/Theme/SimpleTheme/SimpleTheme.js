@@ -1,6 +1,5 @@
 import React from 'react';
 import cn from 'classnames';
-// import './SimpleTheme.css';
 
 const Input = (props) => {
   const { required, ...extra } = props;

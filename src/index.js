@@ -2,7 +2,7 @@ import Form from './Form/Form';
 import FormField from './FormField/FormField';
 import FormControl from './FormField/FormControl';
 import FormFooter from './FormFooter/FormFooter';
-import FormContext from './Context/FormContext';
+import ContextFormInstanceContext from './Context/ContextFormInstanceContext';
 import FormFieldArrayContext from './Context/FormFieldArrayContext';
 import ContextFormProvider from './Theme/ContextFormProvider';
 
@@ -21,7 +21,7 @@ export {
   AddGroupButton,
   RemoveGroupButton,
   FormFieldArray,
-  FormContext,
+  ContextFormInstanceContext,
   FormFieldArrayContext,
   humanizeName,
 };

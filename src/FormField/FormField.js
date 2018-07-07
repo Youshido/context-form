@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withContextFormConsumer } from '../Context/FormContext';
+import { withContextFormInstanceConsumer } from '../Context/ContextFormInstanceContext';
 import { withFormFieldArrayConsumer } from '../Context/FormFieldArrayContext';
-import { withContextFormThemeConsumer } from '../Theme/ContextFormThemeContext';
 import { humanizeName } from '../utils';
 import FormControl from './FormControl';
 
 class FormField extends Component {
-
   componentDidMount() {
     if (this.props.form) {
       if (this.props.required) {
@@ -32,9 +30,9 @@ class FormField extends Component {
   };
 
   render() {
-    const { name, label, form, contextFormTheme : theme, fieldArray } = this.props;
-    const { Field }                                                   = theme;
-    const { Container, Label, InputContainer, Description, Errors }   = Field;
+    const { name, label, form, fieldArray }                         = this.props;
+    const { Field }                                                 = form.getTheme();
+    const { Container, Label, InputContainer, Description, Errors } = Field;
 
     let errors    = null;
     let value     = this.props.value;
@@ -59,11 +57,10 @@ class FormField extends Component {
         <InputContainer>
           <FormControl
             id={fieldName}
+            {...this.props}
             name={name}
             errors={errors}
             value={value}
-            children={this.props.children}
-            type={this.props.type}
           />
           <Description {...stateProps}>{this.props.description}</Description>
           <Errors {...stateProps}/>
@@ -88,8 +85,7 @@ FormField.defaultProps = {
   required : false,
 };
 
-FormField = withContextFormConsumer(FormField);
+FormField = withContextFormInstanceConsumer(FormField);
 FormField = withFormFieldArrayConsumer(FormField);
-FormField = withContextFormThemeConsumer(FormField);
 
 export default FormField;

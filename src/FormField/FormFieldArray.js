@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { withContextFormConsumer } from '../Context/FormContext';
+import { withContextFormInstanceConsumer } from '../Context/ContextFormInstanceContext';
 import FormFieldArrayContext from '../Context/FormFieldArrayContext';
 
 class FormFieldArray extends Component {
@@ -77,6 +77,6 @@ FormFieldArray.defaultProps = {
   initialCount : 1,
 };
 
-FormFieldArray = withContextFormConsumer(FormFieldArray);
+FormFieldArray = withContextFormInstanceConsumer(FormFieldArray);
 
 export default FormFieldArray;
