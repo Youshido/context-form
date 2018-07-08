@@ -13,8 +13,8 @@ const examplesMap = {
 
 class ExampleApp extends Component {
   render() {
-    const params  = getScriptParams();
-    const Example = examplesMap[params.example] || BasicFormExample;
+    const example  = this.props.example || getScriptParams().example;
+    const Example = examplesMap[example] || BasicFormExample;
 
     return (
       <div className={"wrapper"}>

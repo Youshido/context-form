@@ -6,12 +6,15 @@ import ExampleApp from './ExampleApp';
 import './index.css';
 import getScriptParams from "./utils/getScriptParams";
 
-const params = getScriptParams();
-const renderId = params?.example ? 'context-form-example-' + params?.example : 'root';
+// const params = getScriptParams();
+// const renderId = params?.example ? 'context-form-example-' + params?.example : 'root';
 
-ReactDOM.render(
-  <ContextFormProvider theme={BootstrapTheme}>
-    <ExampleApp/>
-  </ContextFormProvider>,
-  document.getElementById(renderId),
-);
+const renderExample = (example, renderId) => {
+  ReactDOM.render(
+    <ContextFormProvider theme={BootstrapTheme}>
+      <ExampleApp example={example}/>
+    </ContextFormProvider>,
+    document.getElementById(renderId),
+  );
+};
+window.renderExample = renderExample;

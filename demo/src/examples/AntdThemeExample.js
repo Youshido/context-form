@@ -48,14 +48,6 @@ class AntdThemeExample extends Component {
       title : 'Bushmaster',
     };
 
-    const options = [{
-      id   : '1',
-      name : 'Vegetarian',
-    }, {
-      id   : '2',
-      name : 'Chicken',
-    }];
-
     return (
       <div style={{ maxWidth : 400, paddingBottom : 100 }}>
         <ContextFormProvider theme={AntTheme}>
