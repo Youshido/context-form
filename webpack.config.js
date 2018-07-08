@@ -31,7 +31,7 @@ module.exports = [
   {
     devtool : "source-map",
     output  : {
-      path           : libPath,
+      path           : libPath + '/umd',
       filename       : libraryName + ".js",
       library        : libraryName,
       libraryTarget  : "umd",
@@ -43,11 +43,37 @@ module.exports = [
     mode    : "development"
   }, {
     output       : {
-      path           : libPath,
+      path           : libPath + '/umd',
       filename       : libraryName + ".min.js",
       library        : libraryName,
       libraryTarget  : "umd",
       umdNamedDefine : true
+    },
+    optimization : {
+      minimize : true
+    },
+    module       : {
+      rules
+    },
+    mode         : "production"
+  },  {
+    devtool : "source-map",
+    output  : {
+      path           : libPath + '/cjs',
+      filename       : libraryName + ".js",
+      library        : libraryName,
+      libraryTarget  : "commonjs",
+    },
+    module  : {
+      rules
+    },
+    mode    : "development"
+  }, {
+    output       : {
+      path           : libPath + '/cjs',
+      filename       : libraryName + ".min.js",
+      library        : libraryName,
+      libraryTarget  : "commonjs",
     },
     optimization : {
       minimize : true

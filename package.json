@@ -1,6 +1,6 @@
 {
   "name": "context-form",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "description": "ReactJS Form Management based on React Context",
   "main": "dist/index.js",
   "scripts": {
@@ -19,7 +19,7 @@
     "dist/",
     "lib/"
   ],
-  "unpkg": "dist/context-form.min.js",
+  "unpkg": "dist/cjs/context-form.min.js",
   "repository": "https://github.com/viniychuk/context-form",
   "author": "Alexandr Viniychuk <a@viniychuk.com>",
   "license": "MIT",
