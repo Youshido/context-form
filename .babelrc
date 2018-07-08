@@ -1,7 +1,7 @@
 {
   "presets" : [
     [
-      "env",
+      "@babel/preset-env",
       {
         "targets" : {
           "browsers" : [
@@ -11,11 +11,10 @@
         "modules" : false
       }
     ],
-    "react"
+    "@babel/preset-react"
   ],
   "plugins" : [
-    "@babel/plugin-proposal-object-rest-spread",
-    "@babel/proposal-class-properties",
+    "@babel/plugin-proposal-class-properties",
     "@babel/plugin-proposal-optional-chaining"
   ]
 }

@@ -1,7 +1,7 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack           = require('webpack');
-const fs                = require('fs');
-const path = require('path');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack           = require("webpack");
+const fs                = require("fs");
+const path              = require("path");
 
 module.exports = {
   module    : {
@@ -10,31 +10,31 @@ module.exports = {
         test    : /\.js$/,
         exclude : /(node_modules)/,
         use     : {
-          loader  : 'babel-loader',
+          loader  : "babel-loader",
           options : {
-            ...JSON.parse(fs.readFileSync(path.resolve(__dirname, '../.babelrc'))),
-          },
-        },
+            ...JSON.parse(fs.readFileSync(path.resolve(__dirname, "../.babelrc")))
+          }
+        }
       },
       {
         test : /\.css$/,
-        use  : ['style-loader', 'css-loader'],
+        use  : ["style-loader", "css-loader"]
       },
       {
         test : /\.(png|svg|jpg|gif)$/,
         use  : [
-          'file-loader',
-        ],
-      },
-    ],
+          "file-loader"
+        ]
+      }
+    ]
   },
   devServer : {
-    hot : true,
+    hot : true
   },
   plugins   : [
     new HtmlWebpackPlugin({
-      template : 'src/index.html',
+      template : "src/index.html"
     }),
-    new webpack.HotModuleReplacementPlugin(),
-  ],
+    new webpack.HotModuleReplacementPlugin()
+  ]
 };

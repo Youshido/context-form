@@ -30,6 +30,7 @@
     "webpack-dev-server": "^3.1.4"
   },
   "dependencies": {
+    "context-form": "^1.0.15",
     "react-bootstrap": "^0.32.1",
     "reactstrap": "^6.2.0"
   }

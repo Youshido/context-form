@@ -1,11 +1,11 @@
 {
   "name": "context-form",
-  "version": "1.0.13",
+  "version": "1.0.15",
   "description": "ReactJS Form Management based on React Context",
   "main": "dist/index.js",
   "scripts": {
     "prepublishOnly": "eslint src && yarn build",
-    "build": "babel src --out-dir dist"
+    "build": "babel src --out-dir lib && webpack"
   },
   "engines": {
     "node": ">=7.8.0"
@@ -16,8 +16,10 @@
     "context"
   ],
   "files": [
-    "dist/"
+    "dist/",
+    "lib/"
   ],
+  "unpkg": "dist/context-form.min.js",
   "repository": "https://github.com/viniychuk/context-form",
   "author": "Alexandr Viniychuk <a@viniychuk.com>",
   "license": "MIT",
@@ -33,9 +35,12 @@
     "@babel/plugin-proposal-class-properties": "^7.0.0-beta.51",
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.51",
     "@babel/plugin-proposal-optional-chaining": "^7.0.0-beta.51",
+    "@babel/preset-env": "^7.0.0-beta.52",
+    "@babel/preset-react": "^7.0.0-beta.52",
+    "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^8.2.5",
-    "babel-preset-env": "^7.0.0-beta.3",
-    "babel-preset-react": "^7.0.0-beta.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-minify": "^0.4.3",
     "eslint": "^5.0.1",
     "eslint-config-airbnb": "^17.0.0",
     "eslint-config-react-app": "^2.1.0",
@@ -44,6 +49,8 @@
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-jsx-a11y": "^6.1.0",
     "eslint-plugin-react": "^7.10.0",
-    "prettier": "^1.13.7"
+    "prettier": "^1.13.7",
+    "webpack": "^4.15.1",
+    "webpack-cli": "^3.0.8"
   }
 }
