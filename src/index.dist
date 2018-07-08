@@ -1,5 +1,5 @@
 if (process.env.NODE_ENV === 'production') {
-  module.exports = require('./cjs/context-form.min.js');
+  module.exports = require('./context-form.min.js');
 } else {
-  module.exports = require('./cjs/context-form.js');
+  module.exports = require('./context-form.js');
 }

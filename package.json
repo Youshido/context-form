@@ -1,12 +1,12 @@
 {
   "name": "context-form",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "description": "ReactJS Form Management based on React Context",
-  "main": "dist/context-form.min.js",
+  "main": "dist/index.js",
   "unpkg": "dist/context-form.min.js",
   "scripts": {
     "prepublishOnly": "eslint src && yarn build",
-    "build": "babel src --out-dir lib && webpack && cp ./src/index.dist ./dist/index.js"
+    "build": "babel src --out-dir lib && rollup -c && cp ./src/index.dist ./dist/index.js"
   },
   "engines": {
     "node": ">=7.8.0"
@@ -53,6 +53,7 @@
     "rollup-plugin-babel": "^4.0.0-beta.7",
     "rollup-plugin-commonjs": "^9.1.3",
     "rollup-plugin-node-resolve": "^3.3.0",
+    "rollup-plugin-terser": "^1.0.1",
     "rollup-plugin-uglify": "^4.0.0",
     "webpack": "^4.15.1",
     "webpack-cli": "^3.0.8"

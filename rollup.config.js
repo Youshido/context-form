@@ -1,16 +1,16 @@
 import babel from "rollup-plugin-babel";
 import resolve from "rollup-plugin-node-resolve";
 import commonjs from "rollup-plugin-commonjs";
-import { uglify } from "rollup-plugin-uglify";
+import { terser } from "rollup-plugin-terser";
 
 const config = {
   input : "./src/index.js",
 
   output : {
-    file      : "./dist/context-form.js",
-    format    : "umd",
-    name      : "ContextForm",
-    globals   : {
+    file    : "./dist/context-form.js",
+    format  : "umd",
+    name    : "ContextForm",
+    globals : {
       "react"     : "React",
       "react-dom" : "ReactDOM"
     }
@@ -38,12 +38,12 @@ export default [
     ...config,
     output  : {
       ...config.output,
-      sourcemap : true,
+      sourcemap: true,
       file : "./dist/context-form.min.js"
     },
     plugins : [
       ...config.plugins,
-      uglify()
+      terser()
     ]
   }
 ];

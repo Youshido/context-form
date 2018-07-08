@@ -48,9 +48,9 @@ module.exports = [
     },
     mode    : "development"
   }, {
-    // devtool : "source-map",
+    devtool : "source-map",
     output  : {
-      path          : libPath + "/cjs",
+      path          : libPath,
       filename      : fileName + ".min.js",
       library       : "",
       libraryTarget : "commonjs"
