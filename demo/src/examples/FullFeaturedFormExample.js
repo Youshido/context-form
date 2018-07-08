@@ -102,15 +102,6 @@ class FullFeaturedFormExample extends Component {
             <Button type={'submit'}>Submit</Button>
           </FormFooter>
         </Form>
-        <pre className="line-numbers"><code className="lang-javascript">{`
-import React from 'react';
-
-class ProductForm extends Component {
-  render() {
-    return <div>Hello World</div>;
-  }
-}
-        `}</code></pre>
       </div>
     );
   }

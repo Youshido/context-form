@@ -88,10 +88,8 @@ class Form extends Component {
   };
 
   componentDidUpdate(prevProps) {
-    // console.log("this.props.initialValues", this.props.initialValues, prevProps.initialValues);
     // todo: REVISE comparision
     if (JSON.stringify(this.props.initialValues) !== JSON.stringify(prevProps.initialValues)) {
-      console.log('ComponentDidUpdate - setState');
       this.setState({
         values : innulable(this.props.initialValues),
       });
@@ -123,7 +121,6 @@ class Form extends Component {
   };
 
   render() {
-    console.log('[react-form] Render');
     const Form = this.FormComponent;
     return (
       <Form onSubmit={this.onSubmit} onReset={this.onReset}

@@ -1,29 +1,20 @@
-import React, { Component } from "react";
-import AntdThemeExample from "./examples/AntdThemeExample";
-import BasicFormExample from "./examples/BasicFormExample";
-import FullFeaturedFormExample from "./examples/FullFeaturedFormExample";
-import getScriptParams from "./utils/getScriptParams";
-
-const examplesMap = {
-  "basic"         : BasicFormExample,
-  "full-featured" : FullFeaturedFormExample,
-  "antd"          : AntdThemeExample
-};
-
+import React, { Component } from 'react';
+import { EXAMPLE } from './constants';
+import AntdThemeExample from './examples/AntdThemeExample';
+import BasicFormExample from './examples/BasicFormExample';
+import FullFeaturedFormExample from './examples/FullFeaturedFormExample';
+import getScriptParams from './utils/getScriptParams';
 
 class ExampleApp extends Component {
   render() {
-    const example  = this.props.example || getScriptParams().example;
-    const Example = examplesMap[example] || BasicFormExample;
+    // const example = this.props.example || getScriptParams().example;
+    const { example } = this.props;
+    const Example     = EXAMPLE[example]
+      ? EXAMPLE[example].component
+      : <h3>Invalid Example {example}</h3>;
 
     return (
-      <div className={"wrapper"}>
-        {/*<div className='header'>*/}
-        {/*<img src={logo} className='logo'/>*/}
-        {/*<h1>Context Form Demo</h1>*/}
-        {/*</div>*/}
-        <Example/>
-      </div>
+      <Example/>
     );
   }
 }
