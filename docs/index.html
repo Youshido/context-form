@@ -1,22 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Document</title>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="description" content="Description">
-  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="description" content="Description">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
+    <link rel="stylesheet" href="https://context-form.github.io/context-form/demo/bootstrap.css">
 </head>
+
 <body>
-  <div id="app"></div>
-  <script>
-    window.$docsify = {
-      name: 'context-form',
-      coverpage: true,
-      repo: ''
+<div id="app"></div>
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<script src="https://unpkg.com/docsify-demo-box-react@1.0.1/dist/docsify-demo-box-react.min.js"></script>
+<script src="https://unpkg.com/context-form@1.0.15/dist/context-form.min.js"></script>
+<script src="https://unpkg.com/redux-form@5.3.2/dist/redux-form.min.js"></script>
+<script src="https://context-form.github.io/context-form/demo/main.js"></script>
+<style>
+    .demo-box {
+        border: 1px solid #eaeefb;
+        border-radius: 4px;
+        -webkit-transition: .2s;
+        transition: .2s;
+        max-width: 600px;
     }
-  </script>
-  <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+
+    .demo-box:hover {
+        box-shadow: 0 0 8px 0 rgba(232, 237, 250, 0.8);
+    }
+
+    .component-title {
+        color: #000000;
+        font-size: 10px;
+    }
+</style>
+<script>
+  const componentCache = {};
+
+  function renderFromCache() {
+    const href = window.location.href;
+
+    (componentCache[href] || []).forEach(({ example, id}) => {
+    window.renderExample(example, id);
+  });
+  }
+
+  function renderComponent(example, id) {
+    const href = window.location.href;
+    if (!componentCache[href]) componentCache[href] = [];
+    componentCache[href].push({ example, id });
+    setTimeout(function () {
+      window.renderExample(example, id);
+    }, 100);
+  }
+
+  function addScript(url) {
+    const script = document.createElement('script');
+    script.src   = url;
+    setTimeout(function () {
+      document.body.appendChild(script);
+    }, 100);
+  }
+
+  window.$docsify = {
+    name          : 'context-form',
+    repo          : 'https://github.com/context-form/context-form',
+    auto2top      : true,
+    executeScript : true,
+    coverpage     : true,
+    maxLevel      : 3,
+    loadSidebar   : true,
+    plugins       : [
+      function (hook, vm) {
+        hook.mounted(function () {
+          // Called after initial completion. Only trigger once, no arguments.
+          vm.router.onchange(_ => {
+            renderFromCache();
+          });
+        });
+        window.$docsify.markdown = {
+          renderer : {
+            code : function (code, lang) {
+              console.log('Go', lang);
+              if (/^===example/.test(code)) {
+                const exampleName = code.match(/^===example-(.*)===/)[1];
+
+                const name = `context-form-example-${exampleName}`;
+                // const url         = `https://context-form.github.io/context-form/demo/main.js?example=${exampleName}`;
+                // addScript(url);
+                renderComponent(exampleName, name);
+                return `<div><b class="component-title">PRODUCED RESULT:</b><div class="demo-box" id="${name}"></div></div>`;
+              } else {
+                lang   = lang || '';
+                let hl = Prism.highlight(code, Prism.languages[lang] || Prism.languages.markup);
+                return '<pre v-pre data-lang="' + lang + '"><code class="lang-' + lang + '">' + hl + '</code></pre>';
+              }
+            },
+          },
+        };
+      },
+    ],
+  };
+</script>
+<script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+<script src="//unpkg.com/docsify/lib/plugins/search.min.js"></script>
+<script src="//unpkg.com/prismjs/components/prism-bash.min.js"></script>
+<script src="//unpkg.com/prismjs/components/prism-jsx.min.js"></script>
+<script src="//unpkg.com/docsify/lib/plugins/emoji.min.js"></script>
+<script src="//unpkg.com/docsify/lib/plugins/external-script.min.js"></script>
+<script src="//unpkg.com/docsify-copy-code"></script>
 </body>
+
 </html>
