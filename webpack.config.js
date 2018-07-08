@@ -1,8 +1,6 @@
-const webpack     = require("webpack");
-const fs          = require("fs");
-const path        = require("path");
 const libPath     = __dirname + "/dist";
-const libraryName = "context-form";
+const libraryName = "ContextForm";
+const fileName    = "context-form";
 
 const rules = [
   {
@@ -11,7 +9,14 @@ const rules = [
     use     : {
       loader  : "babel-loader",
       options : {
-        ...JSON.parse(fs.readFileSync(path.resolve(__dirname, "./.babelrc")))
+        presets : [
+          "@babel/preset-env",
+          "@babel/preset-react"
+        ],
+        plugins : [
+          "@babel/plugin-proposal-class-properties",
+          "@babel/plugin-proposal-optional-chaining"
+        ]
       }
     }
   },
@@ -31,8 +36,9 @@ module.exports = [
   {
     devtool : "source-map",
     output  : {
-      path           : libPath + '/umd',
-      filename       : libraryName + ".js",
+      path           : libPath + "/umd",
+      filename       : fileName + ".js",
+      globalObject   : "this",
       library        : libraryName,
       libraryTarget  : "umd",
       umdNamedDefine : true
@@ -42,44 +48,19 @@ module.exports = [
     },
     mode    : "development"
   }, {
-    output       : {
-      path           : libPath + '/umd',
-      filename       : libraryName + ".min.js",
-      library        : libraryName,
-      libraryTarget  : "umd",
-      umdNamedDefine : true
-    },
-    optimization : {
-      minimize : true
-    },
-    module       : {
-      rules
-    },
-    mode         : "production"
-  },  {
-    devtool : "source-map",
+    // devtool : "source-map",
     output  : {
-      path           : libPath + '/cjs',
-      filename       : libraryName + ".js",
-      library        : libraryName,
-      libraryTarget  : "commonjs",
+      path          : libPath + "/cjs",
+      filename      : fileName + ".min.js",
+      library       : "",
+      libraryTarget : "commonjs"
+    },
+    optimization : {
+      minimize : true
     },
     module  : {
       rules
     },
     mode    : "development"
-  }, {
-    output       : {
-      path           : libPath + '/cjs',
-      filename       : libraryName + ".min.js",
-      library        : libraryName,
-      libraryTarget  : "commonjs",
-    },
-    optimization : {
-      minimize : true
-    },
-    module       : {
-      rules
-    },
-    mode         : "production"
-  }];
+  }
+];

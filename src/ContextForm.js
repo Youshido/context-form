@@ -13,7 +13,7 @@ import { humanizeName } from './utils';
 
 export { default as Form } from './Form/Form';
 
-export {
+const ContextForm = {
   FormField,
   FormFooter,
   FormControl,
@@ -25,3 +25,5 @@ export {
   FormFieldArrayContext,
   humanizeName,
 };
+
+export default ContextForm;
