@@ -7,14 +7,15 @@ import getScriptParams from './utils/getScriptParams';
 
 class ExampleApp extends Component {
   render() {
-    // const example = this.props.example || getScriptParams().example;
     const { example } = this.props;
-    const Example     = EXAMPLE[example]
+    const Example = EXAMPLE[example]
       ? EXAMPLE[example].component
       : <h3>Invalid Example {example}</h3>;
 
     return (
-      <Example/>
+      <div style={{ padding: 40 }}>
+        <Example/>
+      </div>
     );
   }
 }

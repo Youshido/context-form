@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ContextFormValidator from '../Validator/ContextFormValidator';
-import SimpleTheme from './SimpleTheme/SimpleTheme';
-import ContextFormContext from '../Context/ContextFormContext';
+import SimpleTheme from '../Theme/SimpleTheme/SimpleTheme';
+import ContextFormContext from './ContextFormContext';
 
 class ContextFormProvider extends Component {
 

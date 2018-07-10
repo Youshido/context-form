@@ -9,7 +9,7 @@ class FormField extends Component {
   componentDidMount() {
     if (this.props.form) {
       if (this.props.required) {
-        this.props.form.addValidationRule(this.props.name, { required : true });
+        this.props.form.addValidationRule(this.props.name, { required : this.props.required });
       }
       if (this.props.rules) {
         this.props.rules.forEach(rule => this.props.form.addValidationRule(this.props.name, rule));
@@ -73,7 +73,7 @@ class FormField extends Component {
 FormField.propTypes    = {
   name        : PropTypes.string.isRequired,
   type        : PropTypes.string.isRequired,
-  required    : PropTypes.bool,
+  required    : PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   placeholder : PropTypes.string,
   description : PropTypes.any,
   component   : PropTypes.any,

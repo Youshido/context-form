@@ -25,11 +25,12 @@ class ContextFormValidator {
         this.rules[fieldName].forEach(rule => {
           let error = undefined;
           if (rule.required && !value) {
-            error = { required : true, message : `${humanizeName(fieldName)} is required.` };
+            const message = rule.message || (typeof rule.required === 'string' ? rule.required : `${humanizeName(fieldName)} is required.`);
+            error         = { required : true, message };
           } else if (typeof rule === 'function') {
-            const message = rule(value);
-            if (message !== undefined) {
-              error = { rule : rule.name, message };
+            const result = rule(value);
+            if (result !== true) {
+              error = { rule : rule.name, message : result || 'Value is invalid' };
             }
           } else {
             // clear error

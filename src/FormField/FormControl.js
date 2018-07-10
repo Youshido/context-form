@@ -47,7 +47,7 @@ class FormControl extends Component {
 FormControl.propTypes    = {
   name        : PropTypes.string.isRequired,
   type        : PropTypes.string.isRequired,
-  required    : PropTypes.bool,
+  required    : PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   placeholder : PropTypes.string,
   description : PropTypes.any,
   component   : PropTypes.any,
