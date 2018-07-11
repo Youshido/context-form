@@ -5,52 +5,43 @@ import FormFieldArrayContext from '../Context/FormFieldArrayContext';
 
 class FormFieldArray extends Component {
 
-  state = {
-    values : Array.from({ length : this.props.initialCount }, () => ({}))
-  };
-
   constructor(props) {
     super(props);
     props.form.registerFieldArray(props.name, this);
   }
 
-  updateValues = values => {
-    this.setState({
-      values
-    }, this.props.form?.setValue(this.props.name, values));
-  };
+  getFieldValues = () => this.props.form.values[this.props.name];
+  setFieldValues = values => this.props.form?.setValue(this.props.name, values);
 
   setValue = (name, value, index) => {
-    let values = this.state.values;
+    let values = this.getFieldValues();
     if (!values[index]) {
       values[index] = {};
     }
     values[index][name] = value;
-    this.updateValues(values);
+    this.setFieldValues(values);
   };
 
   getValue = (name, index) => {
-    const groupValue = this.state.values[index];
+    const groupValue = this.getFieldValues()[index];
     return groupValue ? groupValue[name] : undefined;
   };
 
   removeGroup = (index) => {
-    const { values } = this.state;
-    this.updateValues([...values.slice(0, index), ...values.slice(index + 1)]);
+    const values = this.getFieldValues();
+    this.setFieldValues([...values.slice(0, index), ...values.slice(index + 1)]);
   };
 
   addGroup = () => {
-    this.setState({
-      values : [
-        ...this.state.values,
-        {}
-      ]
-    });
+    this.setFieldValues([
+      ...this.getFieldValues() || [],
+      {}
+    ]);
   };
 
   render() {
 
-    const { values }                 = this.state;
+    const values                     = this.getFieldValues() || [];
     const { initialCount, minCount } = this.props;
 
     const items = Array.from({ length : values.length }, (v, k) => k);

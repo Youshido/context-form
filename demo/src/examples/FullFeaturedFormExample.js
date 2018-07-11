@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
+import { Button, Col, ControlLabel, Glyphicon, Row } from 'react-bootstrap';
 import {
-  Form,
-  FormField,
-  FormControl,
-  FormFooter,
-  FormFieldArray,
   AddGroupButton,
-  RemoveGroupButton,
+  Form,
+  FormControl,
+  FormField,
+  FormFieldArray,
+  FormFooter,
+  RemoveGroupButton
 } from '../../../src/index';
-import { Button, Row, Col, Glyphicon, ControlLabel } from 'react-bootstrap';
 
 class FullFeaturedFormExample extends Component {
 
   state = {
     loading       : false,
-    initialValues : {},
+    initialValues : {}
   };
 
   onSubmit = ({ values }) => {
@@ -26,7 +26,13 @@ class FullFeaturedFormExample extends Component {
       this.setState({
         initialValues : {
           firstName : 'Alex',
-        },
+          education : [
+            {
+              university : 'Stanford',
+              year       : '1986'
+            }
+          ]
+        }
       });
     }, 1000);
   }
@@ -95,7 +101,7 @@ class FullFeaturedFormExample extends Component {
         </Form>
         <Form
           values={this.state.form2 || {}}
-          onChange={change => this.setState({ form2: { ...this.state.form2, ...change }})}
+          onChange={change => this.setState({ form2 : { ...this.state.form2, ...change } })}
           onSubmit={({ values }) => console.log('Second Submit', values)}
         >
           <FormField name={'title'}/>
