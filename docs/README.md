@@ -29,7 +29,7 @@ Once you installed Context Form as a dependency you can try it out with this bas
 
 ```jsx
 import React, { Component } from 'react';
-import { Form, FormField, FormFooter } from 'context-form';
+import Form { Field, FormFooter } from 'context-form';
 
 class ProductPage extends Component {
     /**
@@ -41,10 +41,11 @@ class ProductPage extends Component {
     render() {
         return (
             <Form onSubmit={this.onSubmit}>
-                <FormField name="firstName" />
-                <FormField name="lastName" />
-                <FormField name="title" required />
-                <FormFooter> // FormFooter is used for styling purposes only
+                <Field name="firstName" />
+                <Field name="lastName" />
+                <Field name="title" required />
+                // FormFooter is used for styling purposes only
+                <FormFooter>
                     <button>Submit</button>
                 </FormFooter>
             </Form>
