@@ -1,6 +1,6 @@
-import PropTypes from "prop-types";
-import React, { Component } from "react";
-import FormFieldArrayContext from "../Context/FormFieldArrayContext";
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import FormFieldArrayContext from '../Context/FormFieldArrayContext';
 
 class RemoveGroupButton extends Component {
   render() {
@@ -9,7 +9,7 @@ class RemoveGroupButton extends Component {
     return (
       <FormFieldArrayContext.Consumer>
         {arrayField => arrayField.count > arrayField.minCount && (
-          <Button type={"button"} onClick={() => arrayField.removeGroup(arrayField.index)} {...restProps}>
+          <Button type={'button'} onClick={() => arrayField.removeGroup(arrayField.index)} {...restProps}>
             {this.props.children}
           </Button>
         )}
