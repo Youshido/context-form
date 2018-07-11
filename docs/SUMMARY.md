@@ -23,7 +23,7 @@
   * [&lt;FormFieldArray /&gt;](apis/form-field-array.md)
   * [&lt;Form /&gt;](apis/themes.md)
   * [&lt;FormField /&gt;](apis/write-a-control.md)
-  * [&lt;Validator /&gt;](apis/material-ui.md)
+  * [&lt;Validator /&gt;](apis/validator.md)
 
 
 * [Support](support.md)
