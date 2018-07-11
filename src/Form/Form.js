@@ -126,7 +126,9 @@ class Form extends Component {
       <Form onSubmit={this.onSubmit} onReset={this.onReset}
             horizontal={this.props.horizontal}
             className={`context-form context-form-theme-${this.theme.name?.toLowerCase()} ${this.props.layout} ${this.props.className || ''} with-labels`}
-            style={this.props.style}>
+            style={this.props.style}
+            noValidate
+      >
         <ContextFormInstanceContext.Provider value={{
           ...this.state,
           getValue           : this.getValue,
