@@ -12,7 +12,7 @@ module.exports = {
         use     : {
           loader  : "babel-loader",
           options : {
-            ...JSON.parse(fs.readFileSync(path.resolve(__dirname, "../.babelrc")))
+            ...JSON.parse(fs.readFileSync(path.resolve(__dirname, "./.babelrc")))
           }
         }
       },
