@@ -5,16 +5,15 @@
 Form Field Array comes handy when you need to have an array value in your form, e.g. list of countires you've traveled to, or a list of previous job experience. It can handle arrays of objects, so if you want to have a list of countries you've visited and the year in which that has happened — you can:
 
 ```jsx
-import { Form } from 'context-form';
-import Form, { Field } from 'context-form';
+import Form, { Field, FieldArray } from 'context-form';
 
 <Form>
     <Form.Field name="firstName" />
     <Form.Field name="lastName" />
-    <Form.FieldArray name="travel_experience">
+    <FieldArray name="travel_experience">
         <Form.Field name="country" />
         <Form.Field name="year" />
-    </Form.FieldArray>
+    </FieldArray>
 </Form>
 ```
 
@@ -29,7 +28,7 @@ Now, of course you need controls to Add or Remove items from your list, for that
         <Form.Field name="country" />
         <Form.Field name="year" />
         <FieldArray.Remove>Remove</FieldArray.Remove>
-    </Form.FieldArray>
+    </FieldArray>
 </Form>
 ```
 

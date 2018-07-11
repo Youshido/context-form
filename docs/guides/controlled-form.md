@@ -8,7 +8,7 @@ Every Form can take a `values: PropTypes.object` prop and `onChange: function(ch
 
 ```jsx
 import React, { Component } form 'react';
-import { Form, FormField } from 'context-form';
+import Form, { Field } from 'context-form';
 
 class BasicForm extends Component {
 
@@ -39,9 +39,9 @@ class BasicForm extends Component {
                 onChange={this.onChange}
                 values={values}
             >
-                <FormField name="firstName" />
-                <FormField name="lastName" />
-                <FormField name="title" />
+                <Field name="firstName" />
+                <Field name="lastName" />
+                <Field name="title" />
                 <button type="submit">Submit</button>
             </Form>
         )

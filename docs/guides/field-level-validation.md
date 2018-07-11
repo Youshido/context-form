@@ -6,7 +6,7 @@ Single Field's validations can be set right in the `rules` props
 
 ```jsx
 import React, { Component } form 'react';
-import { Form, FormField } from 'context-form';
+import Form { FormField } from 'context-form';
 
 class BasicForm extends Component {
 

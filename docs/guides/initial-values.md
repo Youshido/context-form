@@ -6,7 +6,7 @@ In order to initialize a form with initial values you simply need to pass over t
 
 ```jsx
 import React, { Component } form 'react';
-import { Form, FormField } from 'context-form';
+import Form { Field } from 'context-form';
 
 class BasicForm extends Component {
     onSubmit = ({ values }) => {
@@ -25,9 +25,9 @@ class BasicForm extends Component {
                 onSubmit={this.onSubmit}
                 initialValues={initialValues}
             >
-                <FormField name="firstName" />
-                <FormField name="lastName" />
-                <FormField name="title" />
+                <Field name="firstName" />
+                <Field name="lastName" />
+                <Field name="title" />
                 <button type="submit">Submit</button>
             </Form>
         )
