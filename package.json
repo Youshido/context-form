@@ -6,6 +6,7 @@
   "unpkg": "dist/context-form.min.js",
   "scripts": {
     "prepublishOnly": "eslint src && yarn build",
+    "rollup": "rollup -c",
     "build": "babel src --out-dir lib && rollup -c && cp ./src/index.dist ./dist/index.js"
   },
   "engines": {
