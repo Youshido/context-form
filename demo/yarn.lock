@@ -1552,9 +1552,9 @@ content-type@~1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/content-type/-/content-type-1.0.4.tgz#e138cc75e040c727b1966fe5e5f8c9aee256fe3b"
 
-context-form@^1.0.15:
-  version "1.0.15"
-  resolved "https://registry.yarnpkg.com/context-form/-/context-form-1.0.15.tgz#cfbe571f647b7dea9dd58e3dd36b6d75d30e5819"
+context-form@^1.0.22:
+  version "1.0.22"
+  resolved "https://registry.yarnpkg.com/context-form/-/context-form-1.0.22.tgz#583e921a1336ec56e9041f1e58772ea181c75122"
   dependencies:
     classnames "^2.2.6"
     inflected "^2.0.4"
