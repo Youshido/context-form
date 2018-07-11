@@ -29,7 +29,7 @@ Once you installed Context Form as a dependency you can try it out with this bas
 
 ```jsx
 import React, { Component } from 'react';
-import Form { Field, FormFooter } from 'context-form';
+import Form, { Field, FormFooter } from 'context-form';
 
 class ProductPage extends Component {
     /**
