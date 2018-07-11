@@ -1,7 +1,7 @@
-import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
-import { withContextFormInstanceConsumer } from '../Context/ContextFormInstanceContext';
-import FormFieldArrayContext from '../Context/FormFieldArrayContext';
+import PropTypes from "prop-types";
+import React, { Component, Fragment } from "react";
+import { withContextFormInstanceConsumer } from "../Context/ContextFormInstanceContext";
+import FormFieldArrayContext from "../Context/FormFieldArrayContext";
 
 class FormFieldArray extends Component {
 
@@ -45,12 +45,15 @@ class FormFieldArray extends Component {
         ...this.state.values,
         {}
       ]
-    })
+    });
   };
 
   render() {
 
-    const items = Array.from({ length : this.state.values.length }, (v, k) => k);
+    const { values }                 = this.state;
+    const { initialCount, minCount } = this.props;
+
+    const items = Array.from({ length : values.length }, (v, k) => k);
     return (
       <Fragment>
         {items.map(index => (
@@ -58,7 +61,10 @@ class FormFieldArray extends Component {
             getValue    : this.getValue,
             setValue    : this.setValue,
             removeGroup : this.removeGroup,
-            index,
+            count       : values.length,
+            minCount,
+            initialCount,
+            index
           }}>
             {this.props.children}
           </FormFieldArrayContext.Provider>
@@ -71,10 +77,12 @@ class FormFieldArray extends Component {
 FormFieldArray.propTypes = {
   name         : PropTypes.string.isRequired,
   initialCount : PropTypes.number.isRequired,
+  minCount     : PropTypes.number
 };
 
 FormFieldArray.defaultProps = {
   initialCount : 1,
+  minCount     : 0
 };
 
 FormFieldArray = withContextFormInstanceConsumer(FormFieldArray);
