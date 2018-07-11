@@ -34,6 +34,8 @@ class FullFeaturedFormExample extends Component {
   validateAge = (val) => {
     if (!val || val < 10) {
       return 'You have to be at least 10';
+    } else {
+      return true;
     }
   };
 
