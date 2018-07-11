@@ -5,13 +5,16 @@
 Form Field Array comes handy when you need to have an array value in your form, e.g. list of countires you've traveled to, or a list of previous job experience. It can handle arrays of objects, so if you want to have a list of countries you've visited and the year in which that has happened — you can:
 
 ```jsx
+import { Form } from 'context-form';
+import Form, { Field } from 'context-form';
+
 <Form>
-    <FormField name="firstName" />
-    <FormField name="lastName" />
-    <FormFieldArray name="travel_experience">
-        <FormField name="country" />
-        <FormField name="year" />
-    </FormFieldArray>
+    <Form.Field name="firstName" />
+    <Form.Field name="lastName" />
+    <Form.FieldArray name="travel_experience">
+        <Form.Field name="country" />
+        <Form.Field name="year" />
+    </Form.FieldArray>
 </Form>
 ```
 
@@ -19,14 +22,14 @@ Now, of course you need controls to Add or Remove items from your list, for that
 
 ```jsx
 <Form>
-    <FormField name="firstName" />
-    <FormField name="lastName" />
-    <AddFieldGroup name="travel_experience">+Add Entry</AddFieldGroup>
-    <FormFieldArray name="travel_experience">
-        <FormField name="country" />
-        <FormField name="year" />
-        <RemoveFieldGroup>Remove</RemoveFieldGroup>
-    </FormFieldArray>
+    <Field name="firstName" />
+    <Field name="lastName" />
+    <FieldArray.Add name="travel_experience">+Add Entry</AddFieldGroup>
+    <FieldArray name="travel_experience">
+        <Form.Field name="country" />
+        <Form.Field name="year" />
+        <FieldArray.Remove>Remove</FieldArray.Remove>
+    </Form.FieldArray>
 </Form>
 ```
 

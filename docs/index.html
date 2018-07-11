@@ -81,7 +81,6 @@
         function(hook, vm) {
           hook.beforeEach(function(content) {
             const m = content.match(/^{%\spage-ref page="(.*)".*%}/m);
-            console.log('m', m, content);
             if (m) {
               content = content.replace(m[0], '');
             }

@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-import {
-  Form,
-  FormField,
-  FormFooter,
-} from '../../../src/index';
+import Form, { FormFooter, Field } from '../../../src/index';
 import { Button } from 'react-bootstrap';
 
 export default class FieldValidation extends Component {
@@ -40,9 +36,9 @@ export default class FieldValidation extends Component {
   render() {
     return (
       <Form onSubmit={this.onSubmit} horizontal>
-        <FormField name="name" required="We need to know your name!"/>
-        <FormField name="title" rules={[{ required : true, message: 'Title is very important!' }]}/>
-        <FormField name="age"
+        <Field name="name" required="We need to know your name!"/>
+        <Field name="title" rules={[{ required : true, message: 'Title is very important!' }]}/>
+        <Field name="age"
                    rules={[this.validateAge]}
                    description="You need to be between 18 and 65."/>
         <FormFooter>

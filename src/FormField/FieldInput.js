@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withContextFormInstanceConsumer } from '../Context/ContextFormInstanceContext';
-import { withFormFieldArrayConsumer } from '../Context/FormFieldArrayContext';
+import { withFormFieldArrayConsumer } from '../Context/FieldArrayContext';
 import { withContextForm } from '../Context/ContextFormContext';
 
-class FormInput extends Component {
+class FieldInput extends Component {
 
   onChange = e => {
     const value                      = e?.target?.value !== undefined ? e?.target.value : e;
@@ -44,7 +44,7 @@ class FormInput extends Component {
   }
 }
 
-FormInput.propTypes    = {
+FieldInput.propTypes    = {
   name        : PropTypes.string.isRequired,
   type        : PropTypes.string.isRequired,
   required    : PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
@@ -54,13 +54,13 @@ FormInput.propTypes    = {
   onChange    : PropTypes.func,
   fieldArray  : PropTypes.any,
 };
-FormInput.defaultProps = {
+FieldInput.defaultProps = {
   type     : 'text',
   required : false,
 };
 
-FormInput = withContextFormInstanceConsumer(FormInput);
-FormInput = withFormFieldArrayConsumer(FormInput);
-FormInput = withContextForm(FormInput);
+FieldInput = withContextFormInstanceConsumer(FieldInput);
+FieldInput = withFormFieldArrayConsumer(FieldInput);
+FieldInput = withContextForm(FieldInput);
 
-export default FormInput;
+export default FieldInput;

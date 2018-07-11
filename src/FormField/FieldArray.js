@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types';
 import React, { Component, Fragment } from 'react';
 import { withContextFormInstanceConsumer } from '../Context/ContextFormInstanceContext';
-import FormFieldArrayContext from '../Context/FormFieldArrayContext';
+import FieldArrayContext from '../Context/FieldArrayContext';
+import FieldArrayAdd from './FieldArrayAdd';
+import FieldArrayRemove from './FieldArrayRemove';
 
-class FormFieldArray extends Component {
+class FieldArray extends Component {
 
   constructor(props) {
     super(props);
@@ -35,7 +37,7 @@ class FormFieldArray extends Component {
   addGroup = () => {
     this.setFieldValues([
       ...this.getFieldValues() || [],
-      {}
+      {},
     ]);
   };
 
@@ -48,34 +50,37 @@ class FormFieldArray extends Component {
     return (
       <Fragment>
         {items.map(index => (
-          <FormFieldArrayContext.Provider key={index} value={{
+          <FieldArrayContext.Provider key={index} value={{
             getValue    : this.getValue,
             setValue    : this.setValue,
             removeGroup : this.removeGroup,
             count       : values.length,
             minCount,
             initialCount,
-            index
+            index,
           }}>
             {this.props.children}
-          </FormFieldArrayContext.Provider>
+          </FieldArrayContext.Provider>
         ))}
       </Fragment>
     );
   }
 }
 
-FormFieldArray.propTypes = {
+FieldArray.propTypes = {
   name         : PropTypes.string.isRequired,
   initialCount : PropTypes.number.isRequired,
-  minCount     : PropTypes.number
+  minCount     : PropTypes.number,
 };
 
-FormFieldArray.defaultProps = {
+FieldArray.defaultProps = {
   initialCount : 1,
-  minCount     : 0
+  minCount     : 0,
 };
 
-FormFieldArray = withContextFormInstanceConsumer(FormFieldArray);
+FieldArray.Add    = FieldArrayAdd;
+FieldArray.Remove = FieldArrayRemove;
 
-export default FormFieldArray;
+FieldArray = withContextFormInstanceConsumer(FieldArray);
+
+export default FieldArray;

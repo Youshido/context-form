@@ -1,29 +1,29 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import FormFieldArrayContext from '../Context/FormFieldArrayContext';
+import FieldArrayContext from '../Context/FieldArrayContext';
 
-class RemoveGroupButton extends Component {
+class FieldArrayRemove extends Component {
   render() {
     const { component : Button, ...restProps } = this.props;
 
     return (
-      <FormFieldArrayContext.Consumer>
+      <FieldArrayContext.Consumer>
         {arrayField => arrayField.count > arrayField.minCount && (
           <Button type={'button'} onClick={() => arrayField.removeGroup(arrayField.index)} {...restProps}>
             {this.props.children}
           </Button>
         )}
-      </FormFieldArrayContext.Consumer>
+      </FieldArrayContext.Consumer>
     );
   }
 }
 
-RemoveGroupButton.propTypes = {
+FieldArrayRemove.propTypes = {
   component : PropTypes.func
 };
 
-RemoveGroupButton.defaultProps = {
+FieldArrayRemove.defaultProps = {
   component : props => <button {...props} />
 };
 
-export default RemoveGroupButton;
+export default FieldArrayRemove;

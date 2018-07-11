@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 import { EXAMPLE } from './constants';
-import AntdThemeExample from './examples/AntdThemeExample';
-import BasicFormExample from './examples/BasicFormExample';
-import FullFeaturedFormExample from './examples/FullFeaturedFormExample';
-import getScriptParams from './utils/getScriptParams';
 
 class ExampleApp extends Component {
   render() {

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withContextFormInstanceConsumer } from '../Context/ContextFormInstanceContext';
-import { withFormFieldArrayConsumer } from '../Context/FormFieldArrayContext';
+import { withFormFieldArrayConsumer } from '../Context/FieldArrayContext';
 import { humanizeName } from '../utils';
-import FormControl from './FormControl';
+import FieldInput from './FieldInput';
 
-class FormField extends Component {
+class Field extends Component {
   componentDidMount() {
     if (this.props.form) {
       if (this.props.required) {
@@ -55,7 +55,7 @@ class FormField extends Component {
                required={this.props.required}>{label || humanizeName(name)}</Label>
         }
         <InputContainer>
-          <FormControl
+          <FieldInput
             id={fieldName}
             {...this.props}
             name={name}
@@ -70,7 +70,7 @@ class FormField extends Component {
   }
 }
 
-FormField.propTypes    = {
+Field.propTypes    = {
   name        : PropTypes.string.isRequired,
   type        : PropTypes.string.isRequired,
   required    : PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
@@ -80,12 +80,12 @@ FormField.propTypes    = {
   onChange    : PropTypes.func,
   fieldArray  : PropTypes.any,
 };
-FormField.defaultProps = {
+Field.defaultProps = {
   type     : 'text',
   required : false,
 };
 
-FormField = withContextFormInstanceConsumer(FormField);
-FormField = withFormFieldArrayConsumer(FormField);
+Field = withContextFormInstanceConsumer(Field);
+Field = withFormFieldArrayConsumer(Field);
 
-export default FormField;
+export default Field;

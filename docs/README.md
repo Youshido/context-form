@@ -1,7 +1,7 @@
 # Context Form
 
 > Form Management for React & React Native with a simple and flexible API.
-> Demo: [https://context-form.github.io/demo/dist/](https://context-form.github.io/demo/dist/)
+> Demo: [https://youshido.github.io/context-form/demo/](https://youshido.github.io/context-form/demo/)
 
 Thanks to the Context API \(as of [React 16.3](https://reactjs.org/blog/2018/03/29/react-v-16-3.html)\) it is possible to write a library for the Form Management with a very clean and almost invisible API where you don't have to pass Form's `props` all over your project.
 

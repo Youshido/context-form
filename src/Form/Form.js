@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withContextForm } from '../Context/ContextFormContext';
 import ContextFormInstanceContext from '../Context/ContextFormInstanceContext';
+import Field from '../FormField/Field';
 import SimpleTheme from '../Theme/SimpleTheme/SimpleTheme';
 import ContextFormValidator from '../Validator/ContextFormValidator';
 
@@ -171,6 +172,5 @@ Form.defaultProps = {
   onChange         : () => null,
   onSubmit         : () => null,
 };
-
 
 export default withContextForm(Form);

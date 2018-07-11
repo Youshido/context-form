@@ -1,17 +1,17 @@
 import React, { Component, createContext } from 'react';
 
-const FormFieldArrayContext = createContext();
+const FieldArrayContext = createContext();
 
 export const withFormFieldArrayConsumer = (WrappedComponent) => {
   return class extends Component {
     render() {
       return (
-        <FormFieldArrayContext.Consumer>
+        <FieldArrayContext.Consumer>
           {fieldArray => <WrappedComponent {...this.props} fieldArray={fieldArray}/>}
-        </FormFieldArrayContext.Consumer>
+        </FieldArrayContext.Consumer>
       );
     }
   };
 };
 
-export default FormFieldArrayContext;
+export default FieldArrayContext;

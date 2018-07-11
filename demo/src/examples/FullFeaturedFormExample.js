@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import { Button, Col, ControlLabel, Glyphicon, Row } from 'react-bootstrap';
-import {
-  AddGroupButton,
-  Form,
-  FormControl,
-  FormField,
-  FormFieldArray,
+import Form, {
+  Field,
+  FieldInput,
+  FieldArray,
   FormFooter,
-  RemoveGroupButton
 } from '../../../src/index';
 
 class FullFeaturedFormExample extends Component {
@@ -57,40 +54,40 @@ class FullFeaturedFormExample extends Component {
               initialValues={initialValues}
               className='form-fullfeatured'
         >
-          <FormField name={'title'} required/>
-          <FormField name={'firstName'} placeholder={'e.g. Alex'}/>
-          <FormField name={'lastName'}
+          <Field name={'title'} required/>
+          <Field name={'firstName'} placeholder={'e.g. Alex'}/>
+          <Field name={'lastName'}
                      placeholder={'e.g. Malcovich'}
                      description={'Please, enter your real name'}
                      required
           />
-          <FormField name={'age'}
+          <Field name={'age'}
                      placeholder={'e.g. 26'}
                      description={'Please, enter only full years'}
                      rules={[this.validateAge]}
           />
-          <FormField name={'occupation'}
+          <Field name={'occupation'}
                      placeholder={'Select Title'}
                      type={'select'}
           >
             <option value={'1'}>Software Engineer</option>
             <option value={'2'}>Web Designer</option>
             <option value={'3'}>QA Engineer</option>
-          </FormField>
+          </Field>
           <hr/>
           <Row>
             <Col sm={3} componentClass={ControlLabel}>Education:</Col>
             <Col sm={9}>
-              <FormFieldArray name={'education'}>
+              <FieldArray name={'education'}>
                 <div className={'education-group'}>
-                  <FormControl name={'university'} placeholder={'University'}/>
-                  <FormControl name={'year'} placeholder={'Year'} style={{ width : 100, marginLeft : 10 }}/>
-                  <RemoveGroupButton>
+                  <FieldInput name={'university'} placeholder={'University'}/>
+                  <FieldInput name={'year'} placeholder={'Year'} style={{ width : 100, marginLeft : 10 }}/>
+                  <FieldArray.Remove>
                     <Glyphicon glyph="trash" style={{ marginLeft : 10 }}/>
-                  </RemoveGroupButton>
+                  </FieldArray.Remove>
                 </div>
-              </FormFieldArray>
-              <AddGroupButton name={'education'} component={Button} bsStyle={'link'}>Add Another</AddGroupButton>
+              </FieldArray>
+              <FieldArray.Add name={'education'} component={Button} bsStyle={'link'}>Add Another</FieldArray.Add>
             </Col>
           </Row>
           <hr/>
@@ -104,8 +101,8 @@ class FullFeaturedFormExample extends Component {
           onChange={change => this.setState({ form2 : { ...this.state.form2, ...change } })}
           onSubmit={({ values }) => console.log('Second Submit', values)}
         >
-          <FormField name={'title'}/>
-          <FormField name={'age'} required/>
+          <Field name={'title'}/>
+          <Field name={'age'} required/>
           <FormFooter>
             <Button type={'submit'}>Submit</Button>
           </FormFooter>
