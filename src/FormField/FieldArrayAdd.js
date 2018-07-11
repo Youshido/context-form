@@ -2,8 +2,6 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import ContextFormInstanceContext from '../Context/ContextFormInstanceContext';
 
-// import PropTypes from 'prop-types';
-
 class AddGroupButton extends Component {
   render() {
     const { component: Button, ...restProps } = this.props;

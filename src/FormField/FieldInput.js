@@ -4,7 +4,7 @@ import { withContextFormInstanceConsumer } from '../Context/ContextFormInstanceC
 import { withFormFieldArrayConsumer } from '../Context/FormFieldArrayContext';
 import { withContextForm } from '../Context/ContextFormContext';
 
-class FormControl extends Component {
+class FormInput extends Component {
 
   onChange = e => {
     const value                      = e?.target?.value !== undefined ? e?.target.value : e;
@@ -44,7 +44,7 @@ class FormControl extends Component {
   }
 }
 
-FormControl.propTypes    = {
+FormInput.propTypes    = {
   name        : PropTypes.string.isRequired,
   type        : PropTypes.string.isRequired,
   required    : PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
@@ -54,13 +54,13 @@ FormControl.propTypes    = {
   onChange    : PropTypes.func,
   fieldArray  : PropTypes.any,
 };
-FormControl.defaultProps = {
+FormInput.defaultProps = {
   type     : 'text',
   required : false,
 };
 
-FormControl = withContextFormInstanceConsumer(FormControl);
-FormControl = withFormFieldArrayConsumer(FormControl);
-FormControl = withContextForm(FormControl);
+FormInput = withContextFormInstanceConsumer(FormInput);
+FormInput = withFormFieldArrayConsumer(FormInput);
+FormInput = withContextForm(FormInput);
 
-export default FormControl;
+export default FormInput;
