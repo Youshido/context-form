@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { withContextForm } from '../Context/ContextFormContext';
-import ContextFormInstanceContext from '../Context/ContextFormInstanceContext';
-import Field from '../FormField/Field';
-import SimpleTheme from '../Theme/SimpleTheme/SimpleTheme';
-import ContextFormValidator from '../Validator/ContextFormValidator';
+import PropTypes from "prop-types";
+import React, { Component } from "react";
+import { withContextForm } from "../Context/ContextFormContext";
+import ContextFormInstanceContext from "../Context/ContextFormInstanceContext";
+import SimpleTheme from "../Theme/SimpleTheme/SimpleTheme";
+import ContextFormValidator from "../Validator/ContextFormValidator";
 
 const innulable   = values => values === null ? {} : values;
 const defaultForm = (props) => <form {...props}/>;
@@ -19,7 +18,7 @@ class Form extends Component {
   state = {
     values   : this.props.values || innulable(this.props.initialValues) || {},
     errors   : {},
-    pristine : true,
+    pristine : true
   };
 
   constructor(props) {
@@ -46,8 +45,8 @@ class Form extends Component {
         pristine : false,
         values   : {
           ...this.state.values,
-          ...updateValue,
-        },
+          ...updateValue
+        }
       });
     }
     this.clearErrors(name);
@@ -60,9 +59,9 @@ class Form extends Component {
         ...this.state.errors,
         [name] : [
           ...errors,
-          error,
-        ],
-      },
+          error
+        ]
+      }
     });
   };
 
@@ -89,10 +88,14 @@ class Form extends Component {
   };
 
   componentDidUpdate(prevProps) {
+
+    const prevInitialValues = JSON.stringify(prevProps.initialValues);
+    const initialValues     = JSON.stringify(this.props.initialValues);
+
     // todo: REVISE comparision
-    if (JSON.stringify(this.props.initialValues) !== JSON.stringify(prevProps.initialValues)) {
+    if (initialValues !== prevInitialValues) {
       this.setState({
-        values : innulable(this.props.initialValues),
+        values : innulable(JSON.parse(initialValues))
       });
     }
   }
@@ -105,7 +108,7 @@ class Form extends Component {
           this.props.onSubmit({ values });
         } else {
           this.setState({
-            errors,
+            errors
           });
         }
       });
@@ -117,7 +120,7 @@ class Form extends Component {
   onReset = e => {
     e && e.preventDefault();
     this.setState({
-      values : this.props.initialValues,
+      values : this.props.initialValues
     });
   };
 
@@ -126,7 +129,7 @@ class Form extends Component {
     return (
       <Form onSubmit={this.onSubmit} onReset={this.onReset}
             horizontal={this.props.horizontal}
-            className={`context-form context-form-theme-${this.theme.name?.toLowerCase()} ${this.props.layout} ${this.props.className || ''} with-labels`}
+            className={`context-form context-form-theme-${this.theme.name?.toLowerCase()} ${this.props.layout} ${this.props.className || ""} with-labels`}
             style={this.props.style}
             noValidate
       >
@@ -141,7 +144,7 @@ class Form extends Component {
           registerFieldArray : this.registerFieldArray,
           addFieldArray      : this.addFieldArray,
           removeFieldArray   : this.removeFieldArray,
-          submit             : this.onSubmit,
+          submit             : this.onSubmit
         }}>
           {this.props.children}
         </ContextFormInstanceContext.Provider>
@@ -154,23 +157,23 @@ Form.propTypes = {
   name             : PropTypes.string,
   validator        : PropTypes.func,
   validateOnSubmit : PropTypes.bool,
-  layout           : PropTypes.oneOf(['horizontal', 'vertical', 'inline']),
+  layout           : PropTypes.oneOf(["horizontal", "vertical", "inline"]),
   onSubmit         : PropTypes.func,
   onChange         : PropTypes.func,
   contextForm      : PropTypes.any,
   values           : PropTypes.object,
   initialValues    : PropTypes.object,
   className        : PropTypes.string,
-  horizontal       : PropTypes.bool,
+  horizontal       : PropTypes.bool
 };
 
 Form.defaultProps = {
-  name             : 'form_' + Date.now() + '_' + Math.random(),
+  name             : "form_" + Date.now() + "_" + Math.random(),
   validator        : ContextFormValidator,
   validateOnSubmit : true,
-  layout           : 'horizontal',
+  layout           : "horizontal",
   onChange         : () => null,
-  onSubmit         : () => null,
+  onSubmit         : () => null
 };
 
 export default withContextForm(Form);
