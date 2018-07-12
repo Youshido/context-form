@@ -1,6 +1,6 @@
 {
   "name": "context-form",
-  "version": "1.0.24",
+  "version": "1.0.25",
   "description": "ReactJS Form Management based on React Context",
   "main": "dist/index.js",
   "unpkg": "dist/context-form.min.js",
