@@ -17,7 +17,7 @@ import Form, { Field, FieldArray } from 'context-form';
 </Form>
 ```
 
-Now, of course you need controls to Add or Remove items from your list, for that you can use helper components `AddFieldGroup` and`RemoveFieldGroup`:
+Now, of course you need controls to Add or Remove items from your list, for that you can use helper components `FieldArray.Add` and `FieldArray.Remove`:
 
 ```jsx
 <Form>
