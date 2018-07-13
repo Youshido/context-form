@@ -6,7 +6,7 @@ Used to provide a configuration for all the nested `Forms` and its `Fields` and 
 
 ```jsx
 // ...
-<ContextFormProvider theme={MaterialUI} validator={MyValidator}>
+<ContextFormProvider theme={MaterialUI} validator={Validator}>
   <App />
 </ContextFormProvider>
 // ...
