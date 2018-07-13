@@ -1,4 +1,4 @@
-# field-validation
+# Field Validation
 
 > Validation rules for a signle field
 

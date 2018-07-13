@@ -1,4 +1,4 @@
-# initial-values
+# Initial Values
 
 > How to provide initial values into your Form when it's beign rendered for the first time
 
