@@ -2,9 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import ContextFormInstanceContext from '../Context/ContextFormInstanceContext';
 
-// import PropTypes from 'prop-types';
-
-class AddGroupButton extends Component {
+class FieldArrayAdd extends Component {
   render() {
     const { component: Button, ...restProps } = this.props;
     return (
@@ -19,14 +17,14 @@ class AddGroupButton extends Component {
   }
 }
 
-AddGroupButton.propTypes = {
+FieldArrayAdd.propTypes = {
   name      : PropTypes.string.isRequired,
   component : PropTypes.func,
 };
 
-AddGroupButton.defaultProps = {
+FieldArrayAdd.defaultProps = {
   component : props => <button {...props} />,
 }
 ;
 
-export default AddGroupButton;
+export default FieldArrayAdd;

@@ -5,10 +5,6 @@ import LayoutApp from './LayoutApp';
 import BootstrapTheme from './themes/BootstrapTheme';
 import ExampleApp from './ExampleApp';
 import './index.css';
-import getScriptParams from "./utils/getScriptParams";
-
-// const params = getScriptParams();
-// const renderId = params?.example ? 'context-form-example-' + params?.example : 'root';
 
 const renderExample = (example, renderId) => {
   ReactDOM.render(

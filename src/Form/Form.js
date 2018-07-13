@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withContextForm } from '../Context/ContextFormContext';
 import ContextFormInstanceContext from '../Context/ContextFormInstanceContext';
+import Field from '../FormField/Field';
 import SimpleTheme from '../Theme/SimpleTheme/SimpleTheme';
 import ContextFormValidator from '../Validator/ContextFormValidator';
 
@@ -126,7 +127,9 @@ class Form extends Component {
       <Form onSubmit={this.onSubmit} onReset={this.onReset}
             horizontal={this.props.horizontal}
             className={`context-form context-form-theme-${this.theme.name?.toLowerCase()} ${this.props.layout} ${this.props.className || ''} with-labels`}
-            style={this.props.style}>
+            style={this.props.style}
+            noValidate
+      >
         <ContextFormInstanceContext.Provider value={{
           ...this.state,
           getValue           : this.getValue,
@@ -169,6 +172,5 @@ Form.defaultProps = {
   onChange         : () => null,
   onSubmit         : () => null,
 };
-
 
 export default withContextForm(Form);

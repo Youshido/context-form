@@ -1,49 +1,54 @@
 # Context Form
 
-Context Form is a Form Management System for ReactJS based on the React Context API.
+> Form Management for React & React Native with a simple and flexible API.  
+> Demo: [https://youshido.github.io/context-form/demo/](https://youshido.github.io/context-form/demo/)  
+> Docs: [https://youshido.github.io/context-form/](https://youshido.github.io/context-form/)
 
-## Features Support
 
-* [x] Declarative API with no need for extra HOCs
-* [x] InitialValues as a simple props to the &lt;Form&gt;
-* [x] Controlled and Uncontrolled Form State
-* [x] Dependend Field Values \(e.g. State, based on Country\)
-* [x] Custom Controls
-* [x] Support for the complex JSX structure inside the Form \(thanks to the Context API\)
-* [x] Field Arrays and Groups with custom JSX/Fields structure
-* [x] Themes support — implement project-wide styling in a single file
-* [ ] Ready to go integrations with Bootstrap, Ant and Material UI
+Thanks to the Context API \(as of [React 16.3](https://reactjs.org/blog/2018/03/29/react-v-16-3.html)\) it is possible to write a library for the Form Management with a very clean and almost invisible API where you don't have to pass Form's `props` all over your project.
+
+## Main Features
+
+* Declarative API with no need for extra props passing
+* InitialValues as a simple prop to the `<Form initialValues={} />`
+* Controlled and Uncontrolled Form State
+* Field Arrays and Groups with custom JSX/Fields structure
+* Easy to implement Custom Controls
+* Support for the complex JSX structure inside the Form
+* Themes support — implement project-wide styling in a single file
+* Ready to go integrations with Bootstrap, Ant and Material UI
+* And it's simply a `<Form />` that's fun to use :)
 
 ## Installation
 
-Adding Context Form to your project is a fairly straight forward process:
+Add `context-form` package to your project using `yarn` or `npm`:
 
-```
+```bash
 $ yarn add context-form (or npm i context-form)
 ```
 
-{% hint style="info" %}
- If you just want to see a demo — look at https://context-form.github.io/demo/
-{% endhint %}
+Once you installed Context Form as a dependency you can try it out with this basic example of the uncontrolled form \(note, it uses `console` to log the values submitted and does automatic field validation for a `title` field \(`required` is just a shortcut for the more extensive `rules` props\)
 
-Once you installed Context Form as a dependency you can start creating forms without any hussle of using extra props or HOCs.
-
-Here's the most simple and minimalistic example of the form:
+Once you installed Context Form as a dependency you can try it out with this basic example of the uncontrolled form \(note, it uses `console` to log the values submitted and does automatic field validation for a `title` field \(`required` is just a shortcut for the more extensive `rules` props\):
 
 ```jsx
 import React, { Component } from 'react';
-import { Form, FormField, FormFooter } from 'context-form';
+import Form, { Field, FormFooter } from 'context-form';
 
 class ProductPage extends Component {
+    /**
+     * By default `onSubmit` will be called only if validation
+     */
     onSubmit = ({ values }) => {
         console.log('Form Values', values);
     };
     render() {
         return (
             <Form onSubmit={this.onSubmit}>
-                <FormField name="firstName" />
-                <FormField name="lastName" />
-                <FormField name="email" required={true} />
+                <Field name="firstName" />
+                <Field name="lastName" />
+                <Field name="title" required />
+                // FormFooter is used just for layout purpose
                 <FormFooter>
                     <button>Submit</button>
                 </FormFooter>
@@ -53,4 +58,5 @@ class ProductPage extends Component {
 }
 ```
 
-
+You can now take a look at the more advances usage in the docs:
+[https://youshido.github.io/context-form/](https://youshido.github.io/context-form/)

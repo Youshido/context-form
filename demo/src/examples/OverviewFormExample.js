@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
   Form,
-  FormField,
+  Field,
   FormFooter,
 } from '../../../src/index';
 import { Button } from 'react-bootstrap';
@@ -26,9 +26,9 @@ class OverviewFormExample extends Component {
   render() {
     return (
       <Form onSubmit={this.onSubmit} horizontal>
-        <FormField name={'firstName'} placeholder={'e.g. Alex'}/>
-        <FormField name={'lastName'} placeholder={'e.g. Malcovich'}/>
-        <FormField name={'title'} placeholder={'e.g. Web Developer'} required/>
+        <Field name={'firstName'} placeholder={'e.g. Paul'}/>
+        <Field name={'lastName'} placeholder={'e.g. Smith'}/>
+        <Field name={'title'} placeholder={'e.g. Web Developer'} required/>
         <FormFooter>
           <Button bsStyle="primary" type={'submit'} style={{ marginLeft : 10 }}>Submit</Button>
           {!!this.state.values &&

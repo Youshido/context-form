@@ -1,27 +1,37 @@
-import FormField from './FormField/FormField';
-import FormControl from './FormField/FormControl';
+import Form from './Form/Form';
+import Field from './FormField/Field';
+import FieldInput from './FormField/FieldInput';
+import FieldArray from './FormField/FieldArray';
 import FormFooter from './FormFooter/FormFooter';
 import ContextFormInstanceContext from './Context/ContextFormInstanceContext';
-import FormFieldArrayContext from './Context/FormFieldArrayContext';
-import ContextFormProvider from './Theme/ContextFormProvider';
+import FieldArrayContext from './Context/FieldArrayContext';
+import ContextFormProvider from './Context/ContextFormProvider';
 
-import AddGroupButton from './FormField/AddGroupButton';
-import RemoveGroupButton from './FormField/RemoveGroupButton';
-import FormFieldArray from './FormField/FormFieldArray';
+import FieldArrayAdd from './FormField/FieldArrayAdd';
+import FieldArrayRemove from './FormField/FieldArrayRemove';
 
 import { humanizeName } from './utils';
 
-export { default as Form } from './Form/Form';
+FieldArray.Add    = FieldArrayAdd;
+FieldArray.Remove = FieldArrayRemove;
+
+Field.Input = FieldInput;
+
+Form.Field      = Field;
+Form.FieldArray = FieldArray;
+
+export default Form;
 
 export {
-  FormField,
+  Form,
+  Field,
+  FieldInput,
+  FieldArray,
   FormFooter,
-  FormControl,
   ContextFormProvider,
-  AddGroupButton,
-  RemoveGroupButton,
-  FormFieldArray,
+  FieldArrayAdd,
+  FieldArrayRemove,
   ContextFormInstanceContext,
-  FormFieldArrayContext,
+  FieldArrayContext,
   humanizeName,
 };

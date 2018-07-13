@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import {
-  Form,
-  FormField,
+import Form, {
   FormFooter,
 } from '../../../src/index';
 import { Button } from 'react-bootstrap';
@@ -26,8 +24,8 @@ class BasicFormExample extends Component {
   render() {
     return (
       <Form onSubmit={this.onSubmit} horizontal>
-        <FormField name={'firstName'} placeholder={'e.g. Alex'} required/>
-        <FormField name={'lastName'} placeholder={'e.g. Malcovich'}/>
+        <Form.Field name={'firstName'} placeholder={'e.g. Alex'} required/>
+        <Form.Field name={'lastName'} placeholder={'e.g. Malcovich'}/>
         <FormFooter>
           <Button bsStyle="primary" type={'submit'} style={{ marginLeft : 10 }}>Submit</Button>
           {!!this.state.values &&

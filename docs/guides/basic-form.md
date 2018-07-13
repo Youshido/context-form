@@ -1,12 +1,12 @@
-# Basic Form Example
+# Basic Form
 
-This is the most simple and straight forward example of the form.
+> A basic form with a `required` field validation:
 
-## Creating Component
-Import the Form and FormField components:
+Import the Form and Field components and watch out for the console to see the values:
+
 ```jsx
 import React, { Component } form 'react';
-import { Form, FormField } from 'context-form';
+import Form, { Field } from 'context-form';
 
 class BasicForm extends Component {
     onSubmit = ({ values }) => {
@@ -16,14 +16,16 @@ class BasicForm extends Component {
     render() {
         return (
             <Form onSubmit={this.onSubmit}>
-                <FormField name="firstName" />
-                <FormField name="lastName" />
+                <Field name="firstName" />
+                <Field name="lastName" />
                 <button type="submit">Submit</button>
             </Form>
         )
     }
 }
 ```
+
 ```jsx
 ===example-basic===
 ```
+
