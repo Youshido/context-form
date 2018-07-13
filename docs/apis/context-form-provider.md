@@ -17,5 +17,5 @@ You can later override it for a specific scope inside your app if you need to ch
 | Property | Definition | Default |
 | --- | --- |
 | theme | Defines the current theme | `SimpleTheme` |
-| validator |  |  |
+| validator | Custom Validator for the form. It's worth mentioning that standard validator does pretty much all you need so unless you need to process errors in a custom way or have a specific error handling you're good to go with the default one | `ContextFormValidator` |
 

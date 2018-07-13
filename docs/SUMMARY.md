@@ -23,7 +23,7 @@
   * [&lt;ContextFormProvider /&gt;](apis/context-form-provider.md)
   * [Validator](apis/validator.md)
 * [support](support.md)
-* [changelog](changelog.md)
+* [Changelog](changelog.md)
 * [Context Form 1.0.15](_coverpage.md)
 * [Overview](overview.md)
 
