@@ -20,10 +20,10 @@
 * [support](support.md)
 * [Context Form 1.0.15](_coverpage.md)
 * [API](api/README.md)
+  * [&lt;Form /&gt;](api/form.md)
   * [&lt;Field /&gt;](api/form-field.md)
+  * [&lt;FieldArray /&gt;](api/form-array.md)
   * [&lt;ContextFormProvider /&gt;](api/context-form-provider.md)
-  * [form](api/form.md)
-  * [validator](api/validator.md)
-  * [form-field-array](api/form-field-array.md)
+  * [Validator](api/validator.md)
 * [Overview](overview.md)
 
