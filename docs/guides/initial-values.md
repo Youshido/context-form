@@ -6,7 +6,7 @@ In order to initialize a form with initial values you simply need to pass over t
 
 ```jsx
 import React, { Component } form 'react';
-import Form { Field } from 'context-form';
+import Form, { Field } from 'context-form';
 
 class BasicForm extends Component {
     onSubmit = ({ values }) => {
@@ -34,6 +34,4 @@ class BasicForm extends Component {
     }
 }
 ```
-
-
 

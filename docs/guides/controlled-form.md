@@ -4,7 +4,7 @@
 
 Every Form can take a `values: PropTypes.object` prop and `onChange: function(change: Object)` prop which would receive the changes you can use to update the state:
 
-*Note that in this case values will also work as initialValues for the form*
+_Note that in this case values will also work as initialValues for the form_
 
 ```jsx
 import React, { Component } form 'react';
@@ -48,6 +48,4 @@ class BasicForm extends Component {
     }
 }
 ```
-
-
 
