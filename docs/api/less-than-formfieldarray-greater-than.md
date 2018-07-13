@@ -1,4 +1,4 @@
-# &lt;FieldArray /&gt;
+# &lt;FormFieldArray /&gt;
 
 Form Field Array comes handy when you need to have an array value in your form, e.g. list of countires you've traveled to, or a list of previous job experience. It can handle arrays of objects, so if you want to have a list of countries you've visited and the year in which that has happened — you can:
 

@@ -6,7 +6,7 @@ Single Field's validations can be set right in the `rules` props
 
 ```jsx
 import React, { Component } form 'react';
-import Form { FormField } from 'context-form';
+import Form, { Field } from 'context-form';
 
 class BasicForm extends Component {
 
@@ -29,8 +29,8 @@ class BasicForm extends Component {
     render() {
         return (
             <Form onSubmit={this.onSubmit}>
-                <FormField name="name" />
-                <FormField name="age" 
+                <Field name="name" />
+                <Field name="age" 
                     rules={[this.validateAge]}
                     description="You need to be between 18 and 65."/>
                 <button type="submit">Submit</button>
@@ -39,6 +39,8 @@ class BasicForm extends Component {
     }
 }
 ```
+
 ```jsx
 ===example-fieldValidation===
 ```
+

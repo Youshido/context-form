@@ -8,11 +8,11 @@ Form Field Array comes handy when you need to have an array value in your form, 
 import Form, { Field, FieldArray } from 'context-form';
 
 <Form>
-    <Form.Field name="firstName" />
-    <Form.Field name="lastName" />
+    <Field name="firstName" />
+    <Field name="lastName" />
     <FieldArray name="travel_experience">
-        <Form.Field name="country" />
-        <Form.Field name="year" />
+        <Field name="country" />
+        <Field name="year" />
     </FieldArray>
 </Form>
 ```
@@ -25,8 +25,8 @@ Now, of course you need controls to Add or Remove items from your list, for that
     <Field name="lastName" />
     <FieldArray.Add name="travel_experience">+Add Entry</AddFieldGroup>
     <FieldArray name="travel_experience">
-        <Form.Field name="country" />
-        <Form.Field name="year" />
+        <Field name="country" />
+        <Field name="year" />
         <FieldArray.Remove>Remove</FieldArray.Remove>
     </FieldArray>
 </Form>

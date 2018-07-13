@@ -1,4 +1,4 @@
-# Introduction
+# Overview
 
 > Form Management for React & React Native with a simple and flexible API. Demo: [https://youshido.github.io/context-form/demo/](https://youshido.github.io/context-form/demo/)
 
@@ -59,5 +59,5 @@ class ProductPage extends Component {
 
 You can now take a look at the more advances usage in the next chapter
 
-{% page-ref page="guides/basic-form.md" %}
+{% page-ref page="../guides/basic-form.md" %}
 
