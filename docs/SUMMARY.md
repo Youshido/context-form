@@ -27,4 +27,4 @@
 
 
 * [Support](support.md)
-* [Changelog](CHANGELOG.md)
+* [Changelog](changelog.md)

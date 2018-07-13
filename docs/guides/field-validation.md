@@ -1,8 +1,8 @@
 # Field Validation
 
-> Validation rules for a signle field
+Single Field's validation rules can be set as the `rules props` on that Field.
 
-Single Field's validations can be set right in the `rules` props
+Take a look at the age field validation below. Notice that you need to return `true` if the field has a valid value or the error message otherwise. If you return `null` or `false` then standard error message will be displayed.
 
 ```jsx
 import React, { Component } form 'react';
