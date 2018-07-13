@@ -1,4 +1,4 @@
-# Material-UI Theme
+# material-ui-theme
 
 
 

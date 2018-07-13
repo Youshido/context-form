@@ -1,4 +1,4 @@
-# Field Arrays
+# field-arrays
 
 > When you have a field that's an array of obejcts
 

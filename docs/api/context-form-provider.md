@@ -17,4 +17,5 @@ You can later override it for a specific scope inside your app if you need to ch
 | Property | Definition | Default |
 | --- | --- |
 | theme | Defines the current theme | `SimpleTheme` |
+| validator |  |  |
 
