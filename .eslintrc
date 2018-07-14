@@ -3,8 +3,10 @@
     "react-app"
   ],
   "rules"   : {
-    "jsx-a11y/href-no-hash" : [
-      0
-    ]
+    "react/destructuring-assignment": "off",
+    "react/sort-comp": "off",
+    "key-spacing": "off",
+    "prefer-destructuring": "off",
+    "jsx-a11y/href-no-hash" : "off"
   }
 }
