@@ -1,9 +1,8 @@
-# Context Form
+# README
 
 > Form Management for React & React Native with a simple and flexible API.  
 > Demo: [https://youshido.github.io/context-form/demo/](https://youshido.github.io/context-form/demo/)  
 > Docs: [https://youshido.github.io/context-form/](https://youshido.github.io/context-form/)
-
 
 Thanks to the Context API \(as of [React 16.3](https://reactjs.org/blog/2018/03/29/react-v-16-3.html)\) it is possible to write a library for the Form Management with a very clean and almost invisible API where you don't have to pass Form's `props` all over your project.
 
@@ -17,7 +16,7 @@ Thanks to the Context API \(as of [React 16.3](https://reactjs.org/blog/2018/03/
 * Support for the complex JSX structure inside the Form
 * Themes support — implement project-wide styling in a single file
 * Ready to go integrations with Bootstrap, Ant and Material UI
-* And it's simply a `<Form />` that's fun to use :)
+* And it's simply a `<Form />` that's fun to use :\)
 
 ## Installation
 
@@ -58,5 +57,5 @@ class ProductPage extends Component {
 }
 ```
 
-You can now take a look at the more advances usage in the docs:
-[https://youshido.github.io/context-form/](https://youshido.github.io/context-form/)
+You can now take a look at the more advances usage in the docs: [https://youshido.github.io/context-form/](https://youshido.github.io/context-form/)
+
