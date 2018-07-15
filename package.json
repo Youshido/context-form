@@ -1,13 +1,13 @@
 {
   "name": "context-form",
-  "version": "1.0.25",
+  "version": "1.0.26",
   "description": "ReactJS Form Management based on React Context",
   "main": "dist/index.js",
   "unpkg": "dist/context-form.min.js",
   "scripts": {
     "prepublishOnly": "eslint src && yarn build",
     "rollup": "rollup -c",
-    "build": "babel src --out-dir lib && rollup -c && cp ./src/index.dist ./dist/index.js"
+    "build": "rollup -c && cp ./src/index.dist ./dist/index.js"
   },
   "engines": {
     "node": ">=7.8.0"
@@ -18,8 +18,7 @@
     "context"
   ],
   "files": [
-    "dist/",
-    "lib/"
+    "dist/"
   ],
   "repository": "https://github.com/viniychuk/context-form",
   "author": "Alexandr Viniychuk <a@viniychuk.com>",
