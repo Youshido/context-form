@@ -10,10 +10,10 @@ const defaultForm = props => <form {...props} />;
 
 class Form extends Component {
   validationRules = {};
-  fieldArrays = {};
-  validator = undefined;
-  theme = undefined;
-  FormComponent = defaultForm;
+  fieldArrays     = {};
+  validator       = undefined;
+  theme           = undefined;
+  FormComponent   = defaultForm;
 
   state = {
     values   : this.props.values || innulable(this.props.initialValues) || {},
@@ -69,6 +69,15 @@ class Form extends Component {
     return this.validator
       .validateValues(rawValues)
       .then(({ values, errors }) => {
+        if (this.props.validate) {
+          const { values: formValues, errors: formErrors } = this.props.validate(rawValues, errors);
+          if (formErrors) {
+            errors = { ...errors, ...formErrors };
+          }
+          if (formValues) {
+            values = { ...values, ...formValues };
+          }
+        }
         this.setState({ errors });
         return { values, errors };
       });
@@ -163,7 +172,7 @@ class Form extends Component {
 
 Form.propTypes = {
   name             : PropTypes.string,
-  validator        : PropTypes.func,
+  validate         : PropTypes.func,
   validateOnSubmit : PropTypes.bool,
   layout           : PropTypes.oneOf(['horizontal', 'vertical', 'inline']),
   onSubmit         : PropTypes.func,

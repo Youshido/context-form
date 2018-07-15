@@ -30,7 +30,7 @@ class BasicForm extends Component {
         return (
             <Form onSubmit={this.onSubmit}>
                 <Field name="name" />
-                <Field name="age" 
+                <Field name="age"
                     rules={[this.validateAge]}
                     description="You need to be between 18 and 65."/>
                 <button type="submit">Submit</button>

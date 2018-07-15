@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Form, { FormFooter, Field } from '../../../src/index';
 import { Button } from 'react-bootstrap';
 
-export default class FieldValidation extends Component {
+export default class FieldValidationExample extends Component {
 
   state = {
     values : null,

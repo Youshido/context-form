@@ -1,16 +1,11 @@
-# Form Level Validation
-
-Form Level validation might be useful when you have a complex validation logic, for example if the validity of one field depends on the value of another one, etc.
-
-In order to enable Form validation you have to provide a `validate` prop on the `Form` component.
-Here's the same example we have in the [Field Validation](field-validation.md) guide re-writen to work on a Form level:
-
-```jsx
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
-import { Form, Field, FormFooter } from 'context-form';
+import Form from '../../../src';
+import Field from '../../../src/FormField/Field';
+import FormFooter from '../../../src/FormFooter/FormFooter';
 
 class FormValidationExample extends Component {
+
   state = {
     values : null,
   };
@@ -70,6 +65,3 @@ class FormValidationExample extends Component {
 }
 
 export default FormValidationExample;
-
-```
-
