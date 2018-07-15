@@ -1,8 +1,8 @@
-# form-level-validation
+# Form Level Validation
 
-Form Level validation might be useful when you have a complex validation logic, for example if the validity of one field depends on the value of another one, etc.
+Form Level validation might be useful when you have a complex validation logic, for example if the validity of one field depends on the value of another one, etc. 
 
-In order to enable Form validation you have to provide a `validate` prop on the `Form` component.
+In order to enable Form validation you have to provide a `validate` prop on the `Form` component.  
 Here's the same example we have in the [Field Validation](field-validation.md) guide re-writen to work on a Form level:
 
 ```jsx

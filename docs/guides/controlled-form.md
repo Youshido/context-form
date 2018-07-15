@@ -1,4 +1,4 @@
-# controlled-form
+# Controlled Form
 
 > When you need to store the values of the form in some other place or in a parent component
 

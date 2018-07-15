@@ -1,6 +1,6 @@
 # Field Validation
 
-Single Field's validation rules can be set as the `rules props` on that Field.
+Single Field's validation rules can be set as the `rules props` on that Field. 
 
 Take a look at the age field validation below. Notice that you need to return `true` if the field has a valid value or the error message otherwise. If you return `null` or `false` then standard error message will be displayed.
 
@@ -30,7 +30,7 @@ class BasicForm extends Component {
         return (
             <Form onSubmit={this.onSubmit}>
                 <Field name="name" />
-                <Field name="age"
+                <Field name="age" 
                     rules={[this.validateAge]}
                     description="You need to be between 18 and 65."/>
                 <button type="submit">Submit</button>

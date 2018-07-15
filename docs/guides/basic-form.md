@@ -1,4 +1,4 @@
-# basic-form
+# Basic Form
 
 > A basic form with a `required` field validation:
 

@@ -1,4 +1,4 @@
-# custom-controls
+# Custom Controls
 
 
 
