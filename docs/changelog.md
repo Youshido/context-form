@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.26 - 2018-07-15
+
+### Docs
+
+* Updated docs for Form Level Validation
+
 ## 1.0.25 - 2018-07-13
 
 ### Fixed
