@@ -9,10 +9,10 @@ class FieldArray extends Component {
 
   constructor(props) {
     super(props);
-    props.form.registerFieldArray(props.name, this);
+    props.form.registerFieldArray(props.name, this, { initialCount: props.initialCount });
   }
 
-  getFieldValues = () => this.props.form.values[this.props.name];
+  getFieldValues = () => this.props.form.values[this.props.name] || [];
   setFieldValues = values => this.props.form?.setValue(this.props.name, values);
 
   setValue = (name, value, index) => {
@@ -36,14 +36,25 @@ class FieldArray extends Component {
 
   addGroup = () => {
     this.setFieldValues([
-      ...this.getFieldValues() || [],
+      ...this.getFieldValues(),
       {},
     ]);
   };
 
-  render() {
+  componentDidUpdate = (props) => {
+    if (this.props.initialCount !== props.initialCount) {
+      let values = this.getFieldValues();
+      if (values.length < this.props.initialCount) {
+        while (values.length < this.props.initialCount) {
+          values.push({});
+        }
+        this.setFieldValues(values);
+      }
+    }
+  };
 
-    const values                     = this.getFieldValues() || [];
+  render() {
+    const values                     = this.getFieldValues();
     const { initialCount, minCount } = this.props;
 
     const items = Array.from({ length : values.length }, (v, k) => k);

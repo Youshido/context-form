@@ -4,7 +4,7 @@ import ExampleApp from './ExampleApp';
 
 class LayoutApp extends Component {
   state = {
-    active : 'basic',
+    active : 'fieldArray',
   };
 
   render() {
@@ -17,7 +17,7 @@ class LayoutApp extends Component {
           <h1>Context Form Demo</h1>
         </div>
         <div className="row">
-          <div className="col-md-2">
+          <div className="col-md-3">
             <ul className="nav nav-pills nav-stacked">
               {Object.keys(EXAMPLE).map(key =>
                 <li key={key} role="presentation" className={active === key ? 'active' : ''}>
@@ -28,7 +28,7 @@ class LayoutApp extends Component {
               )}
             </ul>
           </div>
-          <div className="col-md-10">
+          <div className="col-md-9">
             <ExampleApp example={active}/>
           </div>
         </div>

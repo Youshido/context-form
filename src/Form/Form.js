@@ -29,6 +29,9 @@ class Form extends Component {
     if (this.theme.Form) {
       this.FormComponent = this.theme.Form;
     }
+    if (props.contextForm) {
+      props.contextForm.registerForm(props.name, this);
+    }
   }
 
   getValues = () => (this.isControlled() ? this.props.values : this.state.values);
@@ -85,8 +88,9 @@ class Form extends Component {
 
   clearErrors = name => this.setState({ errors : { ...this.state.errors, [name] : undefined } });
 
-  registerFieldArray = (name, reference) => {
+  registerFieldArray = (name, reference, props) => {
     this.fieldArrays[name] = reference;
+    this.initializeArrayValue(name, props);
   };
 
   addFieldArray = (name) => {
@@ -97,8 +101,19 @@ class Form extends Component {
     this.fieldArrays[name].removeGroup(index);
   };
 
+  initializeArrayValue = (name, { initialCount }) => {
+    const value = this.state.values[name] || [];
+    while (value.length < initialCount) {
+      value.push({});
+    }
+    if (value !== this.state.values[name]) {
+      this.setValue(name, value);
+    }
+  };
+
   componentDidUpdate(prevProps) {
     // todo: REVISE comparision
+    console.log('COMPONENT DID UPDATE');
     if (
       JSON.stringify(this.props.initialValues)
       !== JSON.stringify(prevProps.initialValues)
@@ -108,6 +123,8 @@ class Form extends Component {
       });
     }
   }
+
+  submit = () => this.onSubmit();
 
   onSubmit = (e) => {
     const { validateOnSubmit, onSubmit } = this.props;
@@ -136,6 +153,7 @@ class Form extends Component {
   };
 
   render() {
+    console.log('form render');
     const FormComponent = this.FormComponent;
     return (
       <FormComponent

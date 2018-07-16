@@ -1,8 +1,10 @@
 import BasicFormExample from './examples/BasicFormExample';
+import FieldArrayExample from './examples/FieldArrayExample';
 import FormValidationExample from './examples/FormValidationExample';
 import FullFeaturedFormExample from './examples/FullFeaturedFormExample';
 import OverviewFormExample from './examples/OverviewFormExample';
 import FieldValidationExample from './examples/FieldValidationExample';
+import RemoteSubmitExample from './examples/RemoteSubmitExample';
 
 export const EXAMPLE = {
   basic: {
@@ -12,6 +14,10 @@ export const EXAMPLE = {
   overview: {
     component: OverviewFormExample,
     title: 'Overview Form'
+  },
+  fieldArray: {
+    component: FieldArrayExample,
+    title: 'Field Array',
   },
   fieldValidation: {
     component: FieldValidationExample,
@@ -24,5 +30,9 @@ export const EXAMPLE = {
   fullFeatured: {
     component: FullFeaturedFormExample,
     title: 'Full Featured Form'
+  },
+  remoteSubmit: {
+    component: RemoteSubmitExample,
+    title: 'Remote Submit Example'
   },
 };

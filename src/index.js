@@ -5,6 +5,7 @@ import FieldArray from './FormField/FieldArray';
 import FormFooter from './FormFooter/FormFooter';
 import ContextFormInstanceContext from './Context/ContextFormInstanceContext';
 import FieldArrayContext from './Context/FieldArrayContext';
+import ContextFormContext, { withContextForm } from './Context/ContextFormContext';
 import ContextFormProvider from './Context/ContextFormProvider';
 
 import FieldArrayAdd from './FormField/FieldArrayAdd';
@@ -31,7 +32,9 @@ export {
   ContextFormProvider,
   FieldArrayAdd,
   FieldArrayRemove,
+  ContextFormContext,
   ContextFormInstanceContext,
   FieldArrayContext,
   humanizeName,
+  withContextForm,
 };
