@@ -113,13 +113,11 @@ class Form extends Component {
 
   componentDidUpdate(prevProps) {
     // todo: REVISE comparision
-    console.log('COMPONENT DID UPDATE');
-    if (
-      JSON.stringify(this.props.initialValues)
-      !== JSON.stringify(prevProps.initialValues)
-    ) {
+    const prevInitialValues = JSON.stringify(prevProps.initialValues);
+    const initialValues = JSON.stringify(this.props.initialValues);
+    if (initialValues !== prevInitialValues) {
       this.setState({
-        values : innulable(this.props.initialValues),
+        values : innulable(JSON.parse(initialValues)),
       });
     }
   }
