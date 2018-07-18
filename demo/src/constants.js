@@ -5,6 +5,7 @@ import FullFeaturedFormExample from './examples/FullFeaturedFormExample';
 import OverviewFormExample from './examples/OverviewFormExample';
 import FieldValidationExample from './examples/FieldValidationExample';
 import RemoteSubmitExample from './examples/RemoteSubmitExample';
+import MaterialUIExample from './examples/MaterialUIExample';
 
 export const EXAMPLE = {
   basic: {
@@ -35,4 +36,8 @@ export const EXAMPLE = {
     component: RemoteSubmitExample,
     title: 'Remote Submit Example'
   },
+  materialUI: {
+    component: MaterialUIExample,
+    title: 'Material UI'
+  }
 };

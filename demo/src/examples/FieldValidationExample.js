@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Form, { FormFooter, Field } from '../../../src/index';
-import { Button } from 'react-bootstrap';
+import Form, { Field } from '../../../src/index';
+import { DefaultFooter } from '../utils/helpers';
 
 export default class FieldValidationExample extends Component {
 
@@ -35,19 +35,13 @@ export default class FieldValidationExample extends Component {
 
   render() {
     return (
-      <Form onSubmit={this.onSubmit} horizontal>
+      <Form onSubmit={this.onSubmit} layout='horizontal'>
         <Field name="name" required="We need to know your name!"/>
         <Field name="title" rules={[{ required : true, message: 'Title is very important!' }]}/>
         <Field name="age"
                    rules={[this.validateAge]}
                    description="You need to be between 18 and 65."/>
-        <FormFooter>
-          <Button bsStyle="primary" type={'submit'} style={{ marginLeft : 10 }}>Submit</Button>
-          {!!this.state.values &&
-          <pre style={{ marginTop : 20, marginBottom : 0 }}
-               onClick={this.hideSubmission}>Submission:{JSON.stringify(this.state.values)}</pre>
-          }
-        </FormFooter>
+        <DefaultFooter values={this.state.values} hideSubmission={this.hideSubmission}/>
       </Form>
     );
   }

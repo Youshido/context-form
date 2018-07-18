@@ -1,0 +1,92 @@
+html, body
+  padding: 0
+  margin: 0
+  font-family: Roboto, Helvetica, Arial, sans-serif
+  background: #fafafa
+
+.wrapper
+  flex: 1
+  padding: 40px
+  max-width: 1000px
+  margin: 0 auto
+
+.header
+  height: 82px
+
+.header h1
+  color: rgba(0, 0, 0, 0.54)
+  margin: 20px 0 0
+  font-size: 2.8125rem
+  font-weight: 400
+
+.logo
+  width: 80px
+
+.examples-layout
+  flex: 1
+  display: flex
+  .example-list
+    margin-top: 100px
+    width: 250px
+    list-style: none
+    li
+      cursor: pointer
+      color: #4CAF50
+      padding: 0 20px
+      margin: 1px 0
+      border-radius: 50px
+      height: 42px
+      width: 180px
+      display: flex
+      align-items: center
+      transition: 0.1s all
+      &:hover
+        background: #efefef
+      &.active
+        background: #4CAF50
+        color: #ffffff
+
+  .example-content
+    margin-left: 40px
+
+  .example-canvas
+    background: #f0f0f0
+    padding: 40px
+    min-width: 500px
+    border-radius: 4px
+    h2
+      color: rgba(0, 0, 0, 0.54)
+      margin: 0 0 30px
+      font-size: 2.125rem
+      font-weight: 400
+      line-height: 1.20588em
+    h3
+      color: rgba(0, 0, 0, 0.54)
+      margin: 10px 0 15px
+      font-size: 1.2rem
+      font-weight: 400
+      line-height: 1.20588em
+
+.app-description
+  font-weight: 400
+  font-size: 16px
+  color: darkgray
+  margin: 10px 0 20px
+
+.content-column
+  margin-left: 30%
+
+.education-group
+  display: flex
+  align-items: center
+  margin-top: 10px
+
+.education-group button
+  padding: 0
+  margin-left: 5px
+  border: none
+
+.education-group .form-field
+  margin-top: 0 !important
+
+

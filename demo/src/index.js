@@ -1,24 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { ContextFormProvider } from '../../src/index';
 import LayoutApp from './LayoutApp';
-import BootstrapTheme from './themes/BootstrapTheme';
 import ExampleApp from './ExampleApp';
-import './index.css';
+import './index.sass';
 
 const renderExample = (example, renderId) => {
   ReactDOM.render(
-    <ContextFormProvider theme={BootstrapTheme}>
-      <ExampleApp example={example}/>
-    </ContextFormProvider>,
+    <ExampleApp example={example}/>,
     document.getElementById(renderId),
   );
 };
 window.renderExample = renderExample;
 
 const renderLayout = ReactDOM.render(
-  <ContextFormProvider theme={BootstrapTheme}>
-    <LayoutApp />
-  </ContextFormProvider>,
+  <LayoutApp />,
   document.getElementById('root'),
 );

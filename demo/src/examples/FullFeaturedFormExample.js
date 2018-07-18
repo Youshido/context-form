@@ -46,12 +46,6 @@ class FullFeaturedFormExample extends Component {
     const { loading, initialValues } = this.state;
     return (
       <div>
-        <h2>
-          Full Featured Form
-        </h2>
-        <p className="app-description">
-          This example demonstrates most of the possibilities of the Context Form
-        </p>
         <Form
           onSubmit={this.onSubmit}
           horizontal

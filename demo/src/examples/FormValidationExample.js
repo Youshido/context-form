@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Button } from 'react-bootstrap';
 import Form from '../../../src';
 import Field from '../../../src/FormField/Field';
-import FormFooter from '../../../src/FormFooter/FormFooter';
+import { DefaultFooter } from '../utils/helpers';
 
 class FormValidationExample extends Component {
 
@@ -48,17 +47,11 @@ class FormValidationExample extends Component {
 
   render() {
     return (
-      <Form onSubmit={this.onSubmit} horizontal validate={this.validateForm}>
+      <Form onSubmit={this.onSubmit} validate={this.validateForm} layout='horizontal'>
         <Field name="name" />
         <Field name="title" />
         <Field name="age" description="You need to be between 18 and 65."/>
-        <FormFooter>
-          <Button bsStyle="primary" type={'submit'} style={{ marginLeft : 10 }}>Submit</Button>
-          {!!this.state.values &&
-          <pre style={{ marginTop : 20, marginBottom : 0 }}
-               onClick={this.hideSubmission}>Submission:{JSON.stringify(this.state.values)}</pre>
-          }
-        </FormFooter>
+        <DefaultFooter values={this.state.values} hideSubmission={this.hideSubmission}/>
       </Form>
     );
   }

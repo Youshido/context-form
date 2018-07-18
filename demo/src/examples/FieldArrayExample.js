@@ -4,9 +4,8 @@ import Form, {
   FieldInput,
   FieldArray,
   FieldArrayContext,
-  FormFooter,
 } from '../../../src/index';
-import { Button } from 'react-bootstrap';
+import { DefaultFooter } from '../utils/helpers';
 
 export default class FieldArrayExample extends Component {
 
@@ -28,9 +27,9 @@ export default class FieldArrayExample extends Component {
 
   render() {
     return (
-      <Form onSubmit={this.onSubmit} horizontal>
+      <Form onSubmit={this.onSubmit} layout='horizontal'>
         <Field name={'name'} placeholder={'e.g. Alex'}/>
-        <button type={'button'} onClick={() => this.setState({ initialCount: 3 })}>Change Initial Count</button>
+        <button type={'button'} onClick={() => this.setState({ initialCount : 3 })}>Change Initial Count</button>
         <div className="row">
           <div className="col-md-3">Favorite Movies:</div>
           <div className="col-md-9">
@@ -48,13 +47,7 @@ export default class FieldArrayExample extends Component {
             <FieldArray.Add name={'movies'}>+ Add Movie</FieldArray.Add>
           </div>
         </div>
-        <FormFooter>
-          <Button bsStyle="primary" type={'submit'} style={{ marginLeft : 10 }}>Submit</Button>
-          {!!this.state.values &&
-          <pre style={{ marginTop : 20, marginBottom : 0 }}
-               onClick={this.hideSubmission}>Submission:{JSON.stringify(this.state.values)}</pre>
-          }
-        </FormFooter>
+        <DefaultFooter values={this.state.values} hideSubmission={this.hideSubmission}/>
       </Form>
     );
   }

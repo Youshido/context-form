@@ -4,7 +4,7 @@ import ExampleApp from './ExampleApp';
 
 class LayoutApp extends Component {
   state = {
-    active : 'fieldArray',
+    active : 'materialUI',
   };
 
   render() {
@@ -12,24 +12,24 @@ class LayoutApp extends Component {
 
     return (
       <div className="wrapper">
-        <div className='header'>
-          <img src="" className='logo'/>
-          <h1>Context Form Demo</h1>
-        </div>
-        <div className="row">
-          <div className="col-md-3">
-            <ul className="nav nav-pills nav-stacked">
-              {Object.keys(EXAMPLE).map(key =>
-                <li key={key} role="presentation" className={active === key ? 'active' : ''}>
-                  <a role="presentation"
-                     onClick={() => this.setState({ active : key })}
-                  >{EXAMPLE[key].title}</a>
-                </li>,
-              )}
-            </ul>
-          </div>
-          <div className="col-md-9">
-            <ExampleApp example={active}/>
+        <div className="examples-layout">
+          <ul className="example-list">
+            {Object.keys(EXAMPLE).map(key =>
+              <li key={key} role="presentation"
+                  className={active === key ? 'active' : ''}
+                  onClick={() => this.setState({ active : key })}
+              >{EXAMPLE[key].title}
+              </li>,
+            )}
+          </ul>
+          <div className="example-content">
+            <div className='header'>
+              <h1>Context Form Demo</h1>
+            </div>
+            <div className="example-canvas">
+              <h2>{EXAMPLE[active].title}</h2>
+              <ExampleApp example={active}/>
+            </div>
           </div>
         </div>
       </div>

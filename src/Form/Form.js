@@ -29,8 +29,8 @@ class Form extends Component {
     if (this.theme.Form) {
       this.FormComponent = this.theme.Form;
     }
-    if (props.contextForm) {
-      props.contextForm.registerForm(props.name, this);
+    if (this.props.contextForm?.registerForm) {
+      this.props.contextForm.registerForm(props.name, this);
     }
   }
 
@@ -73,7 +73,7 @@ class Form extends Component {
       .validateValues(rawValues)
       .then(({ values, errors }) => {
         if (this.props.validate) {
-          const { values: formValues, errors: formErrors } = this.props.validate(rawValues, errors);
+          const { values : formValues, errors : formErrors } = this.props.validate(rawValues, errors);
           if (formErrors) {
             errors = { ...errors, ...formErrors };
           }
@@ -114,7 +114,7 @@ class Form extends Component {
   componentDidUpdate(prevProps) {
     // todo: REVISE comparision
     const prevInitialValues = JSON.stringify(prevProps.initialValues);
-    const initialValues = JSON.stringify(this.props.initialValues);
+    const initialValues     = JSON.stringify(this.props.initialValues);
     if (initialValues !== prevInitialValues) {
       this.setState({
         values : innulable(JSON.parse(initialValues)),
@@ -151,8 +151,8 @@ class Form extends Component {
   };
 
   render() {
-    console.log('form render');
     const FormComponent = this.FormComponent;
+    console.log('[context-form render]');
     return (
       <FormComponent
         onSubmit={this.onSubmit}
@@ -197,7 +197,6 @@ Form.propTypes = {
   values           : PropTypes.object,
   initialValues    : PropTypes.object,
   className        : PropTypes.string,
-  horizontal       : PropTypes.bool,
   style            : PropTypes.any,
 };
 
@@ -205,7 +204,7 @@ Form.defaultProps = {
   name             : `form_${Date.now()}_${Math.random()}`,
   validator        : ContextFormValidator,
   validateOnSubmit : true,
-  layout           : 'horizontal',
+  layout           : 'vertical',
   onChange         : () => null,
   onSubmit         : () => null,
 };
