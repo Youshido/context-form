@@ -25,18 +25,14 @@ const TextInput = (props) => {
 };
 
 const FieldContainer = (props) =>
-  <FormControl className={cn('form-field', {
-    'has-error' : props.form.errors[props.name],
-    'required'  : props.required,
-  })}>
+  <FormControl style={{ display: 'flex', marginTop: 10 }}>
     {props.children}
   </FormControl>;
 
 const FieldLabel = (props) =>
   <InputLabel htmlFor={props.fieldName}>{props.children}</InputLabel>;
 
-const FieldInputContainer = (props) =>
-  <div className={'form-field__input-container'}>{props.children}</div>;
+const FieldInputContainer = (props) => props.children;
 
 const FieldDescription = (props) => props.children
   ? <p className={'form-field__description'}>{props.children}</p>
@@ -50,7 +46,7 @@ const FieldErrors = (props) => props.errors
     </span>
   : null;
 
-const FormFooter = props => <div className={'form-footer__holder'}>{props.children}</div>;
+const FormFooter = props => <div style={{ marginTop: 20 }}>{props.children}</div>;
 
 const MaterialUITheme = {
   name         : 'Material',
