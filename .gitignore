@@ -1,4 +1,6 @@
 .idea/
+.vscode/
+.vs/
 node_modules/
 /dist/
 /lib/

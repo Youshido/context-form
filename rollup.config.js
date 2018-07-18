@@ -1,7 +1,10 @@
+import autoprefixer from 'autoprefixer';
+import postcss from 'postcss';
 import babel from "rollup-plugin-babel";
 import resolve from "rollup-plugin-node-resolve";
 import commonjs from "rollup-plugin-commonjs";
 import { terser } from "rollup-plugin-terser";
+import sass from 'rollup-plugin-sass';
 
 const config = {
   input : "./src/index.js",
@@ -17,6 +20,11 @@ const config = {
   },
 
   plugins : [
+    sass({
+      processor: css => postcss([autoprefixer])
+        .process(css)
+        .then(result => result.css)
+    }),
     babel({
       babelrc : false,
       exclude : "node_modules/**",
