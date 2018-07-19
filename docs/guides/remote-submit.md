@@ -63,3 +63,6 @@ export default RemoteSubmitExample;
 
 ```
 
+```jsx
+===example-remoteSubmit===
+```

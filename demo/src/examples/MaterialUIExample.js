@@ -65,8 +65,8 @@ class MaterialUIExample extends Component {
               <Field name={'firstName'} placeholder={'e.g. Alex'} required/>
               <Field name={'lastName'} placeholder={'e.g. Malcovich'}/>
               <Field name='age'
-                     rules={[this.validateAge]}
-                     description='You need to be between 18 and 65.'/>
+                rules={[this.validateAge]}
+                description='You need to be between 18 and 65.'/>
               <FormFooter>
                 <Button color='primary' variant='contained' type='submit'>Submit</Button>
               </FormFooter>

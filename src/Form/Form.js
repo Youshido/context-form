@@ -153,7 +153,7 @@ class Form extends Component {
 
   render() {
     const FormComponent = this.FormComponent;
-    console.log('[context-form render]');
+
     return (
       <FormComponent
         onSubmit={this.onSubmit}

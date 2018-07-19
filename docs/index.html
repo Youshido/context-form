@@ -19,11 +19,14 @@
   <script src="//unpkg.com/context-form/dist/context-form.min.js"></script>
   <style>
     .demo-box {
+      margin-top: 10px;
+      background: #fefefe;
       border: 1px solid #eaeefb;
       border-radius: 4px;
       -webkit-transition: .2s;
       transition: .2s;
       max-width: 600px;
+      padding: 40px 20px;
     }
 
     .demo-box:hover {
@@ -54,6 +57,8 @@
     }
 
     function renderComponent(example, id) {
+      console.log('%c example, id', 'background: rgba(255,255,0, .3);', example, id);
+
       const href = window.location.href;
       if (!componentCache[href]) componentCache[href] = [];
       componentCache[href].push({ example, id });
