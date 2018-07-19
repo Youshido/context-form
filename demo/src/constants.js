@@ -1,23 +1,43 @@
 import BasicFormExample from './examples/BasicFormExample';
+import FieldArrayExample from './examples/FieldArrayExample';
+import FormValidationExample from './examples/FormValidationExample';
 import FullFeaturedFormExample from './examples/FullFeaturedFormExample';
 import OverviewFormExample from './examples/OverviewFormExample';
-import FieldValidation from './examples/FieldValidation';
+import FieldValidationExample from './examples/FieldValidationExample';
+import RemoteSubmitExample from './examples/RemoteSubmitExample';
+import MaterialUIExample from './examples/MaterialUIExample';
 
 export const EXAMPLE = {
-  basic: {
-    component: BasicFormExample,
-    title: 'Basic Form'
+  basic : {
+    component : BasicFormExample,
+    title     : 'Basic Form'
   },
-  overview: {
-    component: OverviewFormExample,
-    title: 'Overview Form'
+  overview : {
+    component : OverviewFormExample,
+    title     : 'Overview Form'
   },
-  fullFeatured: {
-    component: FullFeaturedFormExample,
-    title: 'Full Featured Form'
+  fieldArray : {
+    component : FieldArrayExample,
+    title     : 'Field Array',
   },
-  fieldValidation: {
-    component: FieldValidation,
-    title: 'Field Validation'
+  fieldValidation : {
+    component : FieldValidationExample,
+    title     : 'Field Validation'
+  },
+  formValidation : {
+    component : FormValidationExample,
+    title     : 'Form Level Validation'
+  },
+  fullFeatured : {
+    component : FullFeaturedFormExample,
+    title     : 'Full Featured Form'
+  },
+  remoteSubmit : {
+    component : RemoteSubmitExample,
+    title     : 'Remote Submit Example'
+  },
+  materialUI : {
+    component : MaterialUIExample,
+    title     : 'Material UI'
   }
 };

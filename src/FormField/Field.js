@@ -20,7 +20,6 @@ class Field extends Component {
   onChange = e => {
     const value                      = e?.target?.value !== undefined ? e?.target.value : e;
     const { name, fieldArray, form } = this.props;
-
     if (fieldArray) {
       fieldArray.setValue(name, value, fieldArray.index);
     } else if (form) {
@@ -47,17 +46,19 @@ class Field extends Component {
         value = form.getValue(name);
       }
     }
-    const stateProps = { fieldName, errors };
+    const labelText = label || humanizeName(name);
+    const stateProps = { fieldName, errors, layout : form?.layout, isHorizontal : form?.layout === 'horizontal' };
     return (
       <Container {...this.props} {...stateProps}>
         {label !== false &&
-        <Label fieldName={fieldName}
-               required={this.props.required}>{label || humanizeName(name)}</Label>
+        <Label {...stateProps}
+          required={this.props.required}>{label || humanizeName(name)}</Label>
         }
-        <InputContainer>
+        <InputContainer {...stateProps}>
           <FieldInput
             id={fieldName}
             {...this.props}
+            label={label !== false  ? labelText : undefined}
             name={name}
             errors={errors}
             value={value}

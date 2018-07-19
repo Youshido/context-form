@@ -8,8 +8,8 @@ class FieldArrayAdd extends Component {
     return (
       <ContextFormInstanceContext.Consumer>
         {form => <Button type={'button'}
-                         onClick={() => form.addFieldArray(this.props.name)}
-                         {...restProps}>
+          onClick={() => form.addFieldArray(this.props.name)}
+          {...restProps}>
           {this.props.children}
         </Button>}
       </ContextFormInstanceContext.Consumer>

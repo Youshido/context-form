@@ -3,10 +3,10 @@ import { withContextFormInstanceConsumer } from '../Context/ContextFormInstanceC
 
 class FormFooter extends Component {
   render() {
-    const { Footer } = this.props.form.getTheme();
+    const { Footer } = this.props.form?.getTheme();
 
     return (
-      <Footer>
+      <Footer layout={this.props.form?.layout}>
         {this.props.children}
       </Footer>
     );

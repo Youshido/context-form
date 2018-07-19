@@ -1,16 +1,10 @@
-# Form Level Validation
-
-Form Level validation might be useful when you have a complex validation logic, for example if the validity of one field depends on the value of another one, etc. 
-
-In order to enable Form validation you have to provide a `validate` prop on the `Form` component.  
-Here's the same example we have in the [Field Validation](field-validation.md) guide re-writen to work on a Form level:
-
-```jsx
 import React, { Component } from 'react';
-import { Button } from 'react-bootstrap';
-import { Form, Field, FormFooter } from 'context-form';
+import Form from '../../../src';
+import Field from '../../../src/FormField/Field';
+import { DefaultFooter } from '../utils/helpers';
 
 class FormValidationExample extends Component {
+
   state = {
     values : null,
   };
@@ -53,27 +47,14 @@ class FormValidationExample extends Component {
 
   render() {
     return (
-      <Form onSubmit={this.onSubmit} horizontal validate={this.validateForm}>
+      <Form onSubmit={this.onSubmit} validate={this.validateForm} layout='horizontal'>
         <Field name="name" />
         <Field name="title" />
         <Field name="age" description="You need to be between 18 and 65."/>
-        <FormFooter>
-          <Button bsStyle="primary" type={'submit'} style={{ marginLeft : 10 }}>Submit</Button>
-          {!!this.state.values &&
-          <pre style={{ marginTop : 20, marginBottom : 0 }}
-               onClick={this.hideSubmission}>Submission:{JSON.stringify(this.state.values)}</pre>
-          }
-        </FormFooter>
+        <DefaultFooter values={this.state.values} hideSubmission={this.hideSubmission}/>
       </Form>
     );
   }
 }
 
 export default FormValidationExample;
-
-```
-
-```jsx
-===example-formValidation===
-```
-

@@ -4,15 +4,16 @@ import { withContextFormInstanceConsumer } from '../Context/ContextFormInstanceC
 import FieldArrayContext from '../Context/FieldArrayContext';
 import FieldArrayAdd from './FieldArrayAdd';
 import FieldArrayRemove from './FieldArrayRemove';
+import FieldArrayIndex from './FieldArrayIndex';
 
 class FieldArray extends Component {
 
   constructor(props) {
     super(props);
-    props.form.registerFieldArray(props.name, this);
+    props.form.registerFieldArray(props.name, this, { initialCount : props.initialCount });
   }
 
-  getFieldValues = () => this.props.form.values[this.props.name];
+  getFieldValues = () => this.props.form.values[this.props.name] || [];
   setFieldValues = values => this.props.form?.setValue(this.props.name, values);
 
   setValue = (name, value, index) => {
@@ -36,19 +37,37 @@ class FieldArray extends Component {
 
   addGroup = () => {
     this.setFieldValues([
-      ...this.getFieldValues() || [],
+      ...this.getFieldValues(),
       {},
     ]);
   };
 
-  render() {
+  componentDidUpdate = (props) => {
+    if (this.props.initialCount !== props.initialCount) {
+      let values = this.getFieldValues();
+      if (values.length < this.props.initialCount) {
+        while (values.length < this.props.initialCount) {
+          values.push({});
+        }
+        this.setFieldValues(values);
+      }
+    }
+  };
 
-    const values                     = this.getFieldValues() || [];
-    const { initialCount, minCount } = this.props;
+  render() {
+    const values                     = this.getFieldValues();
+    const { initialCount, minCount, style, className, component } = this.props;
 
     const items = Array.from({ length : values.length }, (v, k) => k);
+    let extraProps = {};
+    let ContainerComponent = Fragment;
+    if (style || className) {
+      extraProps = { style, className };
+      ContainerComponent = component;
+    }
+    
     return (
-      <Fragment>
+      <ContainerComponent {...extraProps}>
         {items.map(index => (
           <FieldArrayContext.Provider key={index} value={{
             getValue    : this.getValue,
@@ -62,7 +81,7 @@ class FieldArray extends Component {
             {this.props.children}
           </FieldArrayContext.Provider>
         ))}
-      </Fragment>
+      </ContainerComponent>
     );
   }
 }
@@ -76,10 +95,12 @@ FieldArray.propTypes = {
 FieldArray.defaultProps = {
   initialCount : 1,
   minCount     : 0,
+  component    : 'div'
 };
 
 FieldArray.Add    = FieldArrayAdd;
 FieldArray.Remove = FieldArrayRemove;
+FieldArray.Index  = FieldArrayIndex;
 
 FieldArray = withContextFormInstanceConsumer(FieldArray);
 

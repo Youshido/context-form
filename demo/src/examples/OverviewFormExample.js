@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
-import {
-  Form,
-  Field,
-  FormFooter,
-} from '../../../src/index';
-import { Button } from 'react-bootstrap';
+import { Field, Form } from '../../../src/index';
+import { DefaultFooter } from '../utils/helpers';
 
 class OverviewFormExample extends Component {
 
@@ -29,13 +25,7 @@ class OverviewFormExample extends Component {
         <Field name={'firstName'} placeholder={'e.g. Paul'}/>
         <Field name={'lastName'} placeholder={'e.g. Smith'}/>
         <Field name={'title'} placeholder={'e.g. Web Developer'} required/>
-        <FormFooter>
-          <Button bsStyle="primary" type={'submit'} style={{ marginLeft : 10 }}>Submit</Button>
-          {!!this.state.values &&
-          <pre style={{ marginTop : 20, marginBottom : 0 }}
-               onClick={this.hideSubmission}>Submission:{JSON.stringify(this.state.values)}</pre>
-          }
-        </FormFooter>
+        <DefaultFooter values={this.state.values} hideSubmission={this.hideSubmission}/>
       </Form>
     );
   }

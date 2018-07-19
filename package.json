@@ -1,13 +1,13 @@
 {
   "name": "context-form",
-  "version": "1.0.24",
+  "version": "1.0.31",
   "description": "ReactJS Form Management based on React Context",
   "main": "dist/index.js",
   "unpkg": "dist/context-form.min.js",
   "scripts": {
     "prepublishOnly": "eslint src && yarn build",
     "rollup": "rollup -c",
-    "build": "babel src --out-dir lib && rollup -c && cp ./src/index.dist ./dist/index.js"
+    "build": "rollup -c && cp ./src/index.dist ./dist/index.js"
   },
   "engines": {
     "node": ">=7.8.0"
@@ -18,13 +18,13 @@
     "context"
   ],
   "files": [
-    "dist/",
-    "lib/"
+    "dist/"
   ],
   "repository": "https://github.com/viniychuk/context-form",
   "author": "Alexandr Viniychuk <a@viniychuk.com>",
   "license": "MIT",
   "dependencies": {
+    "@material-ui/core": "^1.4.0",
     "classnames": "^2.2.6",
     "inflected": "^2.0.4",
     "prop-types": "^15.6.2",
@@ -39,6 +39,7 @@
     "@babel/plugin-proposal-optional-chaining": "^7.0.0-beta.51",
     "@babel/preset-env": "^7.0.0-beta.52",
     "@babel/preset-react": "^7.0.0-beta.52",
+    "autoprefixer": "^9.0.0",
     "babel-eslint": "^8.2.5",
     "babel-loader": "^8.0.0-beta.4",
     "eslint": "^5.0.1",
@@ -47,14 +48,18 @@
     "eslint-loader": "^2.0.0",
     "eslint-plugin-flowtype": "^2.49.3",
     "eslint-plugin-import": "^2.13.0",
-    "eslint-plugin-jsx-a11y": "^6.1.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.10.0",
+    "node-sass": "^4.9.2",
+    "postcss": "^7.0.0",
     "prettier": "^1.13.7",
     "react-docgen": "^3.0.0-beta9",
     "rollup": "^0.62.0",
     "rollup-plugin-babel": "^4.0.0-beta.7",
     "rollup-plugin-commonjs": "^9.1.3",
+    "rollup-plugin-embed-css": "^0.1.21",
     "rollup-plugin-node-resolve": "^3.3.0",
+    "rollup-plugin-sass": "^0.9.1",
     "rollup-plugin-terser": "^1.0.1",
     "rollup-plugin-uglify": "^4.0.0",
     "webpack": "^4.15.1",

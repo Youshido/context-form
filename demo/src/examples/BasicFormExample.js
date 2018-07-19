@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import Form, {
-  FormFooter,
-} from '../../../src/index';
-import { Button } from 'react-bootstrap';
+import { Field, Form, FormFooter } from '../../../src/index';
+import { SubmissionResult } from '../utils/helpers';
 
 class BasicFormExample extends Component {
 
@@ -11,7 +9,6 @@ class BasicFormExample extends Component {
   };
 
   onSubmit = ({ values }) => {
-    console.log('Submitting Values', values);
     this.setState({
       values,
     });
@@ -23,21 +20,16 @@ class BasicFormExample extends Component {
 
   render() {
     return (
-      <Form onSubmit={this.onSubmit} horizontal>
-        <Form.Field name={'firstName'} placeholder={'e.g. Alex'} required/>
-        <Form.Field name={'lastName'} placeholder={'e.g. Malcovich'}/>
+      <Form onSubmit={this.onSubmit} layout='vertical'>
+        <Field name={'firstName'} placeholder={'e.g. Alex'} required/>
+        <Field name={'lastName'} placeholder={'e.g. Malcovich'}/>
         <FormFooter>
-          <Button bsStyle="primary" type={'submit'} style={{ marginLeft : 10 }}>Submit</Button>
-          {!!this.state.values &&
-          <pre style={{ marginTop : 20, marginBottom : 0 }}
-               onClick={this.hideSubmission}>Submission:{JSON.stringify(this.state.values)}</pre>
-          }
+          <button type={'submit'}>Submit</button>
+          <SubmissionResult values={this.state.values} hideSubmission={this.hideSubmission} />
         </FormFooter>
       </Form>
     );
   }
 }
-
-BasicFormExample.propTypes = {};
 
 export default BasicFormExample;
