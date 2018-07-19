@@ -1,10 +1,11 @@
-# Context Form 1.0.15
+# Context Form 1.0.31
 
 > Form Manamgement for React & React Native
 
-* Simple and Lightweight \(~14kB gzipped\)
+* Simple and Lightweight
 * Clean Code, no Boilerplate, no Clutter
 * Simple & Powerful API for great Customization
+* MaterialUI & Bootstrap Integrations
 
 [GitHub](https://github.com/context-form/context-form/) [Get Started](./)
 
