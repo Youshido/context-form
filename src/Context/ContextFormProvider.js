@@ -17,10 +17,10 @@ class ContextFormProvider extends Component {
   render() {
     return (
       <ContextFormContext.Provider value={{
-        theme: this.props.theme,
-        validator: this.props.validator,
-        registerForm: this.registerForm,
-        getForm: this.getForm,
+        theme        : this.props.theme,
+        validator    : this.props.validator,
+        registerForm : this.registerForm,
+        getForm      : this.getForm,
       }}>
         {this.props.children}
       </ContextFormContext.Provider>
@@ -29,12 +29,12 @@ class ContextFormProvider extends Component {
 }
 
 ContextFormProvider.propTypes = {
-  theme: PropTypes.object.isRequired,
-  validator: PropTypes.any,
+  theme     : PropTypes.object.isRequired,
+  validator : PropTypes.any,
 };
 ContextFormProvider.defaultProps = {
-  theme: SimpleTheme,
-  validator: ContextFormValidator,
+  theme     : SimpleTheme,
+  validator : ContextFormValidator,
 };
 
 export default ContextFormProvider;

@@ -18,7 +18,9 @@ const FieldContainer = (props) =>
   </div>;
 
 const FieldLabel = (props) =>
-  <div className={'form-field__label-holder'}><label htmlFor={props.fieldName} className={'form-field__label'}>{props.children}:</label></div>;
+  <div className={'form-field__label-holder'}>
+    <label htmlFor={props.fieldName} className={'form-field__label'}>{props.children}:</label>
+  </div>;
 
 const FieldInputContainer = (props) =>
   <div className={'form-field__input-container'}>{props.children}</div>;
@@ -29,18 +31,18 @@ const FieldDescription = (props) => props.children && !props.errors
 
 const FieldErrors = (props) => props.errors
   ? <div className={'form-field__errors-holder'}>
-      {props.errors.map(({ message }, i) =>
-        <div key={i} className={'form-field__errors-message'}>{message || 'Error occurred.'}</div>,
-      )}
-    </div>
+    {props.errors.map(({ message }, i) =>
+      <div key={i} className={'form-field__errors-message'}>{message || 'Error occurred.'}</div>,
+    )}
+  </div>
   : null;
 
 const FormFooter = props => <div className={'form-footer__holder'}>{props.children}</div>;
 
 const SimpleTheme = {
-  name         : 'Simple',
+  name  : 'Simple',
   Form,
-  Field        : {
+  Field : {
     Container      : FieldContainer,
     Label          : FieldLabel,
     InputContainer : FieldInputContainer,

@@ -1,6 +1,6 @@
 {
   "name": "context-form",
-  "version": "1.0.29",
+  "version": "1.0.30",
   "description": "ReactJS Form Management based on React Context",
   "main": "dist/index.js",
   "unpkg": "dist/context-form.min.js",
@@ -50,6 +50,7 @@
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.10.0",
+    "node-sass": "^4.9.2",
     "postcss": "^7.0.0",
     "prettier": "^1.13.7",
     "react-docgen": "^3.0.0-beta9",
