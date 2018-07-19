@@ -4,9 +4,14 @@ import { FormFooter } from '../../../src';
 
 export function SubmissionResult(props) {
   return <>{!!props.values &&
-  <pre style={{ marginTop : 20, marginBottom : 0, background: '#fafafa', padding: 20, borderRadius: 4 }}
-       onClick={props.hideSubmission}>Submission:<br/>{JSON.stringify(props.values)}</pre>
-           }</>;
+  <pre style={{ marginTop : 20, 
+    marginBottom : 0, 
+    background : '#fafafa', 
+    padding : 20, 
+    borderRadius : 4, 
+    whiteSpace : 'pre-line' }}
+    onClick={props.hideSubmission}>Submission:<br/>{JSON.stringify(props.values)}</pre>
+  }</>;
 }
 
 SubmissionResult.propTypes = {

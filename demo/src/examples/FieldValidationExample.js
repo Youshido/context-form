@@ -36,11 +36,11 @@ export default class FieldValidationExample extends Component {
   render() {
     return (
       <Form onSubmit={this.onSubmit} layout='horizontal'>
-        <Field name="name" required="We need to know your name!"/>
-        <Field name="title" rules={[{ required : true, message: 'Title is very important!' }]}/>
-        <Field name="age"
-                   rules={[this.validateAge]}
-                   description="You need to be between 18 and 65."/>
+        <Field name='name' required='We need to know your name!'/>
+        <Field name='title' rules={[{ required : true, message : 'Title is very important!' }]}/>
+        <Field name='age'
+          rules={[this.validateAge]}
+          description='You need to be between 18 and 65.'/>
         <DefaultFooter values={this.state.values} hideSubmission={this.hideSubmission}/>
       </Form>
     );

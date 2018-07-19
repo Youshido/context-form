@@ -6,9 +6,9 @@ import Form, {
   FieldArrayContext,
 } from '../../../src/index';
 import { DefaultFooter } from '../utils/helpers';
+import FieldArrayIndex from '../../../src/FormField/FieldArrayIndex';
 
 export default class FieldArrayExample extends Component {
-
   state = {
     values       : null,
     initialCount : 2,
@@ -27,26 +27,22 @@ export default class FieldArrayExample extends Component {
 
   render() {
     return (
-      <Form onSubmit={this.onSubmit} layout='horizontal'>
+      <Form onSubmit={this.onSubmit}>
+        <h3>API Controls:</h3>
+        <hr />
+        <button type={'button'} onClick={() => this.setState({ initialCount : 3 })}>Set initialCount = 3</button>
+        <hr />
+        <h3>Form:</h3>
         <Field name={'name'} placeholder={'e.g. Alex'}/>
-        <button type={'button'} onClick={() => this.setState({ initialCount : 3 })}>Change Initial Count</button>
-        <div className="row">
-          <div className="col-md-3">Favorite Movies:</div>
-          <div className="col-md-9">
-            <FieldArray name={'movies'} initialCount={this.state.initialCount}>
-              <FieldArrayContext.Consumer>
-                {fieldArray => (
-                  <div style={{ display : 'flex' }}>
-                    <span>{`Movie #${fieldArray.index + 1}`}:</span>
-                    <FieldInput name={'name'} style={{ width : 200 }}/>
-                    <FieldArray.Remove>Remove</FieldArray.Remove>
-                  </div>
-                )}
-              </FieldArrayContext.Consumer>
-            </FieldArray>
-            <FieldArray.Add name={'movies'}>+ Add Movie</FieldArray.Add>
+        <div style={{ margin : '10px 0' }}>Favorite Movies:</div>
+        <FieldArray name={'movies'} initialCount={this.state.initialCount}>
+          <div style={{ display : 'flex', alignItems : 'center', marginTop : 5 }}>
+            <span style={{ width : 100 }}>Movie #<FieldArrayIndex/>:</span>
+            <FieldInput name={'name'} style={{ width : 200 }}/>
+            <FieldArray.Remove>X</FieldArray.Remove>
           </div>
-        </div>
+        </FieldArray>
+        <FieldArray.Add name={'movies'} style={{ marginLeft : 100, marginTop : 10}}>+ Add Movie</FieldArray.Add>
         <DefaultFooter values={this.state.values} hideSubmission={this.hideSubmission}/>
       </Form>
     );

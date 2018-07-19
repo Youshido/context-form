@@ -47,14 +47,14 @@ class Field extends Component {
       }
     }
     const labelText = label || humanizeName(name);
-    const stateProps = { fieldName, errors };
+    const stateProps = { fieldName, errors, layout : form?.layout, isHorizontal : form?.layout === 'horizontal' };
     return (
       <Container {...this.props} {...stateProps}>
         {label !== false &&
-        <Label fieldName={fieldName}
-               required={this.props.required}>{label || humanizeName(name)}</Label>
+        <Label {...stateProps}
+          required={this.props.required}>{label || humanizeName(name)}</Label>
         }
-        <InputContainer>
+        <InputContainer {...stateProps}>
           <FieldInput
             id={fieldName}
             {...this.props}

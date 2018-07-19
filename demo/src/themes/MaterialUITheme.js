@@ -1,17 +1,35 @@
 import React from 'react';
 import cn from 'classnames';
-import { TextField, FormControl, Input, InputLabel } from '@material-ui/core';
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import { TextField, FormControl, Input, InputLabel, FormHelperText, FormLabel } from '@material-ui/core';
+import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core/styles';
 
 const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: '#2196f3',
+  palette : {
+    primary : {
+      main : '#2196f3',
     },
-    secondary: {
-      main: '#f50057',
+    secondary : {
+      main : '#f50057',
     },
   },
+});
+const horizontalLabelWidth = '25%';
+
+const styles = theme => ({
+  horizontalLabel : {
+    width       : horizontalLabelWidth,
+    marginTop   : 9,
+    marginRight : 20,
+    textAlign   : 'right'
+  },
+  footer : {
+    marginTop : 15,
+  },
+  horizontalFooter : {
+    marginTop   : 20,
+    marginLeft  : horizontalLabelWidth,
+    paddingLeft : 20
+  }
 });
 
 export const withMaterialUITheme = (WrappedComponent) => (props) => (
@@ -21,36 +39,59 @@ export const withMaterialUITheme = (WrappedComponent) => (props) => (
 );
 
 const TextInput = (props) => {
-  return <Input {...props} value={props.value || ''}/>;
+  return <Input {...props} value={props.value || ''} error={!!props.errors}/>;
 };
+const HorizontalContainer = (props) => {
+  return (
+    <div style={{ display : 'flex', marginTop : 10 }}>{props.children}</div>
+  );
+}
 
-const FieldContainer = (props) =>
-  <FormControl style={{ display: 'flex', marginTop: 10 }}>
-    {props.children}
-  </FormControl>;
+const FieldContainer = (props) => {
+  const extraProps = {
+    error     : !!props.errors,
+    fullWidth : props.layout !== 'inline',
+    margin    : 'dense',
+  }
+  const ControlComponent = props.layout === 'horizontal' ? HorizontalContainer : FormControl;
+  return (
+    <ControlComponent {...extraProps} >
+      {props.children}
+    </ControlComponent>
+  );
+}
 
-const FieldLabel = (props) =>
-  <InputLabel htmlFor={props.fieldName}>{props.children}</InputLabel>;
+const FieldLabel = withStyles(styles)((props) => {  
+  const extraProps = {
+    required : props.required,
+    error    : !!props.errors
+  };
+  const LabelComponent = props.isHorizontal ? FormLabel : InputLabel;
 
-const FieldInputContainer = (props) => props.children;
+  return <LabelComponent htmlFor={props.fieldName} {...extraProps} className={props.classes[`${props.layout}Label`]}>{props.children}</LabelComponent>;
+});
 
-const FieldDescription = (props) => props.children
-  ? <p className={'form-field__description'}>{props.children}</p>
+const FieldInputContainer = (props) => props.isHorizontal ? <div>{props.children}</div> : props.children;
+
+const FieldDescription = (props) => props.children && !props.errors
+  ? <FormHelperText className={'form-field__description'}>{props.children}</FormHelperText>
   : null;
 
 const FieldErrors = (props) => props.errors
-  ? <span className={'form-field__errors-holder'}>
-      {props.errors.map(({ message }, i) =>
-        <div key={i} className={'form-field__errors-message'}>{message || 'Error occurred.'}</div>,
-      )}
-    </span>
+  ? <FormHelperText error>
+    {props.errors.map(({ message }, i) => message || 'Error occured.')}
+  </FormHelperText>
   : null;
 
-const FormFooter = props => <div style={{ marginTop: 20 }}>{props.children}</div>;
+const FormFooter = withStyles(styles)(props => 
+  <div className={cn(props.classes.footer, props.layout === 'horizontal' ? props.classes.horizontalFooter : null)}>
+    {props.children}
+  </div>
+);
 
 const MaterialUITheme = {
-  name         : 'Material',
-  Field        : {
+  name  : 'Material',
+  Field : {
     Container      : FieldContainer,
     Label          : FieldLabel,
     InputContainer : FieldInputContainer,

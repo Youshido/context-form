@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import cn from 'classnames';
 import { withContextForm } from '../Context/ContextFormContext';
 import ContextFormInstanceContext from '../Context/ContextFormInstanceContext';
 import SimpleTheme from '../Theme/SimpleTheme/SimpleTheme';
@@ -158,9 +159,12 @@ class Form extends Component {
         onSubmit={this.onSubmit}
         onReset={this.onReset}
         horizontal={this.props.horizontal}
-        className={`context-form context-form-theme-${this.theme.name?.toLowerCase()} ${
-          this.props.layout
-          } ${this.props.className || ''} with-labels`}
+        className={cn(
+          'context-form', 
+          `context-form-theme-${this.theme.name?.toLowerCase()}`, 
+          this.props.layout, 
+          this.props.className || '', 
+          'with-labels')}
         style={this.props.style}
         noValidate
       >
@@ -177,6 +181,7 @@ class Form extends Component {
             addFieldArray      : this.addFieldArray,
             removeFieldArray   : this.removeFieldArray,
             submit             : this.onSubmit,
+            layout             : this.props.layout,
           }}
         >
           {this.props.children}
