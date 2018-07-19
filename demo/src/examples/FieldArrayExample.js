@@ -3,10 +3,8 @@ import Form, {
   Field,
   FieldInput,
   FieldArray,
-  FieldArrayContext,
 } from '../../../src/index';
 import { DefaultFooter } from '../utils/helpers';
-import FieldArrayIndex from '../../../src/FormField/FieldArrayIndex';
 
 export default class FieldArrayExample extends Component {
   state = {
@@ -37,7 +35,7 @@ export default class FieldArrayExample extends Component {
         <div style={{ margin : '10px 0' }}>Favorite Movies:</div>
         <FieldArray name={'movies'} initialCount={this.state.initialCount}>
           <div style={{ display : 'flex', alignItems : 'center', marginTop : 5 }}>
-            <span style={{ width : 100 }}>Movie #<FieldArrayIndex/>:</span>
+            <span style={{ width : 100 }}>Movie #<FieldArray.Index/>:</span>
             <FieldInput name={'name'} style={{ width : 200 }}/>
             <FieldArray.Remove>X</FieldArray.Remove>
           </div>

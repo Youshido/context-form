@@ -4,7 +4,7 @@ import Form, {
   FormFooter,
   ContextFormProvider,
 } from '../../../src/index';
-import { Button, Divider, Paper, Card, CardContent } from '@material-ui/core';
+import { Button, Card, CardContent } from '@material-ui/core';
 import MaterialUITheme, { withMaterialUITheme } from '../themes/MaterialUITheme';
 import { SubmissionResult } from '../utils/helpers';
 
@@ -15,13 +15,13 @@ class MaterialUIExample extends Component {
     valuesForm2 : null,
   };
 
-  onSubmitForm1 = ({ values: valuesForm1 }) => {
+  onSubmitForm1 = ({ values : valuesForm1 }) => {
     this.setState({
       valuesForm1,
     });
   };
 
-  onSubmitForm2 = ({ values: valuesForm2 }) => {
+  onSubmitForm2 = ({ values : valuesForm2 }) => {
     this.setState({
       valuesForm2,
     });
@@ -40,7 +40,7 @@ class MaterialUIExample extends Component {
       return 'Nah grandpa, you watch TV tonight';
     }
     return true;
-  };  
+  };
 
   render() {
     return (
@@ -53,7 +53,7 @@ class MaterialUIExample extends Component {
               <Field name={'lastName'} placeholder={'e.g. Malcovich'}/>
               <FormFooter>
                 <Button color='primary' variant='contained' type='submit'>Submit</Button>
-                <SubmissionResult values={this.state.valuesForm1} hideSubmission={this.hideSubmission} />
+                <SubmissionResult values={this.state.valuesForm1} hideSubmission={this.hideSubmission}/>
               </FormFooter>
             </Form>
           </CardContent>
@@ -65,13 +65,13 @@ class MaterialUIExample extends Component {
               <Field name={'firstName'} placeholder={'e.g. Alex'} required/>
               <Field name={'lastName'} placeholder={'e.g. Malcovich'}/>
               <Field name='age'
-                rules={[this.validateAge]}
-                description='You need to be between 18 and 65.'/>
+                     rules={[this.validateAge]}
+                     description='You need to be between 18 and 65.'/>
               <FormFooter>
                 <Button color='primary' variant='contained' type='submit'>Submit</Button>
               </FormFooter>
               <SubmissionResult values={this.state.valuesForm2} hideSubmission={this.hideSubmission}/>
-            </Form>        
+            </Form>
           </CardContent>
         </Card>
       </ContextFormProvider>
