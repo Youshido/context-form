@@ -37,7 +37,7 @@ class FieldInput extends Component {
       }
     }
     return (
-      <Component id={id} {...extraProps} onChange={this.onChange} value={value}>
+      <Component id={id} name={name} {...extraProps} onChange={this.onChange} value={value}>
         {this.props.children}
       </Component>
     );
