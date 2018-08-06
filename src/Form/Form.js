@@ -118,7 +118,7 @@ class Form extends Component {
     const initialValues     = JSON.stringify(this.props.initialValues);
     if (initialValues !== prevInitialValues) {
       this.setState({
-        values : innulable(JSON.parse(initialValues)),
+        values : {...innulable(this.props.initialValues)},
       });
     }
   }
@@ -160,10 +160,10 @@ class Form extends Component {
         onReset={this.onReset}
         horizontal={this.props.horizontal}
         className={cn(
-          'context-form', 
-          `context-form-theme-${this.theme.name?.toLowerCase()}`, 
-          this.props.layout, 
-          this.props.className || '', 
+          'context-form',
+          `context-form-theme-${this.theme.name?.toLowerCase()}`,
+          this.props.layout,
+          this.props.className || '',
           'with-labels')}
         style={this.props.style}
         noValidate
