@@ -13,7 +13,7 @@ class FieldArray extends Component {
     props.form.registerFieldArray(props.name, this, { initialCount : props.initialCount });
   }
 
-  getFieldValues = () => this.props.form.values[this.props.name] || [];
+  getFieldValues = () => this.props.form?.getValue(this.props.name) || [];
   setFieldValues = values => this.props.form?.setValue(this.props.name, values);
 
   setValue = (name, value, index) => {
@@ -65,7 +65,7 @@ class FieldArray extends Component {
       extraProps = { style, className };
       ContainerComponent = component;
     }
-    
+
     return (
       <ContainerComponent {...extraProps}>
         {items.map(index => (
