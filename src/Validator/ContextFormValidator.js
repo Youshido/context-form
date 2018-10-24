@@ -1,4 +1,4 @@
-import { humanizeName } from '../utils';
+import { humanizeName } from "../utils";
 
 class ContextFormValidator {
   rules  = {};
@@ -9,6 +9,19 @@ class ContextFormValidator {
       this.rules[fieldName] = [];
     }
     this.rules[fieldName].push(rule);
+  };
+
+  setRequired = (fieldName, isRequired) => {
+    if (!this.rules[fieldName]) {
+      this.rules[fieldName] = [];
+    }
+    this.rules[fieldName] = this.rules[fieldName].filter(item => !item.__required);
+
+    if (isRequired) {
+      this.rules[fieldName].push({ required : true, __required : true });
+    }
+    
+    console.log("%c this.rules", "background: rgba(255,255,0, .3);", this.rules);
   };
 
   validateValues = (values) => {
@@ -25,14 +38,14 @@ class ContextFormValidator {
         this.rules[fieldName].forEach(rule => {
           let error = undefined;
           if (rule.required && !value) {
-            const message = rule.message || (typeof rule.required === 'string'
+            const message = rule.message || (typeof rule.required === "string"
               ? rule.required
               : `${humanizeName(fieldName)} is required.`);
             error         = { required : true, message };
-          } else if (typeof rule === 'function') {
+          } else if (typeof rule === "function") {
             const result = rule(value);
             if (result !== true) {
-              error = { rule : rule.name, message : result || 'Value is invalid' };
+              error = { rule : rule.name, message : result || "Value is invalid" };
             }
           } else {
             // clear error

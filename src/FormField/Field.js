@@ -1,21 +1,37 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { withContextFormInstanceConsumer } from '../Context/ContextFormInstanceContext';
-import { withFormFieldArrayConsumer } from '../Context/FieldArrayContext';
-import { humanizeName } from '../utils';
-import FieldInput from './FieldInput';
+import PropTypes from "prop-types";
+import React, { Component } from "react";
+import { withContextFormInstanceConsumer } from "../Context/ContextFormInstanceContext";
+import { withFormFieldArrayConsumer } from "../Context/FieldArrayContext";
+import { humanizeName } from "../utils";
+import FieldInput from "./FieldInput";
 
 class Field extends Component {
   componentDidMount() {
     if (this.props.form) {
       if (this.props.required) {
-        this.props.form.addValidationRule(this.props.name, { required : this.props.required });
+        this.props.form.setRequired(this.props.name, true);
       }
       if (this.props.rules) {
-        this.props.rules.forEach(rule => this.props.form.addValidationRule(this.props.name, rule));
+        this.registerRules(this.props.rules);
       }
     }
   }
+
+  componentDidUpdate(prevProps) {
+    // const currentRules = JSON.stringify(this.props.rules || {});
+    // const oldRules     = JSON.stringify(prevProps.rules || {});
+    //
+    // if (currentRules !== oldRules) {
+    //   this.registerRules(this.props.rules);
+    // }
+
+    this.props.form.setRequired(this.props.name, this.props.required);
+  }
+
+  registerRules = (rules) => {
+    // @TODO : compare rules, do not just push rules to existing array
+    rules.forEach(rule => this.props.form.addValidationRule(this.props.name, rule));
+  };
 
   onChange = e => {
     const value                      = e?.target?.value !== undefined ? e?.target.value : e;
@@ -35,7 +51,7 @@ class Field extends Component {
 
     let errors    = null;
     let value     = this.props.value;
-    let fieldName = form?.getName() + '-' + name;
+    let fieldName = form?.getName() + "-" + name;
     if (form) {
       if (form.errors && form.errors[name]) {
         errors = Array.isArray(form.errors[name]) ? form.errors[name] : [form.errors[name]];
@@ -46,19 +62,22 @@ class Field extends Component {
         value = form.getValue(name);
       }
     }
-    const labelText = label || humanizeName(name);
-    const stateProps = { fieldName, errors, layout : form?.layout, isHorizontal : form?.layout === 'horizontal' };
+    const labelText  = label || humanizeName(name);
+    const stateProps = { fieldName, errors, layout : form?.layout, isHorizontal : form?.layout === "horizontal" };
     return (
       <Container {...this.props} {...stateProps}>
         {label !== false &&
-        <Label {...stateProps}
-          required={this.props.required}>{label || humanizeName(name)}</Label>
+        <Label
+          {...stateProps}
+          required={this.props.required}>
+          {label || humanizeName(name)}
+        </Label>
         }
         <InputContainer {...stateProps}>
           <FieldInput
             id={fieldName}
             {...this.props}
-            label={label !== false  ? labelText : undefined}
+            label={label !== false ? labelText : undefined}
             name={name}
             errors={errors}
             value={value}
@@ -74,16 +93,16 @@ class Field extends Component {
 Field.propTypes    = {
   name        : PropTypes.string.isRequired,
   type        : PropTypes.string.isRequired,
-  required    : PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  required    : PropTypes.oneOfType([PropTypes.bool, PropTypes.string, PropTypes.func]),
   placeholder : PropTypes.string,
   description : PropTypes.any,
   component   : PropTypes.any,
   onChange    : PropTypes.func,
-  fieldArray  : PropTypes.any,
+  fieldArray  : PropTypes.any
 };
 Field.defaultProps = {
-  type     : 'text',
-  required : false,
+  type     : "text",
+  required : false
 };
 
 Field = withContextFormInstanceConsumer(Field);

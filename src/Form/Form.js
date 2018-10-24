@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import cn from 'classnames';
-import { withContextForm } from '../Context/ContextFormContext';
-import ContextFormInstanceContext from '../Context/ContextFormInstanceContext';
-import SimpleTheme from '../Theme/SimpleTheme/SimpleTheme';
-import ContextFormValidator from '../Validator/ContextFormValidator';
+import cn from "classnames";
+import PropTypes from "prop-types";
+import React, { Component } from "react";
+import { withContextForm } from "../Context/ContextFormContext";
+import ContextFormInstanceContext from "../Context/ContextFormInstanceContext";
+import SimpleTheme from "../Theme/SimpleTheme/SimpleTheme";
+import ContextFormValidator from "../Validator/ContextFormValidator";
 
 const innulable   = values => (values === null ? {} : values);
 const defaultForm = props => <form {...props} />;
@@ -19,7 +19,7 @@ class Form extends Component {
   state = {
     values   : this.props.values || innulable(this.props.initialValues) || {},
     errors   : {},
-    pristine : true,
+    pristine : true
   };
 
   constructor(props) {
@@ -50,8 +50,8 @@ class Form extends Component {
         pristine : false,
         values   : {
           ...this.state.values,
-          ...updateValue,
-        },
+          ...updateValue
+        }
       });
     }
     this.clearErrors(name);
@@ -63,8 +63,8 @@ class Form extends Component {
     this.setState({
       errors : {
         ...this.state.errors,
-        [name] : [...fieldErrors, error],
-      },
+        [name] : [...fieldErrors, error]
+      }
     });
   };
 
@@ -118,7 +118,7 @@ class Form extends Component {
     const initialValues     = JSON.stringify(this.props.initialValues);
     if (initialValues !== prevInitialValues) {
       this.setState({
-        values : {...innulable(this.props.initialValues)},
+        values : { ...innulable(this.props.initialValues) }
       });
     }
   }
@@ -135,7 +135,7 @@ class Form extends Component {
           onSubmit({ values });
         } else {
           this.setState({
-            errors,
+            errors
           });
         }
       });
@@ -147,7 +147,7 @@ class Form extends Component {
   onReset = (e) => {
     e && e.preventDefault();
     this.setState({
-      values : this.props.initialValues,
+      values : this.props.initialValues
     });
   };
 
@@ -160,11 +160,11 @@ class Form extends Component {
         onReset={this.onReset}
         horizontal={this.props.horizontal}
         className={cn(
-          'context-form',
+          "context-form",
           `context-form-theme-${this.theme.name?.toLowerCase()}`,
           this.props.layout,
-          this.props.className || '',
-          'with-labels')}
+          this.props.className || "",
+          "with-labels")}
         style={this.props.style}
         noValidate
       >
@@ -175,13 +175,14 @@ class Form extends Component {
             setValue           : this.setValue,
             validateFields     : this.validator.validateFields,
             addValidationRule  : this.validator.addValidationRule,
+            setRequired        : this.validator.setRequired,
             getName            : () => this.props.name,
             getTheme           : () => this.theme,
             registerFieldArray : this.registerFieldArray,
             addFieldArray      : this.addFieldArray,
             removeFieldArray   : this.removeFieldArray,
             submit             : this.onSubmit,
-            layout             : this.props.layout,
+            layout             : this.props.layout
           }}
         >
           {this.props.children}
@@ -195,23 +196,23 @@ Form.propTypes = {
   name             : PropTypes.string,
   validate         : PropTypes.func,
   validateOnSubmit : PropTypes.bool,
-  layout           : PropTypes.oneOf(['horizontal', 'vertical', 'inline']),
+  layout           : PropTypes.oneOf(["horizontal", "vertical", "inline"]),
   onSubmit         : PropTypes.func,
   onChange         : PropTypes.func,
   contextForm      : PropTypes.object,
   values           : PropTypes.object,
   initialValues    : PropTypes.object,
   className        : PropTypes.string,
-  style            : PropTypes.any,
+  style            : PropTypes.any
 };
 
 Form.defaultProps = {
   name             : `form_${Date.now()}_${Math.random()}`,
   validator        : ContextFormValidator,
   validateOnSubmit : true,
-  layout           : 'vertical',
+  layout           : "vertical",
   onChange         : () => null,
-  onSubmit         : () => null,
+  onSubmit         : () => null
 };
 
 export default withContextForm(Form);
