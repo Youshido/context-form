@@ -1,4 +1,5 @@
 import BasicFormExample from './examples/BasicFormExample';
+import FieldArrayDynamicExample from './examples/FieldArrayDynamicExample';
 import FieldArrayExample from './examples/FieldArrayExample';
 import FormValidationExample from './examples/FormValidationExample';
 import FullFeaturedFormExample from './examples/FullFeaturedFormExample';
@@ -19,6 +20,10 @@ export const EXAMPLE = {
   fieldArray : {
     component : FieldArrayExample,
     title     : 'Field Array',
+  },
+  fieldArrayDynamic : {
+    component : FieldArrayDynamicExample,
+    title     : 'Field Array Dynamic',
   },
   fieldValidation : {
     component : FieldValidationExample,

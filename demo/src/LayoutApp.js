@@ -4,7 +4,7 @@ import ExampleApp from './ExampleApp';
 
 class LayoutApp extends Component {
   state = {
-    active : 'fieldArray',
+    active : 'fieldArrayDynamic',
   };
 
   render() {
