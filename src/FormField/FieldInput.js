@@ -6,6 +6,15 @@ import { withContextForm } from '../Context/ContextFormContext';
 
 class FieldInput extends Component {
 
+  componentDidMount() {
+    console.log('Mount',this.props.name,  this.props);
+  };
+
+  componentWillUnmount() {
+    console.log('UnMount', this.props.name, this.props.fieldArray);
+
+  }
+
   onChange = e => {
     const value                      = e?.target?.value !== undefined ? e?.target.value : e;
     const { name, fieldArray, form } = this.props;

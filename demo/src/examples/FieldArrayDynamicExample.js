@@ -46,7 +46,8 @@ export default class FieldArrayDynamicExample extends Component {
             {fieldArray => <React.Fragment>
               <div style={{ display : 'flex', alignItems : 'center', marginTop : 5 }}>
                 <span style={{ width : 100 }}>{console.log(fieldArray.getValue('nameRequired'))}Movie #{fieldArray.index}:</span>
-                <FieldInput name={'name'} style={{ width : 200 }} required={true}/>
+                {/*<FieldInput name={'name'} style={{ width : 200 }} required={fieldArray.getValue('nameRequired')}/>*/}
+                <Field name={'name'} required={true} />
                 <FieldArray.Remove>X</FieldArray.Remove>
               </div>
               <Field type={'checkbox'} name={'nameRequired'} />
