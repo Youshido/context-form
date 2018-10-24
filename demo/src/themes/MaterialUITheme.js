@@ -5,7 +5,7 @@ import { createMuiTheme, MuiThemeProvider, withStyles } from "@material-ui/core/
 
 const theme                = createMuiTheme({
   palette : {
-    primary   : {
+    primary : {
       main : "#2196f3"
     },
     secondary : {
@@ -16,13 +16,13 @@ const theme                = createMuiTheme({
 const horizontalLabelWidth = "25%";
 
 const styles = theme => ({
-  horizontalLabel  : {
+  horizontalLabel : {
     width       : horizontalLabelWidth,
     marginTop   : 9,
     marginRight : 20,
     textAlign   : "right"
   },
-  footer           : {
+  footer : {
     marginTop : 15
   },
   horizontalFooter : {
@@ -91,8 +91,8 @@ const FormFooter = withStyles(styles)(props =>
 );
 
 const MaterialUITheme = {
-  name         : "Material",
-  Field        : {
+  name  : "Material",
+  Field : {
     Container      : FieldContainer,
     Label          : FieldLabel,
     InputContainer : FieldInputContainer,

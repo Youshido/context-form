@@ -20,8 +20,6 @@ class ContextFormValidator {
     if (isRequired) {
       this.rules[fieldName].push({ required : true, __required : true });
     }
-    
-    console.log("%c this.rules", "background: rgba(255,255,0, .3);", this.rules);
   };
 
   validateValues = (values) => {

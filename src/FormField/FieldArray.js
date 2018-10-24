@@ -70,8 +70,8 @@ class FieldArray extends Component {
       <ContainerComponent {...extraProps}>
         {items.map(index => (
           <FieldArrayContext.Provider key={index} value={{
-            getValue    : this.getValue,
-            setValue    : this.setValue,
+            getValue    : (name, currentIndex = index) => this.getValue(name, currentIndex),
+            setValue    : (name, value, currentIndex = index) => this.setValue(name, value, currentIndex),
             removeGroup : this.removeGroup,
             count       : values.length,
             minCount,

@@ -6,6 +6,10 @@ const Input = (props) => {
   const { required, ...extra } = props;
   return <input {...extra} value={extra.value || ''}/>;
 };
+const checkbox = (props) => {
+  const { required, value, ...extra } = props;
+  return <input {...extra} checked={!!value} onChange={(e) => { props.onChange(e.currentTarget.checked)}}/>;
+};
 
 const Form = ({horizontal, ...props}) => <form {...props} />;
 
@@ -55,6 +59,9 @@ const SimpleTheme = {
     text : {
       component : Input,
     },
+    checkbox : {
+      component : checkbox,
+    }
   },
 };
 
