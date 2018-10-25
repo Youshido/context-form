@@ -1,47 +1,30 @@
-import PropTypes from "prop-types";
-import React, { Component } from "react";
-import { withContextFormInstanceConsumer } from "../Context/ContextFormInstanceContext";
-import { withFormFieldArrayConsumer } from "../Context/FieldArrayContext";
-import { humanizeName } from "../utils";
-import FieldInput from "./FieldInput";
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import { withContextFormInstanceConsumer } from '../Context/ContextFormInstanceContext';
+import { withFormFieldArrayConsumer } from '../Context/FieldArrayContext';
+import { humanizeName } from '../utils';
+import FieldInput from './FieldInput';
 
 class Field extends Component {
-  componentDidMount() {
-    if (this.props.form) {
-      if (this.props.required) {
-        this.props.form.setRequired(this.props.name, true);
-      }
-      if (this.props.rules) {
-        this.registerRules(this.props.rules);
-      }
-    }
-  }
-
-  componentDidUpdate(prevProps) {
-    // const currentRules = JSON.stringify(this.props.rules || {});
-    // const oldRules     = JSON.stringify(prevProps.rules || {});
-    //
-    // if (currentRules !== oldRules) {
-    //   this.registerRules(this.props.rules);
-    // }
-
-    this.props.form.setRequired(this.props.name, this.props.required);
-  }
-
-  registerRules = (rules) => {
-    // @TODO : compare rules, do not just push rules to existing array
-    rules.forEach(rule => this.props.form.addValidationRule(this.props.name, rule));
+  get parentContext() {
+    return this.props.fieldArray || this.props.form || null;
   };
 
+  get fieldId() {
+    return this.parentContext?.getId() + '-' + this.props.name;
+  }
+
+  get fullName() {
+    const prefix = this.props.fieldArray
+      ? (this.props.fieldArray.getIndexedName() + '.')
+      : '';
+    return prefix + this.props.name;
+  }
+
   onChange = e => {
-    const value                      = e?.target?.value !== undefined ? e?.target.value : e;
-    const { name, fieldArray, form } = this.props;
-    if (fieldArray) {
-      fieldArray.setValue(name, value, fieldArray.index);
-    } else if (form) {
-      form.setValue(name, value);
-      this.props.onChange && this.props.onChange(value);
-    }
+    const value = e?.target?.value !== undefined ? e?.target.value : e;
+    this.parentContext?.setValue(this.props.name, value);
+    this.props.onChange && this.props.onChange(value);
   };
 
   render() {
@@ -50,20 +33,20 @@ class Field extends Component {
     const { Container, Label, InputContainer, Description, Errors } = Field;
 
     let errors    = null;
-    let value     = this.props.value;
-    let fieldName = form?.getName() + "-" + name;
+    let value     = this.parentContext ? this.parentContext?.getValue(name) : this.props.value;
     if (form) {
-      if (form.errors && form.errors[name]) {
-        errors = Array.isArray(form.errors[name]) ? form.errors[name] : [form.errors[name]];
-      }
-      if (fieldArray) {
-        value = fieldArray.getValue(name, fieldArray.index);
-      } else {
-        value = form.getValue(name);
+      if (form.errors && form.errors[this.fullName]) {
+        errors = Array.isArray(form.errors[this.fullName]) ? form.errors[this.fullName] : [form.errors[this.fullName]];
       }
     }
     const labelText  = label || humanizeName(name);
-    const stateProps = { fieldName, errors, layout : form?.layout, isHorizontal : form?.layout === "horizontal" };
+    const stateProps = {
+      errors,
+      hasErrors: errors?.length,
+      fieldName: this.fullName,
+      layout : form?.layout,
+      isHorizontal : form?.layout === 'horizontal'
+    };
     return (
       <Container {...this.props} {...stateProps}>
         {label !== false &&
@@ -75,10 +58,10 @@ class Field extends Component {
         }
         <InputContainer {...stateProps}>
           <FieldInput
-            id={fieldName}
+            id={this.fieldId}
             {...this.props}
             label={label !== false ? labelText : undefined}
-            name={name}
+            name={this.props.name}
             errors={errors}
             value={value}
           />
@@ -98,11 +81,11 @@ Field.propTypes    = {
   description : PropTypes.any,
   component   : PropTypes.any,
   onChange    : PropTypes.func,
-  fieldArray  : PropTypes.any
+  fieldArray  : PropTypes.any,
 };
 Field.defaultProps = {
-  type     : "text",
-  required : false
+  type     : 'text',
+  required : false,
 };
 
 Field = withContextFormInstanceConsumer(Field);

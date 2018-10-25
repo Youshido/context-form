@@ -51,30 +51,30 @@ class FullFeaturedFormExample extends Component {
           horizontal
           loading={loading}
           initialValues={initialValues}
-          className="form-fullfeatured"
+          className='form-fullfeatured'
         >
-          <Field name="title" required/>
-          <Field name="firstName" placeholder="e.g. Alex"/>
+          <Field name='title' required/>
+          <Field name='firstName' placeholder='e.g. Alex'/>
           <Field
-            name="lastName"
-            placeholder="e.g. Malcovich"
-            description="Please, enter your real name"
+            name='lastName'
+            placeholder='e.g. Malcovich'
+            description='Please, enter your real name'
             required
           />
           <Field
-            name="age"
-            placeholder="e.g. 26"
-            description="Please, enter only full years"
+            name='age'
+            placeholder='e.g. 26'
+            description='Please, enter only full years'
             rules={[this.validateAge]}
           />
           <Field
-            name="occupation"
-            placeholder="Select Title"
-            type="select"
+            name='occupation'
+            placeholder='Select Title'
+            type='select'
           >
-            <option value="1">Software Engineer</option>
-            <option value="2">Web Designer</option>
-            <option value="3">QA Engineer</option>
+            <option value='1'>Software Engineer</option>
+            <option value='2'>Web Designer</option>
+            <option value='3'>QA Engineer</option>
           </Field>
           <hr/>
           <Row>
@@ -82,26 +82,26 @@ class FullFeaturedFormExample extends Component {
               Education:
             </Col>
             <Col sm={9}>
-              <FieldArray name="education">
-                <div className="education-group">
-                  <FieldInput name="university" placeholder="University"/>
-                  <FieldInput name="year" placeholder="Year" style={{ width : 100, marginLeft : 10 }}/>
+              <FieldArray name='education'>
+                <div className='education-group'>
+                  <FieldInput name='university' placeholder='University'/>
+                  <FieldInput name='year' placeholder='Year' style={{ width : 100, marginLeft : 10 }}/>
                   <FieldArray.Remove>
-                    <Glyphicon glyph="trash" style={{ marginLeft : 10 }}/>
+                    <Glyphicon glyph='trash' style={{ marginLeft : 10 }}/>
                   </FieldArray.Remove>
                 </div>
               </FieldArray>
-              <FieldArray.Add name="education" component={Button} bsStyle="link">
+              <FieldArray.Add name='education' component={Button} bsStyle='link'>
                 Add Another
               </FieldArray.Add>
             </Col>
           </Row>
           <hr/>
           <FormFooter>
-            <Button bsStyle="default" type="reset">
+            <Button bsStyle='default' type='reset'>
               Reset
             </Button>
-            <Button bsStyle="primary" type="submit" style={{ marginLeft : 10 }}>
+            <Button bsStyle='primary' type='submit' style={{ marginLeft : 10 }}>
               Submit
             </Button>
           </FormFooter>
@@ -111,10 +111,10 @@ class FullFeaturedFormExample extends Component {
           onChange={change => this.setState({ form2 : { ...this.state.form2, ...change } })}
           onSubmit={({ values }) => console.log('Second Submit', values)}
         >
-          <Field name="title"/>
-          <Field name="age" required/>
+          <Field name='title'/>
+          <Field name='age' required/>
           <FormFooter>
-            <Button type="submit">
+            <Button type='submit'>
               Submit
             </Button>
           </FormFooter>

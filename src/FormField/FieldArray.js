@@ -55,14 +55,14 @@ class FieldArray extends Component {
   };
 
   render() {
-    const values                     = this.getFieldValues();
+    const values                                                  = this.getFieldValues();
     const { initialCount, minCount, style, className, component } = this.props;
 
-    const items = Array.from({ length : values.length }, (v, k) => k);
-    let extraProps = {};
+    const items            = Array.from({ length : values.length }, (v, k) => k);
+    let extraProps         = {};
     let ContainerComponent = Fragment;
     if (style || className) {
-      extraProps = { style, className };
+      extraProps         = { style, className };
       ContainerComponent = component;
     }
 
@@ -70,10 +70,19 @@ class FieldArray extends Component {
       <ContainerComponent {...extraProps}>
         {items.map(index => (
           <FieldArrayContext.Provider key={index} value={{
-            getValue    : (name, currentIndex = index) => this.getValue(name, currentIndex),
-            setValue    : (name, value, currentIndex = index) => this.setValue(name, value, currentIndex),
-            removeGroup : this.removeGroup,
-            count       : values.length,
+            getValue       : (name, currentIndex = index) => this.getValue(name, currentIndex),
+            setValue       : (name, value, currentIndex = index) => this.setValue(name, value, currentIndex),
+            hasError       : (name, currentIndex = index) => {
+              return this.props.form?.hasError([this.props.name, currentIndex, name].join('.'));
+            },
+            getErrors      : (name, currentIndex = index) => {
+              return this.props.form?.getErrors([this.props.name, currentIndex, name].join('.'));
+            },
+            removeGroup    : this.removeGroup,
+            count          : values.length,
+            getId          : () => this.props.form?.getName() + '-' + this.props.name,
+            getName        : () => this.props.name,
+            getIndexedName : () => this.props.name + '.' + index,
             minCount,
             initialCount,
             index,
@@ -95,7 +104,7 @@ FieldArray.propTypes = {
 FieldArray.defaultProps = {
   initialCount : 1,
   minCount     : 0,
-  component    : 'div'
+  component    : 'div',
 };
 
 FieldArray.Add    = FieldArrayAdd;

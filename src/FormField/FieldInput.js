@@ -5,30 +5,47 @@ import { withFormFieldArrayConsumer } from '../Context/FieldArrayContext';
 import { withContextForm } from '../Context/ContextFormContext';
 
 class FieldInput extends Component {
-
-  componentDidMount() {
-    console.log('Mount',this.props.name,  this.props);
+  get parentContext() {
+    return this.props.fieldArray || this.props.form || {};
   };
-
-  componentWillUnmount() {
-    console.log('UnMount', this.props.name, this.props.fieldArray);
-
+  get fullName() {
+    const prefix = this.props.fieldArray
+      ? (this.props.fieldArray.getIndexedName() + '.')
+      : '';
+    return prefix + this.props.name;
+  }
+  get fieldId() {
+    return this.props.id || (this.parentContext?.getId() + '-' + this.props.name);
   }
 
-  onChange = e => {
-    const value                      = e?.target?.value !== undefined ? e?.target.value : e;
-    const { name, fieldArray, form } = this.props;
-
-    if (fieldArray) {
-      fieldArray.setValue(name, value, fieldArray.index);
-    } else if (form) {
-      form.setValue(name, value);
-      this.props.onChange && this.props.onChange(value);
+  componentDidMount() {
+    this.props.form?.setRequired(this.fullName, this.props.required);
+    if (this.props.rules) {
+      this.registerRules(this.props.rules);
     }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.required !== this.props.required) {
+      this.props.form?.setRequired(this.fullName, this.props.required);
+    }
+  }
+
+  registerRules = (rules) => {
+    this.props.form?.clearValidationRules(this.fullName);
+    rules.forEach(rule => this.props.form.addValidationRule(this.fullName, rule));
+  };
+
+  onChange = e => {
+    const value    = e?.target?.value !== undefined ? e?.target.value : e;
+    const { name } = this.props;
+
+    this.parentContext.setValue(name, value);
+    this.props.onChange && this.props.onChange(value);
   };
 
   render() {
-    const { name, component, form, contextForm, fieldArray, ...extraProps } = this.props;
+    const { name, component, contextForm, fieldArray, form, ...extraProps } = this.props;
 
     const Component = component || contextForm?.theme?.types[this.props.type]?.component;
     if (!Component) {
@@ -36,17 +53,16 @@ class FieldInput extends Component {
       return null;
     }
 
-    let value     = this.props.value;
-    const id = this.props.id || form?.getName() + '-' + name;
-    if (form) {
-      if (fieldArray) {
-        value = fieldArray.getValue(name, fieldArray.index);
-      } else {
-        value = form.getValue(name);
-      }
-    }
+    const value = this.parentContext ? this.parentContext.getValue(name) : this.props.value;
     return (
-      <Component id={id} name={name} {...extraProps} onChange={this.onChange} value={value}>
+      <Component
+        id={this.fieldId}
+        name={name}
+        onChange={this.onChange}
+        value={value}
+        hasError={this.props.form.hasError(this.fullName)}
+        {...extraProps}
+      >
         {this.props.children}
       </Component>
     );

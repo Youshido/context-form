@@ -19,9 +19,8 @@
     "no-return-assign": "off",
     "react/sort-comp": "off",
     "indent": ["error", 2],
-    "key-spacing": ["error", {
-      "beforeColon": true,
-      "align": "colon"
+    "key-spacing": ["off", {
+      "beforeColon": false
     }],
     "comma-dangle": ["error", "only-multiline"],
     "padded-blocks": ["off", {

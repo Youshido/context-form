@@ -3,19 +3,23 @@ import './SimpleTheme.sass';
 import cn from 'classnames';
 
 const Input = (props) => {
-  const { required, ...extra } = props;
-  return <input {...extra} value={extra.value || ''}/>;
+  const { required, hasError, ...extra } = props;
+  return <input {...extra} value={extra.value || ''} className={props.hasError ? 'has-error' : ''}/>;
 };
-const checkbox = (props) => {
-  const { required, value, ...extra } = props;
+const Checkbox = (props) => {
+  const { required, hasError, value, ...extra } = props;
   return <input {...extra} checked={!!value} onChange={(e) => { props.onChange(e.currentTarget.checked)}}/>;
+};
+const Select = (props) => {
+  const { required, hasError, value, ...extra } = props;
+  return <select {...extra} value={value}></select>;
 };
 
 const Form = ({horizontal, ...props}) => <form {...props} />;
 
 const FieldContainer = (props) =>
   <div className={cn('form-field', {
-    'has-error' : props.form.errors[props.name],
+    'has-error' : props.hasErrors,
     'required'  : props.required,
   })}>
     {props.children}
@@ -60,8 +64,11 @@ const SimpleTheme = {
       component : Input,
     },
     checkbox : {
-      component : checkbox,
-    }
+      component : Checkbox,
+    },
+    select : {
+      component : Select,
+    },
   },
 };
 
