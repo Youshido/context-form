@@ -1,9 +1,14 @@
 import * as React from "react";
 
+export type OnSubmitResult = {
+  values: Record<string, any>[]
+}
+
 export interface ContextFormProps {
   name?: string
   className?: string
-  onSubmit?: Function
+  onSubmit?: (res: OnSubmitResult) => void
+  validateOnSubmit?: boolean
 }
 
 export interface FormFieldProps {
@@ -23,13 +28,14 @@ export interface ContextFormProviderProps {
 
 export interface ContextFormContextInterface {
   submit: Function
+  getValue: (name: string) => any
+  getErrors: Function
+  getValues: Function
+  errors: any[]
 }
 
 export interface WithContextFormProps {
-  contextForm: ContextFormContextInterface
-  getValue: (name: string) => any
-  getErrors: Function
-  errors: any[]
+  getForm: (name: string) => ContextFormContextInterface
 }
 
 declare function humanizeName(name: string): string;
