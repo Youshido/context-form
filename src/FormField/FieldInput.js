@@ -45,7 +45,7 @@ class FieldInput extends Component {
   };
 
   render() {
-    const { name, component, contextForm, fieldArray, form, ...extraProps } = this.props;
+    const { name, component, className, contextForm, fieldArray, form, ...extraProps } = this.props;
 
     const Component = component || contextForm?.theme?.types[this.props.type]?.component;
     if (!Component) {
@@ -58,6 +58,7 @@ class FieldInput extends Component {
       <Component
         id={this.fieldId}
         name={name}
+        className={className}
         onChange={this.onChange}
         value={value}
         hasError={this.props.form.hasError(this.fullName)}
@@ -74,6 +75,7 @@ FieldInput.propTypes    = {
   type        : PropTypes.string.isRequired,
   required    : PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   placeholder : PropTypes.string,
+  className   : PropTypes.string,
   description : PropTypes.any,
   component   : PropTypes.any,
   onChange    : PropTypes.func,

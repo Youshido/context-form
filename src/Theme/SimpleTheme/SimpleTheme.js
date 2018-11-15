@@ -4,7 +4,7 @@ import cn from 'classnames';
 
 const Input = (props) => {
   const { required, hasError, ...extra } = props;
-  return <input {...extra} value={extra.value || ''} className={props.hasError ? 'has-error' : ''}/>;
+  return <input {...extra} value={extra.value || ''} className={(props.hasError ? 'has-error ' : ' ') + props.className}/>;
 };
 const Checkbox = (props) => {
   const { required, hasError, value, ...extra } = props;
@@ -61,6 +61,9 @@ const SimpleTheme = {
   defaultInput : Input,
   types        : {
     text : {
+      component : Input,
+    },
+    password : {
       component : Input,
     },
     checkbox : {

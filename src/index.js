@@ -3,7 +3,7 @@ import Field from './FormField/Field';
 import FieldInput from './FormField/FieldInput';
 import FieldArray from './FormField/FieldArray';
 import FormFooter from './FormFooter/FormFooter';
-import ContextFormInstanceContext from './Context/ContextFormInstanceContext';
+import ContextFormInstanceContext, { withContextFormInstanceConsumer } from './Context/ContextFormInstanceContext';
 import FieldArrayContext from './Context/FieldArrayContext';
 import ContextFormContext, { withContextForm } from './Context/ContextFormContext';
 import ContextFormProvider from './Context/ContextFormProvider';
@@ -39,4 +39,5 @@ export {
   FieldArrayContext,
   humanizeName,
   withContextForm,
+  withContextFormInstanceConsumer,
 };
