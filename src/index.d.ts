@@ -8,6 +8,7 @@ export interface ContextFormProps {
   name?: string
   className?: string
   onSubmit?: (res: OnSubmitResult) => void
+  initialValues?: any
   validateOnSubmit?: boolean
 }
 
