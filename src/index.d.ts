@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 
 export type OnSubmitResult = {
   values: Record<string, any>[]
@@ -24,7 +24,7 @@ export interface FormFieldProps {
 }
 
 export interface ContextFormProviderProps {
-  theme?: any
+  theme?: ThemeInterface
 }
 
 export interface ContextFormContextInterface {
@@ -35,18 +35,49 @@ export interface ContextFormContextInterface {
   errors: any[]
 }
 
+export interface ThemeFieldInterface {
+  Container: any,
+  Label: any,
+  InputContainer: any,
+  Description: any,
+  Errors: any,
+}
+
+export interface ThemeFieldTypeInterface {
+  component: any,
+}
+
+export interface ThemeInterface {
+  name: string,
+  Form: any,
+  Field: ThemeFieldInterface,
+  Footer: any,
+  types: {[key: string] : ThemeFieldTypeInterface}
+}
+
 export interface WithContextFormProps {
   getForm: (name: string) => ContextFormContextInterface
 }
 
 declare function humanizeName(name: string): string;
+
 declare function withContextForm<T>(component: React.Component): React.Component<T & WithContextFormProps>
+
 declare function withContextFormInstanceConsumer<T>(component: React.Component): React.Component<T & WithContextFormProps>
 
-declare class ContextFormProvider extends React.Component<ContextFormProviderProps, any> {}
-declare class Field extends React.Component<FormFieldProps, any> {}
-declare class FieldInput extends React.Component<FormFieldProps, any> {}
-declare class FormFooter extends React.Component<{}, any> {}
+declare class ContextFormProvider extends React.Component<ContextFormProviderProps, any> {
+}
+
+declare class Field extends React.Component<FormFieldProps, any> {
+}
+
+declare class FieldInput extends React.Component<FormFieldProps, any> {
+}
+
+declare class FormFooter extends React.Component<{}, any> {
+}
+
+declare var SimpleTheme: ThemeInterface;
 
 declare class Form extends React.Component<ContextFormProps, any> {
   static Field: Field;
@@ -58,7 +89,8 @@ export {
   FieldInput,
   FormFooter,
   ContextFormProvider,
+  SimpleTheme,
   withContextFormInstanceConsumer,
   humanizeName,
-  withContextForm
+  withContextForm,
 }
