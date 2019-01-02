@@ -21,6 +21,7 @@ export interface FormFieldProps {
   description?: string
   component?: any
   onChange?: (value: any) => void
+  [x: string]: any
 }
 
 export interface ContextFormProviderProps {
