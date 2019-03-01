@@ -20,8 +20,8 @@ class BasicFormExample extends Component {
 
   render() {
     return (
-      <Form onSubmit={this.onSubmit} layout='vertical'>
-        <Field name={'firstName'} placeholder={'e.g. Alex'} required/>
+      <Form onSubmit={this.onSubmit} layout='vertical' autoComplete={false}>
+        <Field name={'firstName'} placeholder={'e.g. Alex'} required autoComplete={true}/>
         <Field name={'lastName'} placeholder={'e.g. Malcovich'}/>
         <FormFooter>
           <button type={'submit'}>Submit</button>
