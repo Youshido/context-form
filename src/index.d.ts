@@ -20,6 +20,7 @@ export interface FormFieldProps {
   placeholder?: string
   required?: boolean
   autoComplete?: boolean
+  label?: string | any
   description?: string | any
   component?: any
   onChange?: (value: any) => void
