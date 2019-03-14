@@ -7,6 +7,8 @@ export type OnSubmitResult = {
 export interface ContextFormProps {
   name?: string
   className?: string
+  values?: object,
+  onChange?: (value: any) => void
   onSubmit?: (res: OnSubmitResult) => void
   initialValues?: any
   validateOnSubmit?: boolean

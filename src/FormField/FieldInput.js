@@ -65,8 +65,8 @@ class FieldInput extends Component {
         className={className}
         value={value}
         hasError={this.props.form.hasError(this.fullName)}
-        onChange={this.onChange}
         {...extraProps}
+        onChange={this.onChange}
       >
         {this.props.children}
       </Component>
