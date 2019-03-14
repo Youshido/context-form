@@ -48,9 +48,9 @@ class FormValidationExample extends Component {
   render() {
     return (
       <Form onSubmit={this.onSubmit} validate={this.validateForm} layout='horizontal'>
-        <Field name="name" />
-        <Field name="title" />
-        <Field name="age" description="You need to be between 18 and 65."/>
+        <Field name='name' />
+        <Field name='title' />
+        <Field name='age' description='You need to be between 18 and 65.'/>
         <DefaultFooter values={this.state.values} hideSubmission={this.hideSubmission}/>
       </Form>
     );

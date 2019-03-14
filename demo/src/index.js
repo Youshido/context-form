@@ -12,7 +12,7 @@ const renderExample = (example, renderId) => {
 };
 window.renderExample = renderExample;
 
-const renderLayout = ReactDOM.render(
-    <LayoutApp />,
-    document.getElementById('root'),
-  );
+ReactDOM.render(
+  <LayoutApp />,
+  document.getElementById('root'),
+);
