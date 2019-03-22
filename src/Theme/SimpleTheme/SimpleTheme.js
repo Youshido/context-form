@@ -8,7 +8,9 @@ const Input = (props) => {
 };
 const Checkbox = (props) => {
   const { required, hasError, value, ...extra } = props;
-  return <input {...extra} checked={!!value} onChange={(e) => { props.onChange(e.currentTarget.checked)}}/>;
+  return <input {...extra} checked={!!value} onChange={(e) => {
+    props.onChange(e.currentTarget.checked)
+  }}/>;
 };
 const Select = (props) => {
   const { required, hasError, value, ...extra } = props;

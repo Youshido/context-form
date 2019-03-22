@@ -7,9 +7,12 @@ export type OnSubmitResult = {
 export interface ContextFormProps {
   name?: string
   className?: string
+  values?: object,
+  onChange?: (value: any) => void
   onSubmit?: (res: OnSubmitResult) => void
   initialValues?: any
   validateOnSubmit?: boolean
+  autoComplete?: boolean
 }
 
 export interface FormFieldProps {
@@ -18,7 +21,9 @@ export interface FormFieldProps {
   className?: string
   placeholder?: string
   required?: boolean
-  description?: string
+  autoComplete?: boolean
+  label?: string | any
+  description?: string | any
   component?: any
   onChange?: (value: any) => void
   [x: string]: any
@@ -33,6 +38,9 @@ export interface ContextFormContextInterface {
   getValue: (name: string) => any
   getErrors: Function
   getValues: Function
+  addError: Function
+  getId: () => string
+  getName: () => string
   errors: any[]
 }
 

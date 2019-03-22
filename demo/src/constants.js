@@ -3,6 +3,7 @@ import FieldArrayDynamicExample from './examples/FieldArrayDynamicExample';
 import FieldArrayExample from './examples/FieldArrayExample';
 import FormValidationExample from './examples/FormValidationExample';
 import FullFeaturedFormExample from './examples/FullFeaturedFormExample';
+import MountableRequired from './examples/MountableRequiredFormExample';
 import OverviewFormExample from './examples/OverviewFormExample';
 import FieldValidationExample from './examples/FieldValidationExample';
 import RemoteSubmitExample from './examples/RemoteSubmitExample';
@@ -40,6 +41,10 @@ export const EXAMPLE = {
   remoteSubmit : {
     component : RemoteSubmitExample,
     title     : 'Remote Submit Example'
+  },
+  mountableRequired : {
+    component : MountableRequired,
+    title     : 'OnMount Required'
   },
   materialUI : {
     component : MaterialUIExample,

@@ -187,6 +187,7 @@ class Form extends Component {
             getName              : () => this.props.name,
             getIndexedName       : () => this.props.name,
             getTheme             : () => this.theme,
+            getProps             : () => this.props,
             registerFieldArray   : this.registerFieldArray,
             addFieldArray        : this.addFieldArray,
             removeFieldArray     : this.removeFieldArray,

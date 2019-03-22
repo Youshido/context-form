@@ -34,6 +34,12 @@ class Field extends Component {
 
     let errors    = null;
     let value     = this.parentContext ? this.parentContext?.getValue(name) : this.props.value;
+    let autoComplete = this.props.autoComplete === false
+      ? 'off'
+      : this.props.autoComplete === true ? 'on' : undefined;
+    if (autoComplete === undefined) {
+      autoComplete = form?.getProps()?.autoComplete === false ? 'off' : 'on'
+    }
     if (form) {
       if (form.errors && form.errors[this.fullName]) {
         errors = Array.isArray(form.errors[this.fullName]) ? form.errors[this.fullName] : [form.errors[this.fullName]];
@@ -60,6 +66,7 @@ class Field extends Component {
           <FieldInput
             id={this.fieldId}
             {...this.props}
+            autoComplete={autoComplete}
             label={label !== false ? labelText : undefined}
             name={this.props.name}
             errors={errors}

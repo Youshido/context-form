@@ -29,6 +29,10 @@ class FieldInput extends Component {
     }
   }
 
+  componentWillUnmount() {
+    this.props.form?.clearValidationRules(this.fullName);
+  }
+
   componentDidUpdate(prevProps) {
     if (prevProps.required !== this.props.required) {
       this.props.form?.setRequired(this.fullName, this.props.required);
@@ -63,10 +67,10 @@ class FieldInput extends Component {
         id={this.fieldId}
         name={name}
         className={className}
-        onChange={this.onChange}
         value={value}
         hasError={this.props.form.hasError(this.fullName)}
         {...extraProps}
+        onChange={this.onChange}
       >
         {this.props.children}
       </Component>
