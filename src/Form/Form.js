@@ -129,11 +129,17 @@ class Form extends Component {
   submit = () => this.onSubmit();
 
   onSubmit = (e) => {
-    const { validateOnSubmit, onSubmit } = this.props;
+    const { validateOnSubmit, onSubmit, onBeforeSubmit } = this.props;
 
     e && e.preventDefault();
+
     if (validateOnSubmit) {
       this.validateFields().then(({ values, errors }) => {
+
+        if (onBeforeSubmit({ values, errors }) !== true) {
+          return;
+        }
+
         if (!Object.keys(errors).length) {
           onSubmit({ values });
         } else {
@@ -143,7 +149,10 @@ class Form extends Component {
         }
       });
     } else {
-      onSubmit({ values : this.getValues() });
+      const values = this.getValues();
+      if (onBeforeSubmit({ values }) === true) {
+        onSubmit({ values });
+      }
     }
   };
 
@@ -208,6 +217,7 @@ Form.propTypes = {
   validateOnSubmit : PropTypes.bool,
   layout           : PropTypes.oneOf(['horizontal', 'vertical', 'inline']),
   onSubmit         : PropTypes.func,
+  onBeforeSubmit   : PropTypes.func,
   onChange         : PropTypes.func,
   contextForm      : PropTypes.object,
   values           : PropTypes.object,
@@ -222,6 +232,7 @@ Form.defaultProps = {
   validateOnSubmit : true,
   layout           : 'vertical',
   onChange         : () => null,
+  onBeforeSubmit   : () => true,
   onSubmit         : () => null,
 };
 
