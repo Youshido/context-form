@@ -129,28 +129,31 @@ class Form extends Component {
   submit = () => this.onSubmit();
 
   onSubmit = (e) => {
-    const { validateOnSubmit, onSubmit } = this.props;
+    const { validateOnSubmit, onSubmit, onBeforeSubmit } = this.props;
 
     e && e.preventDefault();
-    return new Promise((resolve, reject) => {
-      if (validateOnSubmit) {
-        this.validateFields().then(({ values, errors }) => {
-          if (!Object.keys(errors).length) {
-            resolve({ values });
-            onSubmit({ values });
-          } else {
-            reject(errors);
-            this.setState({
-              errors,
-            });
-          }
-        });
-      } else {
-        const values = this.getValues();
-        resolve({ values });
+
+    if (validateOnSubmit) {
+      this.validateFields().then(({ values, errors }) => {
+
+        if (onBeforeSubmit({ values, errors }) !== true) {
+          return;
+        }
+
+        if (!Object.keys(errors).length) {
+          onSubmit({ values });
+        } else {
+          this.setState({
+            errors,
+          });
+        }
+      });
+    } else {
+      const values = this.getValues();
+      if (onBeforeSubmit({ values }) === true) {
         onSubmit({ values });
       }
-    });
+    }
   };
 
   onReset = (e) => {
@@ -214,6 +217,7 @@ Form.propTypes = {
   validateOnSubmit : PropTypes.bool,
   layout           : PropTypes.oneOf(['horizontal', 'vertical', 'inline']),
   onSubmit         : PropTypes.func,
+  onBeforeSubmit   : PropTypes.func,
   onChange         : PropTypes.func,
   contextForm      : PropTypes.object,
   values           : PropTypes.object,
@@ -228,6 +232,7 @@ Form.defaultProps = {
   validateOnSubmit : true,
   layout           : 'vertical',
   onChange         : () => null,
+  onBeforeSubmit   : () => true,
   onSubmit         : () => null,
 };
 
