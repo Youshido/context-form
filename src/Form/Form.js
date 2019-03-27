@@ -132,19 +132,25 @@ class Form extends Component {
     const { validateOnSubmit, onSubmit } = this.props;
 
     e && e.preventDefault();
-    if (validateOnSubmit) {
-      this.validateFields().then(({ values, errors }) => {
-        if (!Object.keys(errors).length) {
-          onSubmit({ values });
-        } else {
-          this.setState({
-            errors,
-          });
-        }
-      });
-    } else {
-      onSubmit({ values : this.getValues() });
-    }
+    return new Promise((resolve, reject) => {
+      if (validateOnSubmit) {
+        this.validateFields().then(({ values, errors }) => {
+          if (!Object.keys(errors).length) {
+            resolve({ values });
+            onSubmit({ values });
+          } else {
+            reject(errors);
+            this.setState({
+              errors,
+            });
+          }
+        });
+      } else {
+        const values = this.getValues();
+        resolve({ values });
+        onSubmit({ values });
+      }
+    });
   };
 
   onReset = (e) => {
