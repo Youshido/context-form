@@ -136,7 +136,7 @@ class Form extends Component {
     if (validateOnSubmit) {
       this.validateFields().then(({ values, errors }) => {
 
-        if (onBeforeSubmit({ values, errors }) !== true) {
+        if (onBeforeSubmit({ values, errors }) === false) {
           return;
         }
 
@@ -150,9 +150,10 @@ class Form extends Component {
       });
     } else {
       const values = this.getValues();
-      if (onBeforeSubmit({ values }) === true) {
-        onSubmit({ values });
+      if (onBeforeSubmit({ values }) === false) {
+        return;
       }
+      onSubmit({ values });
     }
   };
 
@@ -232,7 +233,7 @@ Form.defaultProps = {
   validateOnSubmit : true,
   layout           : 'vertical',
   onChange         : () => null,
-  onBeforeSubmit   : () => true,
+  onBeforeSubmit   : () => null,
   onSubmit         : () => null,
 };
 
