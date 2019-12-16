@@ -9,6 +9,7 @@ export interface ContextFormProps {
   className?: string
   values?: object,
   onChange?: (value: any) => void
+  onBeforeSubmit?: (data: any) => boolean
   onSubmit?: (res: OnSubmitResult) => void
   initialValues?: any
   validateOnSubmit?: boolean
@@ -61,7 +62,7 @@ export interface ThemeInterface {
   Form: any,
   Field: ThemeFieldInterface,
   Footer: any,
-  types: {[key: string] : ThemeFieldTypeInterface}
+  types: { [key: string]: ThemeFieldTypeInterface }
 }
 
 export interface WithContextFormProps {
