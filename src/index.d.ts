@@ -65,13 +65,14 @@ export interface ThemeInterface {
   types: { [key: string]: ThemeFieldTypeInterface }
 }
 
+
 export interface WithContextFormProps {
-  getForm: (name: string) => ContextFormContextInterface
+  contextForm: { getForm: (name: string) => ContextFormContextInterface }
 }
 
 declare function humanizeName(name: string): string;
 
-declare function withContextForm<T>(component: React.Component): React.Component<T & WithContextFormProps>
+declare function withContextForm<T extends WithContextFormProps>(component: React.ComponentType<T>): React.ComponentClass<Omit<T, "contextForm">, any>
 
 declare function withContextFormInstanceConsumer<T>(component: React.Component): React.Component<T & WithContextFormProps>
 
