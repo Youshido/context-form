@@ -42,12 +42,12 @@ export type ValidationError = {
 export type FieldError = Record<string, ValidationError[]>
 
 export interface ContextFormContextInterface {
-  submit: Function
+  submit: () => void
   getValue: (name: string) => any
   getErrors: (name: string) => FieldError
-  validateFields: () => Promise<{ values: Map<string, any>, errors: Map<string, FieldError>}>
-  getValues: Map<string, any>
-  addError: Function
+  validateFields: () => Promise<{ values: Map<string, any>, errors: Map<string, FieldError> }>
+  getValues: () => Map<string, any>
+  addError: (name: string, error: any) => void
   isValid: () => boolean
   getId: () => string
   getName: () => string
@@ -81,7 +81,7 @@ export interface WithContextFormProps {
 
 declare function humanizeName(name: string): string;
 
-declare function withContextForm<T extends WithContextFormProps>(component: React.ComponentType<T>): React.ComponentClass<Omit<T, "contextForm">, any>
+declare function withContextForm<T extends WithContextFormProps>(component: React.ComponentType<T>): React.ComponentClass<Omit<T, 'contextForm'>, any>
 
 declare function withContextFormInstanceConsumer<T>(component: React.Component): React.Component<T & WithContextFormProps>
 
