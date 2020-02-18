@@ -70,6 +70,7 @@ class Form extends Component {
 
   hasError  = (name) => !!this.state.errors[name]?.length;
   getErrors = (name) => this.state.errors[name];
+  isValid   = () => Object.keys(this.state.errors).length === 0;
 
   validateFields = () => {
     const rawValues = this.getValues();
@@ -192,6 +193,7 @@ class Form extends Component {
             setRequired          : this.validator.setRequired,
             addError             : this.addError,
             hasError             : this.hasError,
+            isValid              : this.isValid,
             getErrors            : this.getErrors,
             getId                : () => this.props.name,
             getName              : () => this.props.name,

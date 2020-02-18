@@ -34,12 +34,21 @@ export interface ContextFormProviderProps {
   theme?: ThemeInterface
 }
 
+export type ValidationError = {
+  message: string,
+  required: boolean,
+} & Map<string, any>
+
+export type FieldError = Record<string, ValidationError[]>
+
 export interface ContextFormContextInterface {
   submit: Function
   getValue: (name: string) => any
-  getErrors: Function
-  getValues: Function
+  getErrors: (name: string) => FieldError
+  validateFields: () => Promise<{ values: Map<string, any>, errors: Map<string, FieldError>}>
+  getValues: Map<string, any>
   addError: Function
+  isValid: () => boolean
   getId: () => string
   getName: () => string
   errors: any[]
