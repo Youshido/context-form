@@ -18,14 +18,14 @@ class FieldInput extends Component {
     return this.props.id || (this.parentContext?.getId() + '-' + this.props.name);
   }
 
-  componentWillUnmount() {
-    this.props.form?.clearValidationRules(this.fullName);
-  }
-
   componentDidMount() {
     this.props.form?.setRequired(this.fullName, this.props.required);
+    const contextForm = this.props.contextForm;
     if (this.props.rules) {
       this.registerRules(this.props.rules);
+    }
+    if (contextForm?.theme?.rules[this.props.type]) {
+      this.registerRules(contextForm?.theme?.rules[this.props.type])
     }
   }
 

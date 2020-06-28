@@ -65,6 +65,10 @@ const SimpleTheme = {
     text : {
       component : Input,
     },
+    email : {
+      component : Input,
+      rules: [],
+    },
     password : {
       component : Input,
     },

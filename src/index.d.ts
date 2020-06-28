@@ -30,6 +30,12 @@ export interface FormFieldProps {
   [x: string]: any
 }
 
+export interface FieldArrayProps {
+  name         : string,
+  initialCount : number,
+  minCount?     : number,
+}
+
 export interface ContextFormProviderProps {
   theme?: ThemeInterface
 }
@@ -46,7 +52,7 @@ export interface ContextFormContextInterface {
   getValue: (name: string) => any
   getErrors: (name: string) => FieldError
   validateFields: () => Promise<{ values: Map<string, any>, errors: Map<string, FieldError> }>
-  getValues: () => Map<string, any>
+  getValues: () => object
   addError: (name: string, error: any) => void
   isValid: () => boolean
   getId: () => string
@@ -74,6 +80,10 @@ export interface ThemeInterface {
   types: { [key: string]: ThemeFieldTypeInterface }
 }
 
+export interface FieldArrayConsumer {
+  removeGroup: () => void
+  count: number
+}
 
 export interface WithContextFormProps {
   contextForm: { getForm: (name: string) => ContextFormContextInterface }
@@ -91,10 +101,19 @@ declare class ContextFormProvider extends React.Component<ContextFormProviderPro
 declare class Field extends React.Component<FormFieldProps, any> {
 }
 
+declare class FieldArrayContext extends React.Component<FormFieldProps, any> {
+  static Consumer: any
+}
+
 declare class FieldInput extends React.Component<FormFieldProps, any> {
 }
 
 declare class FormFooter extends React.Component<{}, any> {
+}
+
+declare class FieldArray extends React.Component<FieldArrayProps, any> {
+  static Remove: any
+  static Add: any
 }
 
 declare var SimpleTheme: ThemeInterface;
@@ -108,7 +127,9 @@ export {
   Field,
   FieldInput,
   FormFooter,
+  FieldArray,
   ContextFormProvider,
+  FieldArrayContext,
   SimpleTheme,
   withContextFormInstanceConsumer,
   humanizeName,
