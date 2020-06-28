@@ -24,8 +24,8 @@ class FieldInput extends Component {
     if (this.props.rules) {
       this.registerRules(this.props.rules);
     }
-    if (contextForm?.theme?.rules[this.props.type]) {
-      this.registerRules(contextForm?.theme?.rules[this.props.type])
+    if (contextForm?.theme?.rules && contextForm.theme.rules[this.props.type]) {
+      this.registerRules(contextForm.theme.rules[this.props.type])
     }
   }
 
