@@ -83,6 +83,9 @@ export interface ThemeInterface {
 export interface FieldArrayConsumer {
   removeGroup: () => void
   count: number
+  getValue: (name) => any
+  setValue: (name, value) => void
+  meta: any
 }
 
 export interface WithContextFormProps {
