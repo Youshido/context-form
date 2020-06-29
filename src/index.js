@@ -27,6 +27,8 @@ Form.FieldArray = FieldArray;
 
 export default Form;
 
+const FormContext = ContextFormInstanceContext;
+
 export {
   Form,
   Field,
@@ -38,6 +40,7 @@ export {
   FieldArrayRemove,
   ContextFormContext,
   ContextFormInstanceContext,
+  FormContext,
   FieldArrayContext,
   SimpleTheme,
   humanizeName,

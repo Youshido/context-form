@@ -50,9 +50,10 @@ export type FieldError = Record<string, ValidationError[]>
 export interface ContextFormContextInterface {
   submit: () => void
   getValue: (name: string) => any
-  getErrors: (name: string) => FieldError
-  validateFields: () => Promise<{ values: Map<string, any>, errors: Map<string, FieldError> }>
+  setValue: (name: string, value: any) => any
   getValues: () => object
+  validateFields: () => Promise<{ values: Map<string, any>, errors: Map<string, FieldError> }>
+  getErrors: (name: string) => FieldError
   addError: (name: string, error: any) => void
   isValid: () => boolean
   getId: () => string
@@ -92,6 +93,13 @@ export interface WithContextFormProps {
   contextForm: { getForm: (name: string) => ContextFormContextInterface }
 }
 
+export interface ContextFormContextConsumer {
+  theme        : any,
+  validator    : any,
+  registerForm : () => void,
+  getForm      : (name: string) => ContextFormContextInterface,
+}
+
 declare function humanizeName(name: string): string;
 
 declare function withContextForm<T extends WithContextFormProps>(component: React.ComponentType<T>): React.ComponentClass<Omit<T, 'contextForm'>, any>
@@ -115,14 +123,22 @@ declare class FormFooter extends React.Component<{}, any> {
 }
 
 declare class FieldArray extends React.Component<FieldArrayProps, any> {
-  static Remove: any
-  static Add: any
+  static Remove: any;
+  static Add: any;
 }
 
 declare var SimpleTheme: ThemeInterface;
 
 declare class Form extends React.Component<ContextFormProps, any> {
   static Field: Field;
+}
+
+declare class FormContext extends React.Component<any, any> {
+  static Consumer: ContextFormContextInterface;
+}
+
+declare class ContextFormContext extends React.Component<any, any> {
+  static Consumer: any;
 }
 
 export default Form;
@@ -133,6 +149,8 @@ export {
   FieldArray,
   ContextFormProvider,
   FieldArrayContext,
+  ContextFormContext,
+  FormContext,
   SimpleTheme,
   withContextFormInstanceConsumer,
   humanizeName,
