@@ -36,7 +36,7 @@ class Form extends Component {
   }
 
   getValues = () => {
-    const values = this.getValues();
+    const values = this.getValuesFlat();
     const res    = {};
 
     for (const fieldName of Object.keys(values)) {
@@ -61,12 +61,14 @@ class Form extends Component {
     let values = {
       ...getValues(),
     };
-    for (const path of name.split('.')) {
+    let resultValue = values[name];
+    for(const path of name.split('.')) {
       if (values[path]) {
-        values = values[path]
+        resultValue = values[path];
+        values = values[path];
       }
     }
-    return values;
+    return resultValue;
   };
 
   isControlled = () => this.props.values !== undefined;
