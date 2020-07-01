@@ -59,7 +59,7 @@ class Form extends Component {
 
   getValue = name => {
     let values = {
-      ...getValues(),
+      ...this.getValues(),
     };
     let resultValue = values[name];
     for(const path of name.split('.')) {
