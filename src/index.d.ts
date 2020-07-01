@@ -134,7 +134,7 @@ declare class Form extends React.Component<ContextFormProps, any> {
 }
 
 declare class FormContext extends React.Component<any, any> {
-  static Consumer: ContextFormContextInterface;
+  static Consumer: any;
 }
 
 declare class ContextFormContext extends React.Component<any, any> {

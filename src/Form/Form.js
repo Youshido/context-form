@@ -35,7 +35,25 @@ class Form extends Component {
     }
   }
 
-  getValues = () => (this.isControlled() ? this.props.values : this.state.values);
+  getValues = () => {
+    const values = this.isControlled() ? this.props.values : this.state.values;
+    const res    = {};
+
+    for (const fieldName of Object.keys(values)) {
+      const paths        = fieldName.split('.');
+      let currentPointer = res;
+      let i              = 0;
+      while (++i < paths.length) {
+        const path = paths[i - 1];
+        if (!currentPointer[path]) {
+          currentPointer[path] = {};
+        }
+        currentPointer = currentPointer[path];
+      }
+      currentPointer[paths.pop()] = values[fieldName];
+    }
+    return res;
+  };
 
   getValue = name => this.getValues()[name];
 
