@@ -63,7 +63,7 @@ class Form extends Component {
     };
     let resultValue = values[name];
     for(const path of name.split('.')) {
-      if (values[path] !== undefined) {
+      if (values && values[path] !== undefined) {
         resultValue = values[path];
         values = values[path];
       }
