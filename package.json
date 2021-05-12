@@ -52,7 +52,7 @@
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.10.0",
     "node-sass": "^4.9.2",
-    "postcss": "^7.0.0",
+    "postcss": "^8.2.10",
     "prettier": "^1.13.7",
     "rollup": "^1.6",
     "rollup-plugin-babel": "^4.3.2",
